@@ -1,0 +1,92 @@
+
+Motions
+-------
+
+hjkl            Move cursor in normal mode L-D-U-R
+w               Move to next word
+W               Move to next Word 
+b               Move to previous word
+B               Move to previous Word
+0               Move to start of line (col 0)
+$               Move to end of line
+G               Move to end of file
+f{char}         Find character (move to character) - forwards
+F{char}         Find character (move to character) - backwards
+t{char}         Find character (move before character) - forwards
+T{char}         Find character (move before character) - backwards
+*               Find (move) to word under cursor - forwards
+#               Find (move) to word under cursor - backwards
+
+
+
+Commands
+--------
+i               Enter insert mode - before cursor (insert)
+a               Enter insert mode - after cursor (append)
+I               Enter insert mode - start of line text
+A               Enter insert mode - end of line
+r               Replace one character 
+R               Enter replace mode
+o               Enter insert mode in new line after current 
+O               Enter insert mode in new line before current 
+{count}s        Delete count characters and enter insert mode (substitute)
+{count}S        Delete count lines and enter insert mode
+.               Repeat last change
+x               Delete character under cursor
+
+Operators
+---------
+c{motion}       Delete selection and enter insert mode (change)
+cc              Delte line and enter insert mode
+d{motion}       Delete selection
+dd              Delete line
+y{motion}       Yank (copy) selection
+yy              yank line
+>{motion}       Increase identation (shift left)
+>>              Increase identation of line
+<{motion}       Decrease identation (shift right)
+<<              Decrease identation of line
+={motion}       Autoindent selection *or* filter the lines through the equalprg program
+==              Autoindent line
+!{motion}       Filter the lines through the executable program that is used as next argument
+!!              Filter current line through the executable program that is used as next argument
+
+
+
+
+/{pattern}      Search for pattern forwards
+?{pattern}      Search for pattern backwards
+n               Next match
+N               Previous match
+
+u               Undo
+<C-r>           Redo
+
+Text object selection
+---------------------
+
+Only can be used in visual mode or with an operator
+
+{operator}a{selection}  Do operation including selection (around)
+{operator}i{selection}  Do operation not including selection (inner)
+
+Operator can be for example d (delete), c (change), etc
+Selection can be w, W (w/Word), s (sentence), p (paragraph), {([<'" (to select the brackets content), t (to select html tag content)
+
+Some examples
+daw             Delete a word (works great)
+diw             Delete inner word (does not work so nice because it leaves the spaces there)
+caw             Change a word
+ciw             Change innser word (works better because it leaves spaces there)
+
+
+Ex mode
+-------
+
+:%s/p1/p2/g     Replace pattern p1 with p2. The %s matches all lines in document, the g substitutes all patters in the line
+
+Macros
+------
+
+q{register}     Start macro capturing - stops capturing again with q
+@{register}     Replay macro of register
