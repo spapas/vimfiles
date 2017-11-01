@@ -9,9 +9,9 @@ set hidden
 " Careful - for lightline to appear
 set laststatus=2
 
-set guifont=Fira\ Mono:h11:cGREEK
+" set guifont=Fira\ Mono:h11:cGREEK
 " or
-"set guifont=Hack:h11:cDEFAULT
+set guifont=Hack:h11:cDEFAULT
 
 set lines=40 columns=120
 
@@ -74,7 +74,7 @@ colorscheme desert
 autocmd BufWritePre,FileWritePre *.py mark x|exe "%s/[ ]*$//g"|'x
 
 " CTRLP
-set runtimepath^=~/.vim/bundle/ctrlp.vim
+set runtimepath^=~/vimfiles/bundle/ctrlp.vim
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.pyc  " Windows
 " Open Buffers list with 'ctrl-j'
 noremap <C-j> :CtrlPBuffer<CR>
@@ -99,16 +99,12 @@ if executable('ag')
   " let g:ctrlp_use_caching = 0
 endif
 
-" Other
-set runtimepath^=~/.vim/bundle/vim-surround
-set runtimepath^=~/.vim/bundle/vim-repeat
+" Other plugins
+" set runtimepath^=~/.vim/bundle/vim-surround
+" set runtimepath^=~/.vim/bundle/vim-repeat
 
 " PLUG
-call plug#begin('~/.vim/plugged')
-
-" FZF 
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" Plug 'junegunn/fzf.vim'
+call plug#begin('~/vimfiles/plugged')
 
 " lightline-vim
 Plug 'itchyny/lightline.vim'
@@ -128,3 +124,4 @@ let g:lightline = {
 \ }
 
 set equalprg=autopep8\ -
+
