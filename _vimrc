@@ -9,7 +9,12 @@ set hidden
 " Careful - for lightline to appear
 set laststatus=2
 
-set guifont=Hack:h12:cDEFAULT
+set guifont=Fira\ Mono:h11:cGREEK
+" or
+"set guifont=Hack:h11:cDEFAULT
+
+set lines=40 columns=120
+
 
 "Use this to make clipboard work as normal with vim - or else use the *
 "register to refer to the windows clipboard, for example
@@ -57,6 +62,10 @@ set virtualedit=onemore
 
 set nobackup
 set writebackup
+" Vim keeps a hidden undo file for persistent undos(extension .un~). I don't like this because it adds a lot of files.
+" If you think you need it you can add an undodir directory that will save all undo files in a directory
+" Also see this answer: https://vi.stackexchange.com/questions/6/how-can-i-use-the-undofile
+set noundofile
 "set selectmode=mouse,key
 syntax on
 colorscheme desert
@@ -67,8 +76,8 @@ autocmd BufWritePre,FileWritePre *.py mark x|exe "%s/[ ]*$//g"|'x
 " CTRLP
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.pyc  " Windows
-" Open Buffers list with ';'
-nnoremap <C-;> :CtrlPBuffer<CR>
+" Open Buffers list with 'ctrl-j'
+noremap <C-j> :CtrlPBuffer<CR>
 " Show files by default 
 let g:ctrlp_cmd = 'CtrlP'
 " Run CtrlP (files) with CTRL+P

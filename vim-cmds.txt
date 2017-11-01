@@ -16,7 +16,7 @@ t{char}         Find character (move before character) - forwards
 T{char}         Find character (move before character) - backwards
 *               Find (move) to word under cursor - forwards
 #               Find (move) to word under cursor - backwards
-
+%               Move to matching element (parenthesis, bracket etc)
 
 
 Commands
@@ -84,6 +84,15 @@ Ex mode
 -------
 
 :%s/p1/p2/g     Replace pattern p1 with p2. The %s matches all lines in document, the g substitutes all patters in the line
+:set option     Sets the option to true
+:set nooption   Sets the option to false
+:set option?    Shows value of option (same as set nooption?)
+:so file        Source file (f.e to reload vimrc run :so $HOME/_vimrc)
+
+Ex shortcuts
+------------
+
+%               current file 
 
 Macros
 ------
