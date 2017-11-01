@@ -118,10 +118,12 @@ let g:lightline = {
 \ 'colorscheme': 'solarized',
 \ 'active': {
 \   'left': [['mode', 'paste'], ['readonly', 'filename', 'modified']],
-\   'right': [['lineinfo'], ['percent'], [ 'fileformat', 'fileencoding', 'filetype', ]]
+\   'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype', ]]
 \ },
 \ 
 \ }
+" Don't show INSERT (mode) - it is displayed on lightline
+set noshowmode
 
 set equalprg=autopep8\ -
 
