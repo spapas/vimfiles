@@ -92,6 +92,8 @@ Ex mode
 -------
 
 :%s/p1/p2/g     Replace pattern p1 with p2. The %s matches all lines in document, the g substitutes all patters in the line
+:%s/\%u200b//g  Replace special character using its uinicode value
+
 :set option     Sets the option to true
 :set nooption   Sets the option to false
 :set option?    Shows value of option (same as set nooption?)
@@ -118,6 +120,7 @@ Insert mode commands
 <C-o>           Switch to insert-normal mode
 <C-r>{register} Paste text (register you have yanked to with " - use 0 for the most recent edit)
 <C-k>{l1}{l2}   Insert digraph (f.e << or 14 or DG)
+<C-v>{chars}    Insert character using numeric value. Use uHex to insert unicode symbol, f.e <C-v>u20ac inserts €.
 
 Registers
 ---------
@@ -133,3 +136,14 @@ _               Void (does not yank to anywhere)
 /               Last search pattern
 
 To write a register use :let @/ = "foo"
+
+Visual mode
+-----------
+
+v               Enable
+V               Enable line-visual mode
+gv              Re-select last selection (also works from normal mode)
+<c-v>           Εnable block-visual mode
+<C-g>           Switch to select mode
+o               Go to other end of selection
+
