@@ -60,8 +60,6 @@ gUU             Switch line to uppercase
 g~{motion}      Swap case
 g~~             Swap line case
 
-
-
 /{pattern}      Search for pattern forwards
 ?{pattern}      Search for pattern backwards
 n               Next match
@@ -98,11 +96,32 @@ Ex mode
 :set nooption   Sets the option to false
 :set option?    Shows value of option (same as set nooption?)
 :so file        Source file (f.e to reload vimrc run :so $HOME/_vimrc)
+:{range}delete {x} Delete range - yank to x
+:{range}yank   {x} Yank range to x
+:{line}put {x}     Put register x after line
+Also copy (:t, :co), move (:m, :mo), join (:j), normal (to execute normal
+commands), substitute (:s), global (executes ex command on range)
 
-Ex shortcuts
-------------
+:tabnew         Open new tab
+:split/vsplit   Split pane horizontal/vertical (also use :sp or :vs)
+:edit (:e)      Edit file
 
-%               current file 
+<C-h>           Backspace
+<C-w>           Delete word
+<C-u>           Delete line
+<C-[>           Switch to normal (like ESC)
+<C-r>{register} Paste text (register you have yanked to with " - use 0 for the most recent edit)
+
+Ex mode ranges
+--------------
+.               Current line
+$               Last line
+1               First line
+%               All lines
+.,$             Range from here until end
++5,+10          Relative ranges (from current)
+/patter1/,/pattern2/    Range by patterns
+'{mark}         Line with mark
 
 Macros
 ------
