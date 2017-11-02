@@ -25,14 +25,17 @@ i               Enter insert mode - before cursor (insert)
 a               Enter insert mode - after cursor (append)
 I               Enter insert mode - start of line text
 A               Enter insert mode - end of line
-r               Replace one character 
+r               Replace one character
+gr              Virtual replace mode (has better behavior with tab characters)
 R               Enter replace mode
+gR              Enter virtual replace mode
 o               Enter insert mode in new line after current 
 O               Enter insert mode in new line before current 
 {count}s        Delete count characters and enter insert mode (substitute)
 {count}S        Delete count lines and enter insert mode
 .               Repeat last change
 x               Delete character under cursor
+J               Join two lines
 
 Operators
 ---------
@@ -50,7 +53,12 @@ yy              yank line
 ==              Autoindent line
 !{motion}       Filter the lines through the executable program that is used as next argument
 !!              Filter current line through the executable program that is used as next argument
-
+gu{motion}      Switch to lowercase
+guu             Switch line to lowercase 
+gU{motion}      Switch to uppercase
+gUU             Switch line to uppercase
+g~{motion}      Swap case
+g~~             Swap line case
 
 
 
@@ -99,3 +107,29 @@ Macros
 
 q{register}     Start macro capturing - stops capturing again with q
 @{register}     Replay macro of register
+
+Insert mode commands
+--------------------
+
+<C-h>           Backspace
+<C-w>           Delete word
+<C-u>           Delete line
+<C-[>           Switch to normal (like ESC)
+<C-o>           Switch to insert-normal mode
+<C-r>{register} Paste text (register you have yanked to with " - use 0 for the most recent edit)
+<C-k>{l1}{l2}   Insert digraph (f.e << or 14 or DG)
+
+Registers
+---------
+
+0               Most recent
+*               System (unless you have remapped it to the unnamed)
+"               Unnamed
+_               Void (does not yank to anywhere)
+.               Last inserted text
+%               Filename
+:               Most recent ex command
+=               Expression register (opens prompt to do math)
+/               Last search pattern
+
+To write a register use :let @/ = "foo"

@@ -72,7 +72,8 @@ syntax on
 " colorscheme solarized
 " colorscheme gruvbox
 " colorscheme PaperColor
-colorscheme jellybeans
+" colorscheme jellybeans
+colorscheme onedark
 set background=dark
 
 
@@ -119,7 +120,7 @@ call plug#end()
 
 " Lightline
 let g:lightline = {
-\ 'colorscheme': 'jellybeans',
+\ 'colorscheme': 'onedark',
 \ 'active': {
 \   'left': [['mode', 'paste'], ['readonly', 'filename', 'modified']],
 \   'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype', ]]
@@ -132,3 +133,5 @@ set noshowmode
 " Use autopep8 for auto - identing
 set equalprg=autopep8\ -
 
+" Easier buffer switching (tab to switch to last used buffer)
+nmap <tab> :b#<cr>
