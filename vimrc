@@ -9,9 +9,9 @@ set hidden
 " Careful - for lightline to appear
 set laststatus=2
 
-" set guifont=Fira\ Mono:h11:cGREEK
+set guifont=Fira\ Mono:h11:cGREEK
 " or
-set guifont=Hack:h11:cDEFAULT
+" set guifont=Hack:h11:cDEFAULT
 
 set lines=40 columns=120
 
@@ -68,12 +68,20 @@ set writebackup
 set noundofile
 "set selectmode=mouse,key
 syntax on
-colorscheme desert
+" colorscheme desert
+" colorscheme solarized
+" colorscheme gruvbox
+" colorscheme PaperColor
+colorscheme jellybeans
+set background=dark
+
 
 " Delete trailing characters
 autocmd BufWritePre,FileWritePre *.py mark x|exe "%s/[ ]*$//g"|'x
 
 " CTRLP
+" Checkout this answer https://stackoverflow.com/a/28796041/119071 for
+" including submodules
 set runtimepath^=~/vimfiles/bundle/ctrlp.vim
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.pyc  " Windows
 " Open Buffers list with 'ctrl-j'
@@ -83,10 +91,6 @@ let g:ctrlp_cmd = 'CtrlP'
 " Run CtrlP (files) with CTRL+P
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-" if executable('ag')
-  " let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  " let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
-" endif
 
 if executable('ag')
   " Use Ag over Grep
@@ -115,7 +119,7 @@ call plug#end()
 
 " Lightline
 let g:lightline = {
-\ 'colorscheme': 'solarized',
+\ 'colorscheme': 'jellybeans',
 \ 'active': {
 \   'left': [['mode', 'paste'], ['readonly', 'filename', 'modified']],
 \   'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype', ]]
@@ -125,5 +129,6 @@ let g:lightline = {
 " Don't show INSERT (mode) - it is displayed on lightline
 set noshowmode
 
+" Use autopep8 for auto - identing
 set equalprg=autopep8\ -
 
