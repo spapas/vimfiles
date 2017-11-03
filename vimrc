@@ -9,11 +9,14 @@ set hidden
 " Careful - for lightline to appear
 set laststatus=2
 
-set guifont=Fira\ Mono:h11:cGREEK
-" or
-" set guifont=Hack:h11:cDEFAULT
-
-set lines=40 columns=120
+if has('gui_running')
+    " set guifont=Fira\ Mono:h11:cGREEK
+    " or
+    " set guifont=Hack:h11:cGREEK
+    " or For Linux
+    set guifont=Fira\ Mono\ 11
+    set lines=40 columns=120
+endif
 
 
 "Use this to make clipboard work as normal with vim - or else use the *
