@@ -14,7 +14,11 @@ if has('gui_running')
     " or
     " set guifont=Hack:h11:cGREEK
     " or For Linux
-    set guifont=Fira\ Mono\ 11
+    if has('win32')
+        set guifont=Fira\ Mono:h11:cGREEK
+    else
+        set guifont=Fira\ Mono\ 11
+    endif
     set lines=40 columns=120
 endif
 
