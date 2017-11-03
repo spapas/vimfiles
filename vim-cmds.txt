@@ -14,8 +14,8 @@ f{char}         Find character (move to character) - forwards
 F{char}         Find character (move to character) - backwards
 t{char}         Find character (move before character) - forwards
 T{char}         Find character (move before character) - backwards
-*               Find (move) to word under cursor - forwards
-#               Find (move) to word under cursor - backwards
+*               Find (move) to next word under cursor - forwards
+#               Find (move) to next word under cursor - backwards
 %               Move to matching element (parenthesis, bracket etc)
 
 
@@ -88,9 +88,8 @@ ciw             Change innser word (works better because it leaves spaces there)
 
 Ex mode
 -------
-
-:%s/p1/p2/g     Replace pattern p1 with p2. The %s matches all lines in document, the g substitutes all patters in the line
-:%s/\%u200b//g  Replace special character using its uinicode value
+<Tab>           Autocomplete
+<C-d>           Show list of choices (works for cmds *and* args)
 
 :set option     Sets the option to true
 :set nooption   Sets the option to false
@@ -98,19 +97,43 @@ Ex mode
 :so file        Source file (f.e to reload vimrc run :so $HOME/_vimrc)
 :{range}delete {x} Delete range - yank to x
 :{range}yank   {x} Yank range to x
-:{line}put {x}     Put register x after line
-Also copy (:t, :co), move (:m, :mo), join (:j), normal (to execute normal
-commands), substitute (:s), global (executes ex command on range)
+:{line}put {x}      Put register x after line
+:{range}copy{to}    Copy range after location to (i.e 1,5copy$) - also :t, :co
+:{range}move{to}    Move range after location to - also :m, :mo
+:{range}join (:j)   Join lines
+:{range}normal      Execute normal commands (f.e :%norm A; to insert semicolon after end of all lines) - also :norm
+:{range}substitute  Replace - see examples below - also :s
+:!{command}     Execute command with shell 
+:{range}!{command}  Pass range to command (the {motion}! command is a shortcut for this)
+:read           Insert file contents to current file (notice that you can use something like :read !{command})
+
+:{range}global{patter}{cmd}   For lines in range that match pattern execute cmd. To negate use :v or :g!. For example to delete blank lines
+- g/^\s*$/d 
+or
+- g/^\s*$/norm dd (norm executes the normal command dd for each line)
+
+
+:%s/p1/p2/g     Replace pattern p1 with p2. The %s matches all lines in document, the g substitutes all patters in the line
+:%s/\%u200b//g  Replace special character using its uinicode value
+
 
 :tabnew         Open new tab
 :split/vsplit   Split pane horizontal/vertical (also use :sp or :vs)
 :edit (:e)      Edit file
+:bnext          Next buffer - :bn
+:bprev          Previous buffer - :bp
+:args           Show arguments (files passed as parameter to vim)
+:argdo          Execute command for all arguments - f.e :argdo %p
+:first, :next, :previous, :last     Move around in list of arguments
 
 <C-h>           Backspace
 <C-w>           Delete word
 <C-u>           Delete line
 <C-[>           Switch to normal (like ESC)
 <C-r>{register} Paste text (register you have yanked to with " - use 0 for the most recent edit)
+<C-r><C-w>      Put word from text to command line
+<C-r><C-a>      Put Word from text to command line
+<C-f>           Open command line window
 
 Ex mode ranges
 --------------
@@ -128,6 +151,8 @@ Macros
 
 q{register}     Start macro capturing - stops capturing again with q
 @{register}     Replay macro of register
+@:              Replay last ex command
+@@              Replay lat macro
 
 Insert mode commands
 --------------------
@@ -150,7 +175,7 @@ Registers
 _               Void (does not yank to anywhere)
 .               Last inserted text
 %               Filename
-:               Most recent ex command
+:               Most recent executed ex command
 =               Expression register (opens prompt to do math)
 /               Last search pattern
 
@@ -166,3 +191,7 @@ gv              Re-select last selection (also works from normal mode)
 <C-g>           Switch to select mode
 o               Go to other end of selection
 
+Other commands
+--------------
+
+q:              Open command line window
