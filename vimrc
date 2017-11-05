@@ -16,11 +16,14 @@ if has('gui_running')
     " or For Linux
     if has('win32')
         set guifont=Fira\ Mono:h11:cGREEK
+        set guifont=Source\ Code\ Pro\ Medium:h12
     else
         set guifont=Fira\ Mono\ 11
     endif
-    set lines=40 columns=120
+    set lines=40 columns=140
 endif
+
+set colorcolumn=80,120
 
 
 "Use this to make clipboard work as normal with vim - or else use the *
