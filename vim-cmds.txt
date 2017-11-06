@@ -119,10 +119,16 @@ or
 
 :tabnew         Open new tab
 :split/vsplit   Split pane horizontal/vertical (also use :sp or :vs)
-:edit (:e)      Edit file
+:edit (:e) {f}  Edit file f
+:edit! (:e!)    Reload current file discarding changes
+:write (:w)     Write file (filename is optional)
+:wnext (:wn)    Write file and go to next buffer
+:wall           Save every buffer
+:ls             List buffers
 :bnext          Next buffer - :bn
 :bprev          Previous buffer - :bp
-:args           Show arguments (files passed as parameter to vim)
+:bdelete        Remove buffer :bd (does not delete file) - it takes arguments f. e :1,5bd or :bd 1 3 5
+:args           Show arguments (files passed as parameter to vim) - can be modified. Can use globs or backtip expansion.
 :argdo          Execute command for all arguments - f.e :argdo %p
 :first, :next, :previous, :last     Move around in list of arguments
 
@@ -195,3 +201,20 @@ Other commands
 --------------
 
 q:              Open command line window
+
+Using windows / Splits
+----------------------
+
+:vsplit or :vs or <C-w><C-v> or <C-w>v      Vertical Split
+:split or :sp or <C-w><C-s> or <C-w>s       Horizontal Split
+:split or :vsplit also take a filename to open the file to split directly
+For CtrlP you can use <C-v> or <C-s> on the selected file to openm it to split
+<C-w>w or <C-w><C-w>                        Cycle buffer focus
+<C-w>hjkl or <C-w><C-hjkl>                  Move focus to L D U R split
+:close or :clo or :q or :quit or <C-w>c or <C-w><C-c> or <C-w>q or <C-w><C-q>       Close/quit window
+check out this https://vi.stackexchange.com/questions/9479/what-is-the-difference-between-quit-and-close-commands for their difference-between-quit-and-close-commands
+:only or :on or <C-w>o or <C-w><C-o>        Make current window the only one on screen - close all others
+:<C-w>=                                     Make windows equal
+:<C-w>+                                     Increase window size (can take number in front)
+:<C-w>-                                     Dencrease window size (can take number in front)
+

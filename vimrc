@@ -145,3 +145,9 @@ set equalprg=autopep8\ -
 
 " Easier buffer switching (tab to switch to last used buffer)
 nmap <tab> :b#<cr>
+" Easier buffer movements
+
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [B :bfirst<CR>
+nnoremap <silent> ]B :blast<CR>
