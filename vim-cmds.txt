@@ -41,13 +41,15 @@ O               Enter insert mode in new line before current
 {count}s        Delete count characters and enter insert mode (substitute)
 {count}S        Delete count lines and enter insert mode
 .               Repeat last change
-x               Delete character under cursor
+x/X             Delete character under (before) cursor
+p/P             Paste after/before cursor
 J               Join two lines
+ddp             Reverse two lines
 
 Operators
 ---------
 c{motion}       Delete selection and enter insert mode (change)
-cc              Delte line and enter insert mode
+cc              Delete line and enter insert mode
 d{motion}       Delete selection
 dd              Delete line
 y{motion}       Yank (copy) selection
@@ -90,7 +92,7 @@ Some examples
 daw             Delete a word (works great)
 diw             Delete inner word (does not work so nice because it leaves the spaces there)
 caw             Change a word
-ciw             Change innser word (works better because it leaves spaces there)
+ciw             Change inner word (works better because it leaves spaces there)
 
 
 Ex mode
@@ -123,7 +125,7 @@ or
 
 
 :%s/p1/p2/g     Replace pattern p1 with p2. The %s matches all lines in document, the g substitutes all patters in the line
-:%s/\%u200b//g  Replace special character using its uinicode value
+:%s/\%u200b//g  Replace special character using its Unicode value
 
 
 :tabnew         Open new tab
@@ -217,7 +219,7 @@ Using windows / Splits
 :vsplit or :vs or <C-w><C-v> or <C-w>v      Vertical Split
 :split or :sp or <C-w><C-s> or <C-w>s       Horizontal Split
 :split or :vsplit also take a filename to open the file to split directly
-For CtrlP you can use <C-v> or <C-s> on the selected file to openm it to split
+For CtrlP you can use <C-v> or <C-s> on the selected file to open it to split
 <C-w>w or <C-w><C-w>                        Cycle buffer focus
 <C-w>hjkl or <C-w><C-hjkl>                  Move focus to L D U R split
 :close or :clo or :q or :quit or <C-w>c or <C-w><C-c> or <C-w>q or <C-w><C-q>       Close/quit window
@@ -225,5 +227,12 @@ check out this https://vi.stackexchange.com/questions/9479/what-is-the-differenc
 :only or :on or <C-w>o or <C-w><C-o>        Make current window the only one on screen - close all others
 :<C-w>=                                     Make windows equal
 :<C-w>+                                     Increase window size (can take number in front)
-:<C-w>-                                     Dencrease window size (can take number in front)
+:<C-w>-                                     Decrease window size (can take number in front)
 
+Some options
+------------
+
+:set spell              To enable spell checking - move to errors with ]s and
+[s, z= display suggestions, 1z= replace with first suggestion, zg mark as 
+correct, zw mark as misspelled
+:set ft                 To set the filetype to something else
