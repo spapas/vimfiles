@@ -125,6 +125,7 @@ endif
 " set runtimepath^=~/.vim/bundle/vim-repeat
 
 " PLUG
+" Run :PlugInstall to install these plugins
 call plug#begin('~/vimfiles/plugged')
 
 " lightline-vim
