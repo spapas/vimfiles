@@ -25,6 +25,8 @@ endif
 
 set colorcolumn=80,120
 
+" Save swap files to this directory
+set directory^=~\.vim\tmp\\
 
 "Use this to make clipboard work as normal with vim - or else use the *
 "register to refer to the windows clipboard, for example
