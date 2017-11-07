@@ -171,6 +171,7 @@ nnoremap <Leader>W :mark x<CR>:exe "%s/[ ]*$//g"<CR>'x
 nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
 
 " Display special characters
+set list
 set listchars=tab:▸\ ,eol:$,space:\ ,trail:.
 
 " Autosave on lost focus
