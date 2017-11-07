@@ -172,7 +172,11 @@ nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
 
 " Display special characters
 set list
-set listchars=tab:▸\ ,eol:$,space:\ ,trail:.
+if version >= 800
+    set listchars=tab:▸\ ,eol:$,space:\ ,trail:.
+else
+    set listchars=eol:$,trail:.
+endif
 
 " Autosave on lost focus
 " au FocusLost * :wa
