@@ -100,6 +100,7 @@ autocmd BufWritePre,FileWritePre *.py mark x|exe "%s/[ ]*$//g"|'x
 " Checkout this answer https://stackoverflow.com/a/28796041/119071 for
 " including submodules
 set runtimepath^=~/vimfiles/bundle/ctrlp.vim
+set runtimepath^=~/.vim/bundle/ctrlp.vim
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.pyc  " Windows
 " Open Buffers list with 'ctrl-j'
 noremap <C-j> :CtrlPBuffer<CR>
