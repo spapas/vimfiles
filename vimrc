@@ -41,13 +41,20 @@ set expandtab
 
 set nowrap
 set number
-set hlsearch
 
-" Number of spaces to use for each step of (auto)indent. 
+" Number of spaces to use for each step of (auto)indent.
 set shiftwidth=4
 
 " When a bracket is inserted, briefly jump to the matching one.
 set showmatch
+
+" Highlight search results
+set hlsearch
+
+" If searching with all lower will search with case insensitive. I there are
+" caps it will search with sensitive case
+set ignorecase
+set smartcase
 
 " Number of spaces that a <Tab> in the file counts for.
 set tabstop=4
@@ -86,7 +93,6 @@ syntax on
 colorscheme onedark
 set background=dark
 
-
 " Delete trailing characters
 autocmd BufWritePre,FileWritePre *.py mark x|exe "%s/[ ]*$//g"|'x
 
@@ -97,7 +103,7 @@ set runtimepath^=~/vimfiles/bundle/ctrlp.vim
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.pyc  " Windows
 " Open Buffers list with 'ctrl-j'
 noremap <C-j> :CtrlPBuffer<CR>
-" Show files by default 
+" Show files by default
 let g:ctrlp_cmd = 'CtrlP'
 " Run CtrlP (files) with CTRL+P
 let g:ctrlp_map = '<c-p>'
@@ -135,7 +141,7 @@ let g:lightline = {
 \   'left': [['mode', 'paste'], ['readonly', 'filename', 'modified']],
 \   'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype', ]]
 \ },
-\ 
+\
 \ }
 " Don't show INSERT (mode) - it is displayed on lightline
 set noshowmode
@@ -151,3 +157,32 @@ nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
+
+" Remap leader to space
+let mapleader = "\<Space>"
+" Sample mapping
+nnoremap <Leader>a :echo "Hey there space"<CR>
+" Reverse lines without changing unanmed register
+nnoremap <Leader>d "udd"up
+" Clear search hightlight
+nnoremap <Leader>c :noh<CR>
+" Remove whitespace - two methods (leader w or leader W)
+nnoremap <Leader>W :mark x<CR>:exe "%s/[ ]*$//g"<CR>'x
+nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
+
+" Display special characters
+set listchars=tab:▸\ ,eol:$,space:\ ,trail:.
+
+" Autosave on lost focus
+" au FocusLost * :wa
+
+" Disable arrow keys
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
