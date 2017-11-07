@@ -34,16 +34,18 @@ set clipboard=unnamed
 
 set autoindent
 set enc=utf-8
+" Change tab to spaces
 set expandtab
+" Remove 4 spaces when pressing backspace
+set softtabstop=4
+" Number of spaces to use for each step of (auto)indent.
+set shiftwidth=4
 
-"To expand special characters
-"set list
+" Number of spaces that a <Tab> in the file counts for.
+set tabstop=4
 
 set nowrap
 set number
-
-" Number of spaces to use for each step of (auto)indent.
-set shiftwidth=4
 
 " When a bracket is inserted, briefly jump to the matching one.
 set showmatch
@@ -56,8 +58,6 @@ set hlsearch
 set ignorecase
 set smartcase
 
-" Number of spaces that a <Tab> in the file counts for.
-set tabstop=4
 
 " http://vimdoc.sourceforge.net/htmldoc/options.html#'foldcolumn'
 " play with zM zm zr zR and more http://vimdoc.sourceforge.net/htmldoc/usr_28.html
@@ -93,8 +93,6 @@ syntax on
 colorscheme onedark
 set background=dark
 
-" Delete trailing characters
-autocmd BufWritePre,FileWritePre *.py mark x|exe "%s/[ ]*$//g"|'x
 
 " CTRLP
 " Checkout this answer https://stackoverflow.com/a/28796041/119071 for
@@ -171,7 +169,8 @@ nnoremap <Leader>c :noh<CR>
 " Remove whitespace - two methods (leader w or leader W)
 nnoremap <Leader>W :mark x<CR>:exe "%s/[ ]*$//g"<CR>'x
 nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
-
+" Toggle special character display
+nnoremap <leader>l :set list!<CR>
 " Display special characters
 set list
 if version >= 800
@@ -193,3 +192,19 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
+
+if has("autocmd")
+    " Make sure filetype is enabled
+    filetype on
+
+    " Delete trailing characters
+    autocmd BufWritePre,FileWritePre *.py mark x|exe "%s/[ ]*$//g"|'x
+
+    " Some examples for future reference
+    " Treat .rss files as XML
+    autocmd BufNewFile,BufRead *.rss setfiletype xml
+
+    autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
+
+endif

@@ -104,6 +104,7 @@ Ex mode
 :set option     Sets the option to true
 :set nooption   Sets the option to false
 :set option?    Shows value of option (same as set nooption?)
+:set option!    Toggle option
 :so file        Source file (f.e to reload vimrc run :so $HOME/_vimrc)
 :{range}delete {x} Delete range - yank to x
 :{range}yank   {x} Yank range to x
@@ -115,8 +116,8 @@ Ex mode
 :{range}substitute  Replace - see examples below - also :s
 :!{command}     Execute command with shell 
 :{range}!{command}  Pass range to command (the {motion}! command is a shortcut for this)
-:read           Insert file contents to current file (notice that you can use something like :read !{command})
-
+:read               Insert file contents to current file (notice that you can use something like :read !{command})
+:retab              Fix tabs (add ! to also change spaces)
 :jumps              Display jumps list
 
 :{range}global{patter}{cmd}   For lines in range that match pattern execute cmd. To negate use :v or :g!. For example to delete blank lines
