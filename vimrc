@@ -143,8 +143,8 @@ set noshowmode
 " Use autopep8 for auto - identing
 set equalprg=autopep8\ -
 
-" Easier buffer switching (tab to switch to last used buffer)
-nmap <tab> :b#<cr>
+" Easier buffer switching (shift-tab to switch to last used buffer)
+nmap <S-Tab> :b#<cr>
 " Easier buffer movements
 
 nnoremap <silent> [b :bprevious<CR>

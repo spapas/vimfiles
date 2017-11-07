@@ -3,21 +3,28 @@ Motions
 -------
 
 hjkl            Move cursor in normal mode L-D-U-R
-w               Move to next word
-W               Move to next Word 
-b               Move to previous word
-B               Move to previous Word
+w/W             Move to next word (or Word)
+b/B             Move to previous word (or Word)
+e/E             Move to end of word (or Word)
 0               Move to start of line (col 0)
+^               Move to first non blank character of line
 $               Move to end of line
 G               Move to end of file
 f{char}         Find character (move to character) - forwards
 F{char}         Find character (move to character) - backwards
 t{char}         Find character (move before character) - forwards
 T{char}         Find character (move before character) - backwards
+;               For character search go to next instance of char
+,               For character search go to previous instance of char
 *               Find (move) to next word under cursor - forwards
 #               Find (move) to next word under cursor - backwards
 %               Move to matching element (parenthesis, bracket etc)
-
+(/)             Next/previous sentence
+{/}             Next/previous paragraph
+H/M/L           Move to Hight / Middle / Low of screen
+<c-U>/<c-D>     Move up/down (half a page)
+<c-F>/<c-B>     Move forwards/backwards (a full page)
+<c-O>/<c-I>     Move to previous/next position (uses the :jumps list)
 
 Commands
 --------
@@ -106,6 +113,8 @@ Ex mode
 :!{command}     Execute command with shell 
 :{range}!{command}  Pass range to command (the {motion}! command is a shortcut for this)
 :read           Insert file contents to current file (notice that you can use something like :read !{command})
+
+:jumps              Display jumps list
 
 :{range}global{patter}{cmd}   For lines in range that match pattern execute cmd. To negate use :v or :g!. For example to delete blank lines
 - g/^\s*$/d 
