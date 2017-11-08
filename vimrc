@@ -97,8 +97,10 @@ set background=dark
 
 
 " CTRLP
-" Checkout this answer https://stackoverflow.com/a/28796041/119071 for
-" including submodules
+" Checkout this answer https://stackoverflow.com/a/28796041/119071 for including submodules
+" TL;DR: Run git clone --recursive to clone the project or 
+" git submodule update --init bundle/ctrlp.vim on an already initialized project 
+ 
 set runtimepath^=~/vimfiles/bundle/ctrlp.vim
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.pyc  " Windows
