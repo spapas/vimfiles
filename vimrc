@@ -178,6 +178,9 @@ nnoremap <leader>l :set list!<CR>
 " Add line w/o insert
 nnoremap <leader>n o<Esc>
 nnoremap <leader>N O<Esc>
+"Better paste
+nnoremap <leader>p "_diwP
+
 " Display special characters
 set list
 if version >= 800
