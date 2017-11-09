@@ -194,7 +194,6 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
-
 if has("autocmd")
     " Make sure filetype is enabled
     filetype on

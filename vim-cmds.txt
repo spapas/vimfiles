@@ -3,12 +3,14 @@ Motions
 -------
 
 hjkl            Move cursor in normal mode L-D-U-R
+gj/gk           Move cursor D-U on display line
 w/W             Move to next word (or Word)
 b/B             Move to previous word (or Word)
 e/E             Move to end of word (or Word)
-0               Move to start of line (col 0)
-^               Move to first non blank character of line
-$               Move to end of line
+ge/gE           Move to end of *previous* word (or Word)
+0               Move to start of line (col 0) - g0 to start of display line
+^               Move to first non blank character of line - g^ for display line
+$               Move to end of line - g$ for display line
 G               Move to end of file
 f{char}         Find character (move to character) - forwards
 F{char}         Find character (move to character) - backwards
@@ -26,6 +28,8 @@ H/M/L           Move to Hight / Middle / Low of screen
 <c-F>/<c-B>     Move forwards/backwards (a full page)
 <c-O>/<c-I>     Move to previous/next position (uses the :jumps list)
 ``              Move to previous position
+`{mark}         Jump to mark - row and column
+'{mark}         Jump to mark - only row
 
 Commands
 --------
@@ -45,7 +49,26 @@ O               Enter insert mode in new line before current
 x/X             Delete character under (before) cursor
 p/P             Paste after/before cursor
 J               Join two lines
+m{mark}         Set mark - lower case are local to file, Uppercase are global
+
+
+Useful combinations
+-------------------
 ddp             Reverse two lines
+ea              Append at end of current word
+gea             Append at end of previous word
+dt.             Delete until end of sentence - do not include .
+df.             Delete until end of sentence - including .
+``              Move to previous position
+`"              Goto last position (uses mark)
+`.              Goto last change (uses mark)
+`^              Goto last insertion (uses mark)
+`~, `~          Goto start/end of last visual selection (uses mark)
+
+Lesser commands
+---------------
+<C-g>           Show file status
+zz              Center screen on current line
 
 Operators
 ---------
