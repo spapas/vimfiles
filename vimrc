@@ -175,6 +175,9 @@ nnoremap <Leader>W :mark x<CR>:exe "%s/[ ]*$//g"<CR>'x
 nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
 " Toggle special character display
 nnoremap <leader>l :set list!<CR>
+" Add line w/o insert
+nnoremap <leader>n o<Esc>
+nnoremap <leader>N O<Esc>
 " Display special characters
 set list
 if version >= 800
