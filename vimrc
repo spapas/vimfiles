@@ -35,6 +35,7 @@ set directory^=~\.vim\tmp\\
 set clipboard=unnamed
 
 set autoindent
+set copyindent
 set enc=utf-8
 " Change tab to spaces
 set expandtab
@@ -103,7 +104,7 @@ set background=dark
  
 set runtimepath^=~/vimfiles/bundle/ctrlp.vim
 set runtimepath^=~/.vim/bundle/ctrlp.vim
-set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.pyc  " Windows
+set wildignore+=*\\tmp\\*,*.bak,*.swp,*.zip,*.exe,*.pyc  " Windows
 " Open Buffers list with 'ctrl-j'
 noremap <C-j> :CtrlPBuffer<CR>
 " Show files by default
@@ -180,6 +181,12 @@ nnoremap <leader>n o<Esc>
 nnoremap <leader>N O<Esc>
 "Better paste
 nnoremap <leader>p "_diwP
+" Quickly edit/reload the vimrc file
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+"Toggle paste mode - disables autoident  when pasting multiple lines
+set pastetoggle=<F2>
 
 " Display special characters
 set list
