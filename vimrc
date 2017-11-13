@@ -61,6 +61,8 @@ set hlsearch
 set ignorecase
 set smartcase
 
+" Do not go to start of line when changing buffers (remember position)
+set nostartofline
 
 " http://vimdoc.sourceforge.net/htmldoc/options.html#'foldcolumn'
 " play with zM zm zr zR and more http://vimdoc.sourceforge.net/htmldoc/usr_28.html

@@ -26,10 +26,21 @@ T{char}         Find character (move before character) - backwards
 H/M/L           Move to Hight / Middle / Low of screen
 <c-U>/<c-D>     Move up/down (half a page)
 <c-F>/<c-B>     Move forwards/backwards (a full page)
-<c-O>/<c-I>     Move to previous/next position (uses the :jumps list)
 ``              Move to previous position
-`{mark}         Jump to mark - row and column
-'{mark}         Jump to mark - only row
+`.              Move to previous change
+`^              Move to previous insertion
+`{mark}         Move to mark - row and column
+'{mark}         Move to mark - only row
+
+Jumps
+-----
+
+Notice these cannot be used as motions
+
+<c-O>/<c-I>     Jump to previous/next position (uses the :jumps list)
+g;/g,           Jump to older / newer change (uses the :changes list)
+gi              Jump to last insert
+gf              Jump to filename under cursor (try vimrc)
 
 Commands
 --------
@@ -142,6 +153,7 @@ Ex mode
 :read               Insert file contents to current file (notice that you can use something like :read !{command})
 :retab              Fix tabs (add ! to also change spaces)
 :jumps              Display jumps list
+:changes            Display changes list
 :pwd                Print current directory
 :file               Opens a file (uses path for autocomplete)
 
@@ -292,7 +304,8 @@ Some options
 [s, z= display suggestions, 1z= replace with first suggestion, zg mark as 
 correct, zw mark as misspelled
 :set ft                 To set the filetype to something else
-:set path               To set the searching path (initially it is current directory) - can use globs to search recursively
+:set path               To set the searching path (initially it is current directory) - can use globs to search recursively, also works with gf
+:set sufficesadd        List of suffixes (file extensions) to try when opening files with gf
 
 Folds
 -----
