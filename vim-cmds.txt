@@ -66,6 +66,8 @@ m{mark}         Set mark - lower case are local to file, Uppercase are global
 Useful combinations
 -------------------
 ddp             Reverse two lines
+yyp             Duplicate line
+xp              Reverse two characters
 ea              Append at end of current word
 gea             Append at end of previous word
 dt.             Delete until end of sentence - do not include .
