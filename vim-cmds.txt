@@ -59,6 +59,7 @@ O               Enter insert mode in new line before current
 .               Repeat last change
 x/X             Delete character under (before) cursor
 p/P             Paste after/before cursor
+gp/gP           Paste after/before cursor moving the cursor to the end of the text
 J               Join two lines
 m{mark}         Set mark - lower case are local to file, Uppercase are global
 
@@ -155,6 +156,7 @@ Ex mode
 :read               Insert file contents to current file (notice that you can use something like :read !{command})
 :retab              Fix tabs (add ! to also change spaces)
 :jumps              Display jumps list
+:register           Display registers (takes also parameters) - :reg
 :changes            Display changes list
 :pwd                Print current directory
 :file               Opens a file (uses path for autocomplete)
@@ -247,12 +249,13 @@ Insert mode commands
 Registers
 ---------
 
-0               Most recent
-*               System (unless you have remapped it to the unnamed)
+0               Most recent yank
++/*               System (unless you have remapped it to the unnamed)
 "               Unnamed
-_               Void (does not yank to anywhere)
+_               Void / black hole (does not yank to anywhere)
 .               Last inserted text
 %               Filename
+#               Alternate filename (full path in Windows)
 :               Most recent executed ex command
 =               Expression register (opens prompt to do math)
 /               Last search pattern
@@ -336,3 +339,4 @@ Netrw
 :e directory            Show explorer from directory
 :Sexplore               Show explorer in (horz) split - :Sex
 :Vexplore               Show explorer in vertical split - :Vex
+
