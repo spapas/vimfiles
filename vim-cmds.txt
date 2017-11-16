@@ -78,6 +78,8 @@ df.             Delete until end of sentence - including .
 `.              Goto last change (uses mark)
 `^              Goto last insertion (uses mark)
 `~, `~          Goto start/end of last visual selection (uses mark)
+VG              Visually select all lines from here to the end
+ggVG            Visually select all lines of file
 
 Lesser commands
 ---------------
@@ -229,7 +231,7 @@ $               Last line
 Macros
 ------
 
-q{register}     Start macro capturing - stops capturing again with q
+q{register}     Start macro capturing - stops capturing again with q. Write register in CAPS to append in the end of the existing macro
 @{register}     Replay macro of register
 @:              Replay last ex command
 @@              Replay lat macro
