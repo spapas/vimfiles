@@ -156,6 +156,7 @@ Ex mode
 :{range}join (:j)   Join lines
 :{range}normal      Execute normal commands (f.e :%norm A; to insert semicolon after end of all lines) - also :norm
 :{range}substitute  Replace - see examples below - also :s
+:&                  Repeat last substitute :&& to repeat it with same flags
 :!{command}     Execute command with shell 
 :{range}!{command}  Pass range to command (the {motion}! command is a shortcut for this)
 :read               Insert file contents to current file (notice that you can use something like :read !{command})
@@ -177,6 +178,27 @@ or
 :%s/\%u200b//g  Replace special character using its Unicode value
 :%s//"\1"/g     Search and replace previous search pattern (//) with the captured part (\1) inside "
 :%s///gn        Search for previous pattern and count its occurances (gn)
+:%s//\=@a/g     Search for previous pattern and replace it with the contents of a register
+
+Substitute flags
+----------------
+g               Do all substitions in the same line (or else it will do only the 1st one)
+c               Confirm/reject each substitution
+n               Supress substitions (used for counting)
+e               Silence error
+&               Re-use the same flags
+
+Replacement string
+------------------
+\r              Insert CR
+\t              Insert tab
+\\              Insert  a backslash
+\1 \2 etc       Insert capture group
+\0              Insert entire match pattern - same as &
+~               Use string from previous :substitute
+\={script}      Execute script and insert it
+\=@0            Insert the yank statement
+
 
 :tabnew         Open new tab
 :split/vsplit   Split pane horizontal/vertical (also use :sp or :vs)
