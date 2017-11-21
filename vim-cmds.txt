@@ -31,6 +31,8 @@ H/M/L           Move to Hight / Middle / Low of screen
 `^              Move to previous insertion
 `{mark}         Move to mark - row and column
 '{mark}         Move to mark - only row
+n/N             Move to next (or previous) match
+gn/gN           This is a move that operates only on the next(or previous) matched text - notice the difference with n/N
 
 Jumps
 -----
@@ -111,9 +113,10 @@ g~~             Swap line case
 
 /{pattern}      Search for pattern forwards
 ?{pattern}      Search for pattern backwards
-n               Next match
-N               Previous match
-
+n/N             Next / previous match
+gn/gN           Select next / previous match
+/{pattern}/e    Place cursor at the *end* of the match when jumping to the match
+/{pattern}/C    Enforce case sensitivity
 u               Undo
 <C-r>           Redo
 
@@ -147,7 +150,7 @@ Ex mode
 :so file        Source file (f.e to reload vimrc run :so $HOME/_vimrc)
 :{range}delete {x} Delete range - yank to x
 :{range}yank   {x} Yank range to x
-:{line}put {x}      Put register x after line
+:{line}put {x}      Put register x after line - it pastes always linewise
 :{range}copy{to}    Copy range after location to (i.e 1,5copy$) - also :t, :co
 :{range}move{to}    Move range after location to - also :m, :mo
 :{range}join (:j)   Join lines
@@ -172,7 +175,8 @@ or
 
 :%s/p1/p2/g     Replace pattern p1 with p2. The %s matches all lines in document, the g substitutes all patters in the line
 :%s/\%u200b//g  Replace special character using its Unicode value
-
+:%s//"\1"/g     Search and replace previous search pattern (//) with the captured part (\1) inside "
+:%s///gn        Search for previous pattern and count its occurances (gn)
 
 :tabnew         Open new tab
 :split/vsplit   Split pane horizontal/vertical (also use :sp or :vs)
@@ -246,7 +250,7 @@ Insert mode commands
 <C-o>           Switch to insert-normal mode
 <C-r>{register} Paste text (register you have yanked to with " - use 0 for the most recent edit)
 <C-k>{l1}{l2}   Insert digraph (f.e << or 14 or DG)
-<C-v>{chars}    Insert character using numeric value. Use uHex to insert unicode symbol, f.e <C-v>u20ac inserts €.
+<C-v>{chars}    Insert character using numeric value. Use uHex to insert unicode symbol, f.e <C-v>u20ac inserts €. Also this can be used to enter literal things like <ESC>, <CR> etc (for macro editing)
 
 Registers
 ---------
@@ -278,6 +282,7 @@ Other commands
 --------------
 
 q:              Open command line window
+q/              Open search window
 
 Using windows / Splits
 ----------------------
