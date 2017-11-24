@@ -12,18 +12,18 @@ set laststatus=2
 if has('gui_running')
     " set guifont=Fira\ Mono:h11:cGREEK
     " or
-    " set guifont=Hack:h11:cGREEK
     " or For Linux
     if has('win32')
-        set guifont=Fira\ Mono:h11:cGREEK
-        set guifont=Source\ Code\ Pro\ Medium:h12
+        " set guifont=Fira\ Mono:h11:cGREEK
+        set guifont=Source\ Code\ Pro\ Medium:h11
+        " set guifont=Hack:h11:cGREEK
     else
         set guifont=Fira\ Mono\ 11
     endif
-    set lines=40 columns=140
+    set lines=50 columns=200
 endif
 
-set colorcolumn=80,120
+set colorcolumn=80,120,160
 
 " Save swap files to this directory
 set directory^=~\.vim\tmp\\
