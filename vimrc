@@ -117,8 +117,8 @@ let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 
 if executable('ag')
   " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
+  set grepprg=ag\ --nogroup\ --nocolor\ --column
+  set grepformat=%f:%l:%c:%m
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
 
@@ -186,7 +186,10 @@ nnoremap <leader>p "_diwP
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
-
+" Run make
+nnoremap <leader>mk :make<CR>
+nnoremap <leader>cn :cnext<CR>
+nnoremap <leader>cp :cprev<CR>
 "Toggle paste mode - disables autoident  when pasting multiple lines
 set pastetoggle=<F2>
 
@@ -236,5 +239,6 @@ if has("autocmd")
 
     autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
     autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd FileType python setlocal makeprg=pep8\ %
 
 endif

@@ -54,8 +54,8 @@ r               Replace one character
 gr              Virtual replace mode (has better behavior with tab characters)
 R               Enter replace mode
 gR              Enter virtual replace mode
-o               Enter insert mode in new line after current 
-O               Enter insert mode in new line before current 
+o               Enter insert mode in new line after current
+O               Enter insert mode in new line before current
 {count}s        Delete count characters and enter insert mode (substitute)
 {count}S        Delete count lines and enter insert mode
 .               Repeat last change
@@ -82,6 +82,7 @@ df.             Delete until end of sentence - including .
 `~, `~          Goto start/end of last visual selection (uses mark)
 VG              Visually select all lines from here to the end
 ggVG            Visually select all lines of file
+qaq             Clear register a (same as qqq qzq etc)
 
 Lesser commands
 ---------------
@@ -105,7 +106,7 @@ yy              yank line
 !{motion}       Filter the lines through the executable program that is used as next argument
 !!              Filter current line through the executable program that is used as next argument
 gu{motion}      Switch to lowercase
-guu             Switch line to lowercase 
+guu             Switch line to lowercase
 gU{motion}      Switch to uppercase
 gUU             Switch line to uppercase
 g~{motion}      Swap case
@@ -157,7 +158,7 @@ Ex mode
 :{range}normal      Execute normal commands (f.e :%norm A; to insert semicolon after end of all lines) - also :norm
 :{range}substitute  Replace - see examples below - also :s
 :&                  Repeat last substitute :&& to repeat it with same flags
-:!{command}     Execute command with shell 
+:!{command}     Execute command with shell
 :{range}!{command}  Pass range to command (the {motion}! command is a shortcut for this)
 :read               Insert file contents to current file (notice that you can use something like :read !{command})
 :retab              Fix tabs (add ! to also change spaces)
@@ -168,11 +169,10 @@ Ex mode
 :file               Opens a file (uses path for autocomplete)
 
 
-:{range}global{patter}{cmd}   For lines in range that match pattern execute cmd. To negate use :v or :g!. For example to delete blank lines
-- g/^\s*$/d 
+:{range}global{pattern}{cmd}   For lines in range that match pattern execute cmd. To negate use :v (i.e :vglobal) or :g!. For example to delete blank lines
+- g/^\s*$/d
 or
 - g/^\s*$/norm dd (norm executes the normal command dd for each line)
-
 
 :%s/p1/p2/g     Replace pattern p1 with p2. The %s matches all lines in document, the g substitutes all patters in the line
 :%s/\%u200b//g  Replace special character using its Unicode value
@@ -205,6 +205,7 @@ Replacement string
 :edit (:e) {f}  Edit file f
 :edit! (:e!)    Reload current file discarding changes
 :write (:w)     Write file (filename is optional)
+:update (:up)   Write file only if it has been changed
 :wnext (:wn)    Write file and go to next buffer
 :wall           Save every buffer
 :ls             List buffers
@@ -212,8 +213,26 @@ Replacement string
 :bprev          Previous buffer - :bp
 :bdelete        Remove buffer :bd (does not delete file) - it takes arguments f. e :1,5bd or :bd 1 3 5
 :args           Show arguments (files passed as parameter to vim) - can be modified. Can use globs or backtip expansion.
+For example use :args test/*.py to add all python files to the args list
 :argdo          Execute command for all arguments - f.e :argdo %p
 :first, :next, :previous, :last     Move around in list of arguments
+:cdo            Execute command on each line of quickfix list
+:cfdo           Execute command on each file of quickfix list
+:cl (:clist)    Display quickfix list
+:cnext, :cprev, :cfirst, :clast Navigate the quickfix list
+:cnfile, :cpfile                Next previous file on quickfix list
+:copen, :close                  Show hide quickfix list window
+:cc n                           Go to quickfix list entry n
+:colder, :cnewer                Load a previous or current quickfix list
+:grep pattern                   Run *external grep* command and save results on quickfix list (:vimgrep)
+:vim pattern                    Run vim grep command and save results on quickfix list (:gr)
+:lnext, :lprev, :lfirst, :llast Navigate the location list
+:lopen, :lclose                 Show hide location list windows
+:ldo                            Execute command on each line of location list
+:lli (:llist)                   Display Location list
+:lgrep pattern                  Run *external* grep and save results on location list :lgr
+:lvim pattern                   Run vim grep and save results on location list :lvimgrep
+:ll n                           Go to location list entry n
 
 Shortcust in Ex mode
 --------------------
@@ -276,9 +295,10 @@ Insert mode commands
 
 Registers
 ---------
+Notice: Use small case to write to register - use caps to *append* to register.
 
 0               Most recent yank
-+/*               System (unless you have remapped it to the unnamed)
++/*             System (unless you have remapped it to the unnamed)
 "               Unnamed
 _               Void / black hole (does not yank to anywhere)
 .               Last inserted text
@@ -323,9 +343,9 @@ check out this https://vi.stackexchange.com/questions/9479/what-is-the-differenc
 <C-w>-                                      Decrease window size (can take number in front)
 
 <C-w>T                                      Open current split to new tab
-:tabedit                                    Open new tab (takes filename) - :tabe 
-:tabclose                                   Close tab - :tabc 
-:tabonly                                    Close other tabs - :tabo 
+:tabedit                                    Open new tab (takes filename) - :tabe
+:tabclose                                   Close tab - :tabc
+:tabonly                                    Close other tabs - :tabo
 gt                                          Next tab - :tabn, :tabnext - also takes tab number as argument
 gT                                          Previous tab - :tabp, :tabprevious
 
@@ -335,7 +355,7 @@ Some options
 ------------
 
 :set spell              To enable spell checking - move to errors with ]s and
-[s, z= display suggestions, 1z= replace with first suggestion, zg mark as 
+[s, z= display suggestions, 1z= replace with first suggestion, zg mark as
 correct, zw mark as misspelled
 :set ft                 To set the filetype to something else
 :set path               To set the searching path (initially it is current directory) - can use globs to search recursively, also works with gf
@@ -346,7 +366,7 @@ Folds
 
 zM                      Fold everything
 zR                      Unfold everything
-zm                      Increase global folding level 
+zm                      Increase global folding level
 zr                      Reduce global folding level
 zf{motion}              Create a manual fold
 zc/zo                   Close/open a local fold
@@ -369,3 +389,15 @@ Netrw
 :Sexplore               Show explorer in (horz) split - :Sex
 :Vexplore               Show explorer in vertical split - :Vex
 
+ctags integration
+-----------------
+Create ctags file for python (notice that -L pattern list files *not matching the pattern)
+ag -L kajhsdajhkgsd --py | ctags -L -
+
+<C-]>                               Navigate to the tag under cursor
+<C-t>                               Back button for tags - notice that <C-o> does more or less the same but for *all* jumps (while <C-t> works only for tag jumps)
+g<C-]>                              Navigate to the tag udner cursor displaying a selection list first
+:tselect                            Show list of tag matches
+:tnext / :tlast / :tpref / :tnext   Move between tag matches
+:tag {keyword}                      Move to keyword
+:tjump {keyword}                    Move to keyword with g<C-]>
