@@ -373,7 +373,7 @@ zc/zo                   Close/open a local fold
 za/zA                   Open (if closed) or close (if opened) a local fold - zA is recursive
 zx                      Reset fold to foldlevel
 :set foldlevel          Default foldlevel - 0 = all folded (zM sets it to 0, zR to maximum)
-
+zi                      Invert (toggle) foldenable
 
 Pattern tips
 ------------
