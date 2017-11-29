@@ -10,6 +10,16 @@ set hidden
 set laststatus=2
 
 if has('gui_running')
+    " Remove toolbar and menu
+    set go-=T
+    set go-=m
+    " Remove scrollbars
+    set go-=rL
+    " Display text tabs (instead of GUI ones)
+    set go-=e
+    " Do not use modal alert dialogs! (Prefer Vim style prompt.)
+    " http://stackoverflow.com/questions/4193654/using-vim-warning-style-in-gvim
+    set guioptions+=c
     " set guifont=Fira\ Mono:h11:cGREEK
     " or
     " or For Linux
@@ -43,6 +53,8 @@ set expandtab
 set softtabstop=4
 " Number of spaces to use for each step of (auto)indent.
 set shiftwidth=4
+" Improve tab behavior
+set smarttab
 
 " Number of spaces that a <Tab> in the file counts for.
 set tabstop=4
@@ -55,6 +67,8 @@ set showmatch
 
 " Highlight search results
 set hlsearch
+" Highlight search results as typed
+set incsearch
 
 " If searching with all lower will search with case insensitive. I there are
 " caps it will search with sensitive case
@@ -64,11 +78,14 @@ set smartcase
 " Do not go to start of line when changing buffers (remember position)
 set nostartofline
 
+" Autoread a file if has been changed outside of vim but not inside of vim
+set autoread
+
 " http://vimdoc.sourceforge.net/htmldoc/options.html#'foldcolumn'
 " play with zM zm zr zR and more http://vimdoc.sourceforge.net/htmldoc/usr_28.html
 set foldcolumn=2
 set foldmethod=indent
-set foldlevel=12
+set foldlevelstart=99
 
 " allow delete over all things
 set backspace=indent,eol,start

@@ -97,10 +97,10 @@ d{motion}       Delete selection
 dd              Delete line
 y{motion}       Yank (copy) selection
 yy              yank line
->{motion}       Increase identation (shift left)
->>              Increase identation of line
-<{motion}       Decrease identation (shift right)
-<<              Decrease identation of line
+>{motion}       Increase indentation (shift left)
+>>              Increase indentation of line
+<{motion}       Decrease indentation (shift right)
+<<              Decrease indentation of line
 ={motion}       Autoindent selection *or* filter the lines through the equalprg program
 ==              Autoindent line
 !{motion}       Filter the lines through the executable program that is used as next argument
@@ -127,7 +127,7 @@ Text object selection
 Only can be used in visual mode or with an operator
 
 {operator}a{selection}  Do operation including selection (around)
-{operator}i{selection}  Do operation not including selection (inner)
+[operator}i{selection}  Do operation not including selection (inner)
 
 Operator can be for example d (delete), c (change), etc
 Selection can be w, W (w/Word), s (sentence), p (paragraph), {([<'" (to select the brackets content), t (to select html tag content)
@@ -151,7 +151,7 @@ Ex mode
 :so file        Source file (f.e to reload vimrc run :so $HOME/_vimrc)
 :{range}delete {x} Delete range - yank to x
 :{range}yank   {x} Yank range to x
-:{line}put {x}      Put register x after line - it pastes always linewise
+:{line}put {x}      Put register x after line - it pastes always line wise
 :{range}copy{to}    Copy range after location to (i.e 1,5copy$) - also :t, :co
 :{range}move{to}    Move range after location to - also :m, :mo
 :{range}join (:j)   Join lines
@@ -177,14 +177,14 @@ or
 :%s/p1/p2/g     Replace pattern p1 with p2. The %s matches all lines in document, the g substitutes all patters in the line
 :%s/\%u200b//g  Replace special character using its Unicode value
 :%s//"\1"/g     Search and replace previous search pattern (//) with the captured part (\1) inside "
-:%s///gn        Search for previous pattern and count its occurances (gn)
+:%s///gn        Search for previous pattern and count its occurrences (gn)
 :%s//\=@a/g     Search for previous pattern and replace it with the contents of a register
 
 Substitute flags
 ----------------
-g               Do all substitions in the same line (or else it will do only the 1st one)
+g               Do all substitutions in the same line (or else it will do only the 1st one)
 c               Confirm/reject each substitution
-n               Supress substitions (used for counting)
+n               Suppress substitutions (used for counting)
 e               Silence error
 &               Re-use the same flags
 
@@ -212,8 +212,8 @@ Replacement string
 :bnext          Next buffer - :bn
 :bprev          Previous buffer - :bp
 :bdelete        Remove buffer :bd (does not delete file) - it takes arguments f. e :1,5bd or :bd 1 3 5
-:args           Show arguments (files passed as parameter to vim) - can be modified. Can use globs or backtip expansion.
-For example use :args test/*.py to add all python files to the args list
+:args           Show arguments (files passed as parameter to vim) - can be modified. Can use globs or back tip expansion.
+For example use :args test/*.py to add all python files to the args list 
 :argdo          Execute command for all arguments - f.e :argdo %p
 :first, :next, :previous, :last     Move around in list of arguments
 :cdo            Execute command on each line of quickfix list
@@ -270,7 +270,7 @@ $               Last line
 %               All lines
 .,$             Range from here until end
 +5,+10          Relative ranges (from current)
-/patter1/,/pattern2/    Range by patterns
+/pattern1/,/pattern2/    Range by patterns
 '{mark}         Line with mark
 
 Macros
@@ -356,7 +356,7 @@ Some options
 
 :set spell              To enable spell checking - move to errors with ]s and
 [s, z= display suggestions, 1z= replace with first suggestion, zg mark as
-correct, zw mark as misspelled
+correct, zw mark as misspelled, zug revert zg/zw for this word
 :set ft                 To set the filetype to something else
 :set path               To set the searching path (initially it is current directory) - can use globs to search recursively, also works with gf
 :set sufficesadd        List of suffixes (file extensions) to try when opening files with gf
@@ -401,3 +401,24 @@ g<C-]>                              Navigate to the tag udner cursor displaying 
 :tnext / :tlast / :tpref / :tnext   Move between tag matches
 :tag {keyword}                      Move to keyword
 :tjump {keyword}                    Move to keyword with g<C-]>
+
+Autocomplete
+------------
+
+<c-n>/<c-p>                         Start a/c with generic keyword matching
+Instead of using the generic keyword matching you can a/c with a list of specific keywords:
+<C-x><C-n>                         Current buffer keywords
+<C-x><C-i>                         Included file keywords
+<C-x><C-]>                         tags file keywords
+<C-x><C-k>                         Dictionary lookup
+<C-x><C-l>                         Whole line completion
+<C-x><C-f>                         Filename completion
+<C-x><C-o>                         Omni-completion
+<C-x><C-s>                         Spelling correction a/c
+
+From the a/c menu use the following:
+<c-n>/<c-p>                        Next-previous word
+<c-y>/<c-e>                        Accept current selection / cancel(exit) autocompletion
+<c-h>/<c-l>                        Remove/add characters from match
+
+
