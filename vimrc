@@ -176,12 +176,14 @@ set equalprg=autopep8\ -
 " Easier buffer switching (shift-tab to switch to last used buffer)
 nmap <S-Tab> :b#<cr>
 " Easier buffer movements
-
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
-
+" Remove buffer
+noremap <Leader>rb :bd<CR>
+" Select text that was just pasted (ie use pgp)
+nnoremap gp `[v`]
 " Remap leader to space
 let mapleader = "\<Space>"
 " Sample mapping
@@ -198,8 +200,12 @@ nnoremap <leader>l :set list!<CR>
 " Add line w/o insert
 nnoremap <leader>n o<Esc>
 nnoremap <leader>N O<Esc>
-"Better paste
+" Better paste
 nnoremap <leader>p "_diwP
+" Open new tab
+nnoremap <Leader>t :tabnew<CR>
+" Close (remove) tab
+nnoremap <Leader>rt :tabclose<CR>
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
@@ -259,3 +265,6 @@ if has("autocmd")
     autocmd FileType python setlocal makeprg=pep8\ %
 
 endif
+
+
+

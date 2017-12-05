@@ -200,8 +200,6 @@ Replacement string
 \=@0            Insert the yank statement
 
 
-:tabnew         Open new tab
-:split/vsplit   Split pane horizontal/vertical (also use :sp or :vs)
 :edit (:e) {f}  Edit file f
 :edit! (:e!)    Reload current file discarding changes
 :write (:w)     Write file (filename is optional)
@@ -234,7 +232,7 @@ For example use :args test/*.py to add all python files to the args list
 :lvim pattern                   Run vim grep and save results on location list :lvimgrep
 :ll n                           Go to location list entry n
 
-Shortcust in Ex mode
+Shortcuts in Ex mode
 --------------------
 <C-h>           Backspace
 <C-w>           Delete word
@@ -328,14 +326,14 @@ q/              Open search window
 
 Using windows / Splits
 ----------------------
-
+:tabnew         Open new tab
 :vsplit or :vs or <C-w><C-v> or <C-w>v      Vertical Split
 :split or :sp or <C-w><C-s> or <C-w>s       Horizontal Split
 :split or :vsplit also take a filename to open the file to split directly
 For CtrlP you can use <C-v> or <C-s> on the selected file to open it to split
 <C-w>w or <C-w><C-w>                        Cycle buffer focus
 <C-w>hjkl or <C-w><C-hjkl>                  Move focus to L D U R split
-:close or :clo or :q or :quit or <C-w>c or <C-w><C-c> or <C-w>q or <C-w><C-q>       Close/quit window
+:close or :clo or :q or :quit or <C-w>c or <C-w><C-c> or <C-w>q or <C-w><C-q> Close/quit window/split
 check out this https://vi.stackexchange.com/questions/9479/what-is-the-difference-between-quit-and-close-commands for their difference-between-quit-and-close-commands
 :only or :on or <C-w>o or <C-w><C-o>        Make current window the only one on screen - close all others
 <C-w>=                                      Make windows equal
@@ -379,6 +377,10 @@ Pattern tips
 ------------
 /\Mpattern              Search with less magic (i.e \M. will search for .)
 /\Vpattern              Search with even less magic (i.e \V$ will search for $)
+/\vpattern              Search with even more magic (i.e ( can be used for grouping without need to escape)
+/\mpattern              Search with more magic (this is the default)
+    \zs /ze                 Start - end of match (i.e match all ` not followed by another ` but *do not match* the following character: /`\ze[^`]/)
+\< \>                   Beggining - end of word
 
 Netrw
 -----
