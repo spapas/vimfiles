@@ -153,6 +153,8 @@ call plug#begin('~/vimfiles/plugged')
 
 " lightline-vim
 Plug 'itchyny/lightline.vim'
+" Undotree (https://github.com/mbbill/undotree)
+Plug 'mbbill/undotree'
 
 call plug#end()
 
@@ -213,6 +215,8 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 nnoremap <leader>mk :make<CR>
 nnoremap <leader>cn :cnext<CR>
 nnoremap <leader>cp :cprev<CR>
+" UndoTreeToggle
+nnoremap <leader>u :UndotreeToggle<CR>
 "Toggle paste mode - disables autoident  when pasting multiple lines
 set pastetoggle=<F2>
 
