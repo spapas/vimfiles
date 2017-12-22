@@ -168,7 +168,7 @@ Ex mode
 :pwd                Print current directory
 :file               Opens a file (uses path for autocomplete)
 
-
+  
 :{range}global{pattern}{cmd}   For lines in range that match pattern execute cmd. To negate use :v (i.e :vglobal) or :g!. For example to delete blank lines
 - g/^\s*$/d
 or
