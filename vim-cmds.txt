@@ -50,7 +50,7 @@ i               Enter insert mode - before cursor (insert)
 a               Enter insert mode - after cursor (append)
 I               Enter insert mode - start of line text
 A               Enter insert mode - end of line
-r               Replace one character
+r               Replace one (or more) character(s)
 gr              Virtual replace mode (has better behavior with tab characters)
 R               Enter replace mode
 gR              Enter virtual replace mode
@@ -64,7 +64,8 @@ p/P             Paste after/before cursor
 gp/gP           Paste after/before cursor moving the cursor to the end of the text
 J               Join two lines
 m{mark}         Set mark - lower case are local to file, Uppercase are global
-
+s               Delete characters and enter insert mode (substitute)
+S               Delete lines and enter insert mode
 
 Useful combinations
 -------------------
