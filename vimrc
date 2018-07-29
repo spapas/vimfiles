@@ -118,11 +118,11 @@ set background=dark
 
 
 " CTRLP
- 
+
 set wildignore+=*\\tmp\\*  " Windows
 set wildignore+=*.bak
 set wildignore+=*.exe
-set wildignore+=*.pyc 
+set wildignore+=*.pyc
 set wildignore+=*.swp
 set wildignore+=*.zip
 set wildignore+=*/node_modules/*
@@ -198,18 +198,17 @@ nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
+" Remap leader to space
+let mapleader = "\<Space>"
 " Remove buffer
 noremap <Leader>rb :bd<CR>
 " Select text that was just pasted (ie use pgp)
 nnoremap gp `[v`]
-" Remap leader to space
-let mapleader = "\<Space>"
 " Sample mapping
 nnoremap <Leader>a :echo "Hey there space"<CR>
 " Reverse lines without changing unanmed register
 nnoremap <Leader>d "udd"up
 " Clear search hightlight
-"
 nnoremap <Leader>c :noh<CR>
 " Remove whitespace - two methods (leader w or leader W)
 nnoremap <Leader>W :mark x<CR>:exe "%s/[ ]*$//g"<CR>'x
@@ -249,14 +248,14 @@ endif
 " au FocusLost * :wa
 
 " Disable arrow keys
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
+" nnoremap <up> <nop>
+" nnoremap <down> <nop>
+" nnoremap <left> <nop>
+" nnoremap <right> <nop>
+" inoremap <up> <nop>
+" inoremap <down> <nop>
+" inoremap <left> <nop>
+" inoremap <right> <nop>
 
 " The next mappings and function will make * and # search for the *selection*
 " instead of the word under the cursor on visual mode
@@ -283,6 +282,8 @@ if has("autocmd")
 
     autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
     autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
+
+    " Python things 
     autocmd FileType python setlocal makeprg=pep8\ %
     autocmd FileType python set colorcolumn=88,120,160
     " Run black with space bb
