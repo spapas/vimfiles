@@ -241,7 +241,7 @@ Shortcuts in Ex mode
 <C-w>           Delete word
 <C-u>           Delete line
 <C-[>           Switch to normal (like ESC)
-<C-r>{register} Paste text (register you have yanked to with " - use 0 for the most recent edit)
+<C-r>{register} Paste text (register you have yanked to with " - use 0 for the most recent yank)
 <C-r><C-w>      Put word from text to command line
 <C-r><C-a>      Put Word from text to command line
 <C-f>           Open command line window
@@ -299,8 +299,10 @@ Registers
 Notice: Use small case to write to register - use caps to *append* to register.
 
 0               Most recent yank
+1               Most recent change/delete. The changes propagate to registers 2,3 etc. If the change is less than a line then the small change register (-) will be used instead; except some cases(!). More info on :help quote0
 +/*             System (unless you have remapped it to the unnamed)
 "               Unnamed
+-               Small change register
 _               Void / black hole (does not yank to anywhere)
 .               Last inserted text
 %               Filename
@@ -318,7 +320,7 @@ v               Enable
 V               Enable line-visual mode
 gv              Re-select last selection (also works from normal mode)
 <c-v>           Εnable block-visual mode
-<C-g>           Switch to select mode
+<C-g>           Switeh to select mode
 o               Go to other end of selection
 
 Other commands
