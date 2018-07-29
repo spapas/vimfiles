@@ -42,7 +42,8 @@ set directory^=~\.vim\tmp\\
 "register to refer to the windows clipboard, for example
 " "*yy
 " other registers can be used f.e "add "ayy "ap etc
-set clipboard=unnamed
+" Unix has an unnamed (*) and an unnamedplus (+) clipboard
+set clipboard^=unnamed,unnamedplus
 
 set autoindent
 set copyindent
@@ -120,10 +121,18 @@ set background=dark
 " Checkout this answer https://stackoverflow.com/a/28796041/119071 for including submodules
 " TL;DR: Run git clone --recursive to clone the project or 
 " git submodule update --init bundle/ctrlp.vim on an already initialized project 
+" it will then be installed properly through pathogen
  
-set runtimepath^=~/vimfiles/bundle/ctrlp.vim
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-set wildignore+=*\\tmp\\*,*.bak,*.swp,*.zip,*.exe,*.pyc  " Windows
+set wildignore+=*\\tmp\\*  " Windows
+set wildignore+=*.bak
+set wildignore+=*.exe
+set wildignore+=*.pyc 
+set wildignore+=*.swp
+set wildignore+=*.zip
+set wildignore+=*/node_modules/*
+set wildignore+=*\\node_modules\\*
+set wildignore+=node_modules\\*
+set wildignore+=node_modules
 " Open Buffers list with 'ctrl-j'
 noremap <C-j> :CtrlPBuffer<CR>
 " Show files by default
@@ -156,6 +165,12 @@ Plug 'itchyny/lightline.vim'
 Plug 'easymotion/vim-easymotion'
 " Undotree (https://github.com/mbbill/undotree)
 Plug 'mbbill/undotree'
+" https://github.com/tpope/vim-surround
+Plug 'tpope/vim-surround'
+" https://github.com/tpope/vim-repeat
+Plug 'tpope/vim-repeat'
+" https://github.com/justinmk/vim-sneak
+Plug 'justinmk/vim-sneak'
 
 call plug#end()
 
