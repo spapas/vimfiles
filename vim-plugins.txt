@@ -1,0 +1,16 @@
+Some help for plugins I use
+
+easymotion/vim-easymotion
+-------------------------
+
+<leader><leader>motion mark to jump to a mark depending on motion. For example (notice I use space for leader so I'll write spsp):
+spsp j: Select line below
+spsp k: Select line above
+spsp w/W: Select next word/WORD
+spsp f/Fchar: Select character forwards/backwards
+spsp schar: Select charater bidirectional
+
+Notice that it has various default mappings over a single <leader> however I don't want to enable 'em to keep the single leader key for my own usage.
+
+:help easymotion for more
+
