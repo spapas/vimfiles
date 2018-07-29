@@ -43,6 +43,52 @@ dsx: Delete surround x, for example dst will change <p>koko</p> to koko.
 ysmx: Will surround motion with surround x. For example ys3w" will change koko koko koko to "koko koko koko"
 
 This also works with Visual mode (with capital S - lower s starts vim-sneak) but *not* with Visual Line mode; not sure why yet. 
-Try this to surround a line with brackets: ^ys$[
+Try this to surround a line with brackets: ^ys$[ or use yss[ "surround sentence" 
+
+Some more info from the help:
+
+Eight punctuation marks, (, ), {, }, [, ], <, and >, represent themselves
+and their counterparts.  If the opening mark is used, contained whitespace is
+also trimmed.  The targets b, B, r, and a are aliases for ), }, ], and > 
+(the first two mirror Vim; the second two are completely arbitrary and
+subject to change).
+
+Three quote marks, ', ", `, represent themselves, in pairs.  They are only
+searched for on the current line.
+
+A t is a pair of HTML or XML tags.  See |tag-blocks| for details.  Remember
+that you can specify a numerical argument if you want to get to a tag other
+than the innermost one.
+
+The letters w, W, and s correspond to a |word|, a |WORD|, and a |sentence|,
+respectively.  These are special in that they have nothing to delete, and
+used with |ds| they are a no-op.  With |cs|, one could consider them a
+slight shortcut for ysi (cswb == ysiwb, more or less).
+
+A p represents a |paragraph|.  This behaves similarly to w, W, and s above;
+however, newlines are sometimes added and/or removed.
+
+REPLACEMENTS                                    *surround-replacements*
+
+A replacement argument is a single character, and is required by |cs|, |ys|,
+and |vS|.  Undefined replacement characters (with the exception of alphabetic
+characters) default to placing themselves at the beginning and end of the
+destination, which can be useful for characters like / and |.
+
+If either ), }, ], or > is used, the text is wrapped in the appropriate pair
+of characters.  Similar behavior can be found with (, {, and [ (but not <),
+which append an additional space to the inside.  Like with the targets above,
+b, B, r, and a are aliases for ), }, ], and >.  To fulfill the common need for
+code blocks in C-style languages, <C-}> (which is really <C-]>) adds braces on
+lines separate from the content.
+
+If t or < is used, Vim prompts for an HTML/XML tag to insert.  You may specify
+attributes here and they will be stripped from the closing tag. If replacing a
+tag, its attributes are kept in the new tag. End your input with > to discard
+the those attributes. If <C-T> is used, the tags will appear on lines by
+themselves.
+
+If s is used, a leading but not trailing space is added.  This is useful for
+removing parentheses from a function call with csbs.
 
 :help surround
