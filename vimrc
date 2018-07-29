@@ -118,10 +118,6 @@ set background=dark
 
 
 " CTRLP
-" Checkout this answer https://stackoverflow.com/a/28796041/119071 for including submodules
-" TL;DR: Run git clone --recursive to clone the project or 
-" git submodule update --init bundle/ctrlp.vim on an already initialized project 
-" it will then be installed properly through pathogen
  
 set wildignore+=*\\tmp\\*  " Windows
 set wildignore+=*.bak
@@ -160,6 +156,7 @@ endif
 " Run :PlugInstall to install these plugins
 call plug#begin('~/vimfiles/plugged')
 
+Plug 'ctrlpvim/ctrlp.vim'
 " lightline-vim
 Plug 'itchyny/lightline.vim'
 Plug 'easymotion/vim-easymotion'
@@ -171,6 +168,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 " https://github.com/justinmk/vim-sneak
 Plug 'justinmk/vim-sneak'
+
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
