@@ -14,3 +14,35 @@ Notice that it has various default mappings over a single <leader> however I don
 
 :help easymotion for more
 
+mbbill/undotree
+---------------
+
+Displays a tree for undo.
+
+Use <leader>(sp)u to display - hide the tree. Then ctrl+w w to go to the undotree pane 
+
+Things to remember: 
+
+* The undo history is sorted based on the changes' timestamp. The year/month/day field will not be displayed if the changes were made within the same day.
+* The change sequence number is displayed before timestamp.
+* The current position is marked as >seq<.
+* The next change that will be restored by :redo or <ctrl-r> is marked as {seq}, it's the same as curhead returned by undotree()
+* The [seq] marks the last change and where further changes will be added, it's the same as newhead returned by undotree()
+* Saved changes are marked as s and the capitalized S indicates the last saved change.
+
+
+Use ? for more help and help undotree
+
+tpope/vim-surround
+------------------
+
+This adds a bunch of surround operators:
+
+csxy: Change surround x to y, for example cs"{ will change "asd" to { asd }.  There is a funny thing with spaces so cs"} will change "asd" to {asd}.
+dsx: Delete surround x, for example dst will change <p>koko</p> to koko.
+ysmx: Will surround motion with surround x. For example ys3w" will change koko koko koko to "koko koko koko"
+
+This also works with Visual mode (with capital S - lower s starts vim-sneak) but *not* with Visual Line mode; not sure why yet. 
+Try this to surround a line with brackets: ^ys$[
+
+:help surround
