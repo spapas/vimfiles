@@ -288,9 +288,12 @@ if has("autocmd")
     autocmd FileType python set colorcolumn=88,120,160
     " Run black with space bb
     autocmd FileType python map <leader>bb :silent !black %<CR>
+    "
 endif
 
 
+let g:surround_37 = "{% \r %}"
+let g:surround_36 = "{{ \r }}"
 
 "let g:EasyMotion_do_mapping = 0 " Disable default mappings
 "" Jump to anywhere you want with minimal keystrokes, with just one key binding.
