@@ -284,7 +284,9 @@ if has("autocmd")
     autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
     autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
     autocmd FileType python setlocal makeprg=pep8\ %
-
+    autocmd FileType python set colorcolumn=88,120,160
+    " Run black with space bb
+    autocmd FileType python map <leader>bb :silent !black %<CR>
 endif
 
 
