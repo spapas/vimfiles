@@ -93,8 +93,34 @@ removing parentheses from a function call with csbs.
 
 :help surround
 
+'tpope/vim-repeat'
+-----------------
+
+Uses . to repeat more things; mainly  related to plugins. For example after
+you use ysiw} to surround a word with } you can use the . to surround more
+words after it.
 
 justinmk/vim-sneak
 ------------------
+
+Quick movement with s+two characters. Like f+character but for whole file. Use
+; / , to go to next / previous match. S goes backwards. It can also be used to
+motions using z, for example dzxx to delete until xx. Or yszxx{ to surround
+with brackets up to xx.
+
+You can use 5s+two characters to search +-5 characters around cursor position
+vertically. 
+
+More info on :help sneak
+
+airblade/vim-gitgutter
+----------------------
+
+Display gutters for changes. Use ]c and [c to move between changesets. Use
+<leader>hu to undo a changeset and <leader>hs to stage it. There's also
+<leader>hp for previewing but does not seem useful.
+
+More info on :help gitgutter
+
 
 
