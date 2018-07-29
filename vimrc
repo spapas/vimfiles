@@ -171,7 +171,7 @@ Plug 'justinmk/vim-sneak'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
-
+Plug 'tpope/vim-unimpaired'
 call plug#end()
 
 
