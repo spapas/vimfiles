@@ -170,6 +170,7 @@ Plug 'tpope/vim-repeat'
 Plug 'justinmk/vim-sneak'
 
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-commentary'
 
 call plug#end()
 
