@@ -25,10 +25,10 @@ if has('gui_running')
     " or For Linux
     if has('win32')
         " set guifont=Fira\ Mono:h11:cGREEK
-        set guifont=Source\ Code\ Pro\ Medium:h11
+        set guifont=Source\ Code\ Pro\ Medium:h12
         " set guifont=Hack:h11:cGREEK
     else
-        set guifont=Fira\ Mono\ 11
+        set guifont=Fira\ Mono\ 12
     endif
     set lines=50 columns=200
 endif
@@ -274,7 +274,7 @@ if has("autocmd")
     filetype on
 
     " Delete trailing characters
-    autocmd BufWritePre,FileWritePre *.py mark x|exe "%s/[ ]*$//g"|'x
+    autocmd BufWritePre,FileWritePre *.py,*.js,*.ts,*.json mark x|exe "%s/[ ]*$//g"|'x
 
     " Some examples for future reference
     " Treat .rss files as XML
