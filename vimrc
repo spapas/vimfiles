@@ -235,6 +235,8 @@ nnoremap <leader>cp :cprev<CR>
 nnoremap <leader>u :UndotreeToggle<CR>
 "Toggle paste mode - disables autoident  when pasting multiple lines
 set pastetoggle=<F2>
+" Do a json pretty print to the file
+nmap <silent> <leader>jl :%!py -2 -m json.tool<CR>
 
 " Display special characters
 set list
