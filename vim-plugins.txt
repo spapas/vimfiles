@@ -151,4 +151,11 @@ vertical/horizontal split, ctrl+t to open it in a new tab. Use ctrl+r to
 switch to regexp mode mode, ctrl+d to switch to filename only mode.mode.
 Finally, ctrl+y creates the file and ctrl+z marks the file for multi-open.
 
+michaeljsmith/vim-indent-object
+-------------------------------
 
+Adds a bunch of objects for selecting same-identation things. Useful for
+python. These objects are (count)ai/ii (An Indentation level and line above /
+Inner Indentation level) aI (same as ai but with line above and below); theres
+also aI for completeness but does the same as ii. These are normal text
+objects thus you can do things like yai or cii etc.

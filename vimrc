@@ -173,6 +173,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
 
+Plug 'michaeljsmith/vim-indent-object'
+
 call plug#end()
 
 
