@@ -175,6 +175,8 @@ Plug 'tpope/vim-unimpaired'
 
 Plug 'michaeljsmith/vim-indent-object'
 
+Plug 'w0rp/ale'
+
 call plug#end()
 
 
@@ -317,3 +319,7 @@ set updatetime=1000
 "" JK motions: Line motions
 "map <Leader>j <Plug>(easymotion-j)
 "map <Leader>k <Plug>(easymotion-k)
+"
+"
+let g:ale_python_flake8_change_directory=0
+let g:ale_python_flake8_options='--ignore=D203,D100,D101,D105,D106,D102,C0111 --exclude .git,__pycache__,docs/source/conf.py,old,build,dist --max-line-length=88'
