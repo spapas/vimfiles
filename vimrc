@@ -288,12 +288,6 @@ if has("autocmd")
 
     autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
     autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
-
-    " Python things 
-    autocmd FileType python setlocal makeprg=pep8\ %
-    autocmd FileType python set colorcolumn=88,120,160
-    " Run black with space bb
-    autocmd FileType python map <leader>bb :silent !black %<CR>
     "
 endif
 
@@ -321,5 +315,8 @@ set updatetime=1000
 "map <Leader>k <Plug>(easymotion-k)
 "
 "
-let g:ale_python_flake8_change_directory=0
+" let g:ale_python_flake8_change_directory=0
 let g:ale_python_flake8_options='--ignore=D203,D100,D101,D105,D106,D102,C0111 --exclude .git,__pycache__,docs/source/conf.py,old,build,dist --max-line-length=88'
+nmap <silent> <leader>aj :ALENext<cr>
+nmap <silent> <leader>ak :ALEPrevious<cr>
+nmap <silent> <leader>at :ALEToggle<cr>
