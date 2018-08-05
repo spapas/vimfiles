@@ -24,8 +24,8 @@ if has('gui_running')
     " or
     " or For Linux
     if has('win32')
-        " set guifont=Fira\ Mono:h11:cGREEK
-        set guifont=Source\ Code\ Pro\ Medium:h12
+        set guifont=Fira\ Mono:h12:cGREEK
+        " st guifont=Source\ Code\ Pro\ Medium:h12
         " set guifont=Hack:h11:cGREEK
     else
         set guifont=Fira\ Mono\ 12
@@ -298,25 +298,6 @@ let g:surround_36 = "{{ \r }}"
 " Faster update for gitgutter
 set updatetime=1000
 
-"let g:EasyMotion_do_mapping = 0 " Disable default mappings
-"" Jump to anywhere you want with minimal keystrokes, with just one key binding.
-"" `s{char}{label}`
-"nmap s <Plug>(easymotion-overwin-f)
-"" or
-"" `s{char}{char}{label}`
-"" Need one more keystroke, but on average, it may be more comfortable.
-"nmap s <Plug>(easymotion-overwin-f2)
-"
-"" Turn on case insensitive feature
-"let g:EasyMotion_smartcase = 1
-"
-"" JK motions: Line motions
-"map <Leader>j <Plug>(easymotion-j)
-"map <Leader>k <Plug>(easymotion-k)
-"
-"
-" let g:ale_python_flake8_change_directory=0
-let g:ale_python_flake8_options='--ignore=D203,D100,D101,D105,D106,D102,C0111 --exclude .git,__pycache__,docs/source/conf.py,old,build,dist --max-line-length=88'
 nmap <silent> <leader>aj :ALENext<cr>
 nmap <silent> <leader>ak :ALEPrevious<cr>
 nmap <silent> <leader>at :ALEToggle<cr>
