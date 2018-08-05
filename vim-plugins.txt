@@ -118,7 +118,7 @@ airblade/vim-gitgutter
 
 Display gutters for changes. Use ]c and [c to move between changesets. Use
 <leader>hu to undo a changeset and <leader>hs to stage it. There's also
-<leader>hp for previewing but does not seem useful.
+<leader>hp for previewing the change.
 
 More info on :help gitgutter
 
