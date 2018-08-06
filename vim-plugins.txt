@@ -19,9 +19,9 @@ mbbill/undotree
 
 Displays a tree for undo.
 
-Use <leader>(sp)u to display - hide the tree. Then ctrl+w w to go to the undotree pane 
+Use <leader>(sp)u to display - hide the tree. Then ctrl+w w to go to the undotree pane
 
-Things to remember: 
+Things to remember:
 
 * The undo history is sorted based on the changes' timestamp. The year/month/day field will not be displayed if the changes were made within the same day.
 * The change sequence number is displayed before timestamp.
@@ -42,14 +42,14 @@ csxy: Change surround x to y, for example cs"{ will change "asd" to { asd }.  Th
 dsx: Delete surround x, for example dst will change <p>koko</p> to koko.
 ysmx: Will surround motion with surround x. For example ys3w" will change koko koko koko to "koko koko koko"
 
-This also works with Visual mode (with capital S - lower s starts vim-sneak) but *not* with Visual Line mode; not sure why yet. 
-Try this to surround a line with brackets: ^ys$[ or use yss[ "surround sentence" 
+This also works with Visual mode (with capital S - lower s starts vim-sneak) but *not* with Visual Line mode; not sure why yet.
+Try this to surround a line with brackets: ^ys$[ or use yss[ "surround sentence"
 
 Some more info from the help:
 
 Eight punctuation marks, (, ), {, }, [, ], <, and >, represent themselves
 and their counterparts.  If the opening mark is used, contained whitespace is
-also trimmed.  The targets b, B, r, and a are aliases for ), }, ], and > 
+also trimmed.  The targets b, B, r, and a are aliases for ), }, ], and >
 (the first two mirror Vim; the second two are completely arbitrary and
 subject to change).
 
@@ -109,7 +109,7 @@ motions using z, for example dzxx to delete until xx. Or yszxx{ to surround
 with brackets up to xx.
 
 You can use 5s+two characters to search +-5 characters around cursor position
-vertically. 
+vertically.
 
 More info on :help sneak
 
@@ -126,12 +126,12 @@ More info on :help gitgutter
 tpope/vim-commentary
 --------------------
 
-Comment stuff out. 
-Use 
+Comment stuff out.
+Use
 gcc to comment out a line (takes a count)
-gc to comment out the target of a motion (for example, gcap to comment out a paragraph), 
-gc in visual mode to comment out the selection 
-gc in operator pending mode to target a comment. 
+gc to comment out the target of a motion (for example, gcap to comment out a paragraph),
+gc in visual mode to comment out the selection
+gc in operator pending mode to target a comment.
 
 You can also use it as a command, either with a range like :7,17Commentary, or as part of a :global invocation like with :g/TODO/Commentary.
 
@@ -159,3 +159,9 @@ python. These objects are (count)ai/ii (An Indentation level and line above /
 Inner Indentation level) aI (same as ai but with line above and below); theres
 also aI for completeness but does the same as ii. These are normal text
 objects thus you can do things like yai or cii etc.
+
+
+Some plugins to test:
+
+https://github.com/terryma/vim-multiple-cursors
+https://github.com/maxbrunsfeld/vim-yankstack
