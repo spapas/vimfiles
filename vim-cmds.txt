@@ -171,7 +171,7 @@ Ex mode
 :pwd                Print current directory
 :file               Opens a file (uses path for autocomplete)
 
-  
+
 :{range}global{pattern}{cmd}   For lines in range that match pattern execute cmd. To negate use :v (i.e :vglobal) or :g!. For example to delete blank lines
 - g/^\s*$/d
 or
@@ -214,7 +214,7 @@ Replacement string
 :bprev          Previous buffer - :bp
 :bdelete        Remove buffer :bd (does not delete file) - it takes arguments f. e :1,5bd or :bd 1 3 5
 :args           Show arguments (files passed as parameter to vim) - can be modified. Can use globs or back tip expansion.
-For example use :args test/*.py to add all python files to the args list 
+For example use :args test/*.py to add all python files to the args list
 :argdo          Execute command for all arguments - f.e :argdo %p
 :first, :next, :previous, :last     Move around in list of arguments
 :cdo            Execute command on each line of quickfix list

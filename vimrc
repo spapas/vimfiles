@@ -20,6 +20,7 @@ if has('gui_running')
     " Do not use modal alert dialogs! (Prefer Vim style prompt.)
     " http://stackoverflow.com/questions/4193654/using-vim-warning-style-in-gvim
     set guioptions+=c
+    set guitablabel=%M\ %t
     " set guifont=Fira\ Mono:h11:cGREEK
     " or
     " or For Linux
@@ -79,6 +80,12 @@ set smartcase
 " Do not go to start of line when changing buffers (remember position)
 set nostartofline
 
+" Allow moving between lines with left/right arrow keys backspace and space
+set whichwrap=b,s,<,>,[,]
+
+" Don't redraw when exuting macros
+set lazyredraw
+
 " Autoread a file if has been changed outside of vim but not inside of vim
 set autoread
 
@@ -116,19 +123,23 @@ syntax on
 colorscheme onedark
 set background=dark
 
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
+set encoding=utf8
 
 " CTRLP
 
-set wildignore+=*\\tmp\\*  " Windows
 set wildignore+=*.bak
 set wildignore+=*.exe
 set wildignore+=*.pyc
 set wildignore+=*.swp
 set wildignore+=*.zip
-set wildignore+=*/node_modules/*
-set wildignore+=*\\node_modules\\*
-set wildignore+=node_modules\\*
-set wildignore+=node_modules
+if has("win16") || has("win32")
+    set wildignore+=.git\*,.hg\*,.svn\*,node_modules\*,tmp\*
+else
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,*/node_modules/*,*/tmp/*
+endif
+
 " Open Buffers list with 'ctrl-j'
 noremap <C-j> :CtrlPBuffer<CR>
 " Show files by default
@@ -225,7 +236,7 @@ nnoremap <leader>N O<Esc>
 " Better paste
 nnoremap <leader>p "_diwP
 " Open new tab
-nnoremap <Leader>t :tabnew<CR>
+nnoremap <Leader>tn :tabnew<CR>
 " Close (remove) tab
 nnoremap <Leader>rt :tabclose<CR>
 " Quickly edit/reload the vimrc file
@@ -275,12 +286,21 @@ function! s:VSetSearch(cmdtype)
   let @s = temp
 endfunction
 
+"
+fun! CleanExtraSpaces()
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    silent! %s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
+endfun
+
 if has("autocmd")
-    " Make sure filetype is enabled
     filetype on
 
     " Delete trailing characters
-    autocmd BufWritePre,FileWritePre *.py,*.js,*.ts,*.json mark x|exe "%s/[ ]*$//g"|'x
+    " autocmd BufWritePre,FileWritePre *.py,*.js,*.ts,*.json,*.txt mark x|exe "%s/[ ]*$//g"|'x
+    autocmd BufWritePre *.py,*.js,*.ts,*.json,*.txt,*.sh :call CleanExtraSpaces()
 
     " Some examples for future reference
     " Treat .rss files as XML
@@ -301,3 +321,10 @@ set updatetime=1000
 nmap <silent> <leader>aj :ALENext<cr>
 nmap <silent> <leader>ak :ALEPrevious<cr>
 nmap <silent> <leader>at :ALEToggle<cr>
+
+
+" Move a line of text using ALT+[jk]
+nmap <M-j> mz:m+<cr>`z
+nmap <M-k> mz:m-2<cr>`z
+vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
