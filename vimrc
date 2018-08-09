@@ -256,7 +256,7 @@ nmap <silent> <leader>jl :%!py -2 -m json.tool<CR>
 " Display special characters
 set list
 if version >= 800
-    set listchars=tab:▸\ ,eol:$,space:\ ,trail:.
+    set listchars=tab:→\ ,eol:$,space:\ ,trail:.
 else
     set listchars=eol:$,trail:.
 endif
