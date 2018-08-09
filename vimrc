@@ -187,21 +187,38 @@ Plug 'tpope/vim-unimpaired'
 Plug 'michaeljsmith/vim-indent-object'
 
 Plug 'w0rp/ale'
+Plug 'maximbaz/lightline-ale'
 
 call plug#end()
 
 
 " Lightline
+" Integrate ale with lightline
 let g:lightline = {
 \ 'colorscheme': 'onedark',
-\ 'active': {
-\   'left': [['mode', 'paste'], ['readonly', 'filename', 'modified']],
-\   'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype', ]]
-\ },
-\
 \ }
+
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
+
+let g:lightline.component_type = {
+      \     'linter_checking': 'left',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'left',
+      \ }
+
 " Don't show INSERT (mode) - it is displayed on lightline
 set noshowmode
+
+let g:lightline.active = {
+\   'left': [['mode', 'paste'], ['readonly', 'filename', 'modified']],
+\   'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ], ['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype', ]]
+\ }
 
 " Use autopep8 for auto - identing
 set equalprg=autopep8\ -
