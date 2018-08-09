@@ -193,11 +193,13 @@ call plug#end()
 
 
 " Lightline
-" Integrate ale with lightline
 let g:lightline = {
 \ 'colorscheme': 'onedark',
+\ 'separator': { 'left': '⮀', 'right': '⮂' },
+\ 'subseparator': { 'left': '⮁', 'right': '⮃' }
 \ }
 
+" Integrate ale with lightline
 let g:lightline.component_expand = {
       \  'linter_checking': 'lightline#ale#checking',
       \  'linter_warnings': 'lightline#ale#warnings',
