@@ -321,6 +321,7 @@ set updatetime=1000
 nmap <silent> <leader>aj :ALENext<cr>
 nmap <silent> <leader>ak :ALEPrevious<cr>
 nmap <silent> <leader>at :ALEToggle<cr>
+nmap <silent> <leader>af :ALEFix<cr>
 
 
 " Move a line of text using ALT+[jk]
