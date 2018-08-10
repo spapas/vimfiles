@@ -25,7 +25,7 @@ if has('gui_running')
     " or
     " or For Linux
     if has('win32')
-        set guifont=Fira\ Mono:h12:cGREEK
+        set guifont=Hack:h12:cGREEK
         " st guifont=Source\ Code\ Pro\ Medium:h12
         " set guifont=Hack:h11:cGREEK
     else
@@ -195,8 +195,8 @@ call plug#end()
 " Lightline
 let g:lightline = {
 \ 'colorscheme': 'onedark',
-\ 'separator': { 'left': '⮀', 'right': '⮂' },
-\ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+\ 'separator': { 'left': '', 'right': '' },
+\ 'subseparator': { 'left': '', 'right': '' }
 \ }
 
 " Integrate ale with lightline
