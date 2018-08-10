@@ -193,11 +193,31 @@ call plug#end()
 
 
 " Lightline
+function! LightlineReadonly()
+    return &readonly ? '' : ''
+endfunction
 let g:lightline = {
 \ 'colorscheme': 'onedark',
 \ 'separator': { 'left': '', 'right': '' },
-\ 'subseparator': { 'left': '', 'right': '' }
+\ 'subseparator': { 'left': '', 'right': '' },
+\ 'component': {
+\   'lineinfo': ' %3l:%-2v',
+\ },
+\ 'component_function': {
+\   'readonly': 'LightlineReadonly',
+\   'ctrlpmark': 'CtrlPMark',
+\ },
 \ }
+let g:lightline.inactive = {
+\ 'left': [ [ 'filename' ] ],
+\ 'right': [ [ 'lineinfo' ],
+\            [ 'percent' ] ] }
+let g:lightline.tabline = {
+\ 'left': [ [ 'tabs' ] ],
+\ 'right': [ [ 'close' ] ] }
+let g:lightline.tab = {
+\ 'active': [ 'tabnum', 'filename', 'modified' ],
+\ 'inactive': [ 'tabnum', 'filename', 'modified' ] }
 
 " Integrate ale with lightline
 let g:lightline.component_expand = {
@@ -218,7 +238,7 @@ let g:lightline.component_type = {
 set noshowmode
 
 let g:lightline.active = {
-\   'left': [['mode', 'paste'], ['readonly', 'filename', 'modified']],
+\   'left': [['mode', 'paste'], ['readonly', 'filename', 'modified'], ['ctrlpmark'] ],
 \   'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ], ['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype', ]]
 \ }
 
@@ -352,3 +372,36 @@ vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 " Don't save .netrwhist
 :let g:netrw_dirhistmax = 0
+
+
+
+
+
+
+
+	function! CtrlPMark()
+	  if expand('%:t') =~ 'ControlP' && has_key(g:lightline, 'ctrlp_item')
+	    call lightline#link('iR'[g:lightline.ctrlp_regex])
+	    return lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
+	          \ , g:lightline.ctrlp_next], 0)
+	  else
+	    return ''
+	  endif
+	endfunction
+
+	let g:ctrlp_status_func = {
+	  \ 'main': 'CtrlPStatusFunc_1',
+	  \ 'prog': 'CtrlPStatusFunc_2',
+	  \ }
+
+	function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
+	  let g:lightline.ctrlp_regex = a:regex
+	  let g:lightline.ctrlp_prev = a:prev
+	  let g:lightline.ctrlp_item = a:item
+	  let g:lightline.ctrlp_next = a:next
+	  return lightline#statusline(0)
+	endfunction
+
+	function! CtrlPStatusFunc_2(str)
+	  return lightline#statusline(0)
+	endfunction
