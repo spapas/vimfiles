@@ -203,6 +203,8 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'w0rp/ale'
 Plug 'maximbaz/lightline-ale'
 
+Plug 'majutsushi/tagbar'
+
 call plug#end()
 
 
@@ -218,6 +220,7 @@ let g:lightline = {
 \ 'subseparator': { 'left': '', 'right': '' },
 \ 'component': {
 \   'lineinfo': ' %3l:%-2v',
+\  'tagbar_current': '%{tagbar#currenttag("%s", "", "f")}',
 \ },
 \ 'component_function': {
 \   'readonly': 'LightlineReadonly',
@@ -254,8 +257,8 @@ let g:lightline.component_type = {
 set noshowmode
 
 let g:lightline.active = {
-\   'left': [['mode', 'paste'], ['readonly', 'filename', 'modified'], ['ctrlpmark'] ],
-\   'right': [[ 'linter_checking',  'linter_errors' ,  'linter_warnings' , 'linter_ok' ], ['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype', ]]
+\   'left': [['mode', 'paste'], ['readonly', 'filename', 'modified'], ['ctrlpmark', 'tagbar_current'], ],
+\   'right': [[ 'linter_checking',  'linter_errors', 'linter_warnings' , 'linter_ok' ], ['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype', ]]
 \ }
 
 " Use autopep8 for auto - identing
@@ -307,6 +310,12 @@ nnoremap <leader>u :UndotreeToggle<CR>
 set pastetoggle=<F2>
 " Do a json pretty print to the file
 nmap <silent> <leader>jl :%!py -2 -m json.tool<CR>
+
+" Tagbar Toggle
+nnoremap <silent> <F9> :TagbarToggle<CR>
+" Sort by position in the file
+let g:tagbar_sort = 0
+let g:tagbar_iconchars = ['▶', '▼']
 
 " Display special characters
 set list
