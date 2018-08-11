@@ -204,6 +204,7 @@ Plug 'w0rp/ale'
 Plug 'maximbaz/lightline-ale'
 
 Plug 'majutsushi/tagbar'
+Plug 'ludovicchabant/vim-gutentags'
 
 call plug#end()
 
@@ -220,7 +221,8 @@ let g:lightline = {
 \ 'subseparator': { 'left': '', 'right': '' },
 \ 'component': {
 \   'lineinfo': ' %3l:%-2v',
-\  'tagbar_current': '%{tagbar#currenttag("%s", "", "f")}',
+\   'tagbar_current': '%{tagbar#currenttag("%s", "", "f")}',
+\   'gutentags': '%{gutentags#statusline()}',
 \ },
 \ 'component_function': {
 \   'readonly': 'LightlineReadonly',
@@ -257,7 +259,7 @@ let g:lightline.component_type = {
 set noshowmode
 
 let g:lightline.active = {
-\   'left': [['mode', 'paste'], ['readonly', 'filename', 'modified'], ['ctrlpmark', 'tagbar_current'], ],
+\   'left': [['mode', 'paste'], ['readonly', 'filename', 'modified', 'gutentags',], ['ctrlpmark', 'tagbar_current',  ], ],
 \   'right': [[ 'linter_checking',  'linter_errors', 'linter_warnings' , 'linter_ok' ], ['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype', ]]
 \ }
 
@@ -399,11 +401,6 @@ vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 :let g:netrw_dirhistmax = 0
 
 
-
-
-
-
-
 	function! CtrlPMark()
 	  if expand('%:t') =~ 'ControlP' && has_key(g:lightline, 'ctrlp_item')
 	    call lightline#link('iR'[g:lightline.ctrlp_regex])
@@ -430,3 +427,11 @@ vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 	function! CtrlPStatusFunc_2(str)
 	  return lightline#statusline(0)
 	endfunction
+
+
+
+augroup MyGutentagsStatusLineRefresher
+    autocmd!
+    autocmd User GutentagsUpdating call lightline#update()
+    autocmd User GutentagsUpdated call lightline#update()
+augroup END
