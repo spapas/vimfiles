@@ -245,8 +245,13 @@ let g:lightline.component_expand = {
       \  'linter_warnings': 'lightline#ale#warnings',
       \  'linter_errors': 'lightline#ale#errors',
       \  'linter_ok': 'lightline#ale#ok',
-\   'gutentags': 'gutentags#statusline',
+\   'gutentags': 'MyGutentagsStatus',
       \ }
+
+function! MyGutentagsStatus()
+    return gutentags#statusline("[", "]", "≝")
+endfunction
+    
 
 let g:lightline.component_type = {
       \     'linter_checking': 'left',
