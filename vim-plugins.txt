@@ -160,6 +160,18 @@ Inner Indentation level) aI (same as ai but with line above and below); theres
 also aI for completeness but does the same as ii. These are normal text
 objects thus you can do things like yai or cii etc.
 
+majutsushi/tagbar
+-----------------
+
+Displays a vertical bar with the tags for the current file. Uses the
+:TagbarToggle method to toggle that bar (I've mapped it to F9). Needs ctags
+installed (get binary from
+https://github.com/universal-ctags/ctags-win32/releases).
+
+Has some nice functionality from the tagbar using enter to move to that tag, p
+to display the tag without leaving the tagbar window and others (use ? to see
+them). Also I've integrated it with lightline so it displays the name of each
+method next to the filename and modified field.
 
 Some plugins to test:
 
