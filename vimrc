@@ -120,7 +120,21 @@ syntax on
 " colorscheme gruvbox
 " colorscheme PaperColor
 " colorscheme jellybeans
-colorscheme onedark
+" colorscheme onedark
+let g:PaperColor_Theme_Options = {
+  \   'theme': {
+  \     'default.dark': { 
+  \       'override' : {
+  \       }
+  \     }
+  \   },
+  \   'language': {
+  \     'python': {
+  \       'highlight_builtins' : 1
+  \     }
+  \   }
+  \ }
+colorscheme PaperColor
 set background=dark
 
 " Use Unix as the standard file type
@@ -196,8 +210,10 @@ call plug#end()
 function! LightlineReadonly()
     return &readonly ? '' : ''
 endfunction
+" Careful here: I've modified the PaperColor scheme (and renamed it as
+" PaperColorEx in order to display linting errors properly.
 let g:lightline = {
-\ 'colorscheme': 'onedark',
+\ 'colorscheme': 'PaperColorEx',
 \ 'separator': { 'left': '', 'right': '' },
 \ 'subseparator': { 'left': '', 'right': '' },
 \ 'component': {
@@ -231,7 +247,7 @@ let g:lightline.component_type = {
       \     'linter_checking': 'left',
       \     'linter_warnings': 'warning',
       \     'linter_errors': 'error',
-      \     'linter_ok': 'left',
+      \     'linter_ok': 'ok',
       \ }
 
 " Don't show INSERT (mode) - it is displayed on lightline
@@ -239,7 +255,7 @@ set noshowmode
 
 let g:lightline.active = {
 \   'left': [['mode', 'paste'], ['readonly', 'filename', 'modified'], ['ctrlpmark'] ],
-\   'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ], ['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype', ]]
+\   'right': [[ 'linter_checking',  'linter_errors' ,  'linter_warnings' , 'linter_ok' ], ['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype', ]]
 \ }
 
 " Use autopep8 for auto - identing
