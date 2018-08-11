@@ -34,7 +34,15 @@ H/M/L           Move to Hight / Middle / Low of screen
 `{mark}         Move to mark - row and column
 '{mark}         Move to mark - only row
 n/N             Move to next (or previous) match
-gn/gN           This is a move that operates only on the next(or previous) matched text - notice the difference with n/N
+gn/gN           This is a move that operates only on the next(or previous)
+matched text - notice the difference with n/N. This is a rather strange move.
+For example, if you search for "Jump" and press enter your cursor  will be
+moved to the "J" of the next jump; now you can use an operator along with gn
+to operate on that "Jump". For example dgn to delete it or cgn to change it to
+something else. What is really useful is that using the repeating . you will
+move to the next occurence of "Jump" and re-do the same operation (something
+like interactive search and replace or search and delete). Using n (twice) will skip
+to the next result without applying the operator.
 
 Jumps
 -----
