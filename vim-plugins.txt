@@ -173,6 +173,19 @@ to display the tag without leaving the tagbar window and others (use ? to see
 them). Also I've integrated it with lightline so it displays the name of each
 method next to the filename and modified field.
 
+ludovicchabant/vim-gutentags
+----------------------------
+
+Auto-manages the tags using ctag (see previous plugin). Will create a tags
+directory to the (proper depending on .git etc) root of each project. Very
+useful you can then use ctrl+] to jump to definitions of classes, functions
+etc. Use ctrl+o to return to previous point (jump back and ctrl+i to jump
+again to the next point).
+
+Can use :GutentagsUpdate to force update the tags (not reall needed since tags
+will be automatically re-generated). Finally notice that gutantags is
+integrated to lightline and will display a symbol while tags are created.
+
 Some plugins to test:
 
 https://github.com/terryma/vim-multiple-cursors

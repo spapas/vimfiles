@@ -221,8 +221,7 @@ let g:lightline = {
 \ 'subseparator': { 'left': '', 'right': '' },
 \ 'component': {
 \   'lineinfo': ' %3l:%-2v',
-\   'tagbar_current': '%{tagbar#currenttag("%s", "", "f")}',
-\   'gutentags': '%{gutentags#statusline()}',
+\   'tagbar_current': '%{tagbar#currenttag("%s", "", "f")}'
 \ },
 \ 'component_function': {
 \   'readonly': 'LightlineReadonly',
@@ -246,6 +245,7 @@ let g:lightline.component_expand = {
       \  'linter_warnings': 'lightline#ale#warnings',
       \  'linter_errors': 'lightline#ale#errors',
       \  'linter_ok': 'lightline#ale#ok',
+\   'gutentags': 'gutentags#statusline',
       \ }
 
 let g:lightline.component_type = {
