@@ -394,6 +394,10 @@ nmap <silent> <leader>ak :ALEPrevious<cr>
 nmap <silent> <leader>at :ALEToggle<cr>
 nmap <silent> <leader>af :ALEFix<cr>
 
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter% %code%] %s [%severity%]'
+
 
 " Move a line of text using ALT+[jk]
 nmap <M-j> mz:m+<cr>`z
