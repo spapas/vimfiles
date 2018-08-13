@@ -13,6 +13,7 @@ ge/gE           Move to end of *previous* word (or Word)
 0               Move to start of line (col 0) - g0 to start of display line
 ^               Move to first non blank character of line - g^ for display line
 $               Move to end of line - g$ for display line
+g_              Move to the last non-blank character of line
 G               Move to end of file
 f{char}         Find character (move to character) - forwards
 F{char}         Find character (move to character) - backwards
@@ -141,7 +142,11 @@ Only can be used in visual mode or with an operator
 [operator}i{selection}  Do operation not including selection (inner)
 
 Operator can be for example d (delete), c (change), etc
-Selection can be w, W (w/Word), s (sentence), p (paragraph), {([<'" (to select the brackets content), t (to select html tag content)
+Selection can be w, W (w/Word), s (sentence), p (paragraph),
+{([<'"` (to select the brackets content), t (to select html tag content).
+Also })]> would be the same. Also b is an alternative for ( or ) and B an
+alternative for [ or ].
+
 
 Some examples
 daw             Delete a word (works great)
