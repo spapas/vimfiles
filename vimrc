@@ -307,6 +307,8 @@ nnoremap <Leader>rt :tabclose<CR>
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
+nmap <silent> <leader>vc :e <C-R>=fnamemodify($MYVIMRC, ':p:h')<CR>\vim-cmds.txt<CR>
+
 " Run make
 nnoremap <leader>mk :make<CR>
 nnoremap <leader>cn :cnext<CR>
