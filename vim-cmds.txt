@@ -14,6 +14,8 @@ ge/gE           Move to end of *previous* word (or Word)
 ^               Move to first non blank character of line - g^ for display line
 $               Move to end of line - g$ for display line
 g_              Move to the last non-blank character of line
+* Notice that if you are using selection=exclusive the cursor won't be moved
+  past the last non-blank character thus g_ would behave the same as $.
 G               Move to end of file
 f{char}         Find character (move to character) - forwards
 F{char}         Find character (move to character) - backwards
@@ -184,7 +186,8 @@ Ex mode
 :register           Display registers (takes also parameters) - :reg
 :changes            Display changes list
 :pwd                Print current directory
-:file               Opens a file (uses path for autocomplete)
+:file               Display info for a file (uses path for autocomplete) alias <C-g> for current file
+:view (:vie)        Open file in read only (no parameter to change current file to RO)
 
 
 :{range}global{pattern}{cmd}   For lines in range that match pattern execute cmd. To negate use :v (i.e :vglobal) or :g!. For example to delete blank lines
@@ -235,6 +238,7 @@ For example use :args test/*.py to add all python files to the args list
 :cdo            Execute command on each line of quickfix list
 :cfdo           Execute command on each file of quickfix list
 :cl (:clist)    Display quickfix list
+:cope (:copen) :ccl(ose)        Opens (and closes) the quickfix list (as a navigatable drawer window)
 :cnext, :cprev, :cfirst, :clast Navigate the quickfix list
 :cnfile, :cpfile                Next previous file on quickfix list
 :copen, :close                  Show hide quickfix list window
@@ -343,6 +347,9 @@ Other commands
 
 q:              Open command line window
 q/              Open search window
+<C-g>           Display file info
+g<C-g>          Display more file info
+K               Display help for identifier under cursor (useful for vimrc editing)
 
 Using windows / Splits
 ----------------------

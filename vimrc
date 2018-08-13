@@ -165,6 +165,7 @@ let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 if executable('ag')
   " Use Ag over Grep
   let g:ackprg = 'ag --vimgrep'
+  nnoremap <leader>ag :Ack<SPACE>
 
   set grepprg=ag\ --nogroup\ --nocolor\ --column
   set grepformat=%f:%l:%c:%m
