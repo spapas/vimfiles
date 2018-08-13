@@ -164,6 +164,8 @@ let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 
 if executable('ag')
   " Use Ag over Grep
+  let g:ackprg = 'ag --vimgrep'
+
   set grepprg=ag\ --nogroup\ --nocolor\ --column
   set grepformat=%f:%l:%c:%m
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
@@ -205,6 +207,8 @@ Plug 'maximbaz/lightline-ale'
 
 Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
+
+Plug 'mileszs/ack.vim'
 
 call plug#end()
 
@@ -446,3 +450,4 @@ augroup MyGutentagsStatusLineRefresher
     autocmd User GutentagsUpdating call lightline#update()
     autocmd User GutentagsUpdated call lightline#update()
 augroup END
+

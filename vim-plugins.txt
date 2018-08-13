@@ -198,6 +198,19 @@ Can use :GutentagsUpdate to force update the tags (not reall needed since tags
 will be automatically re-generated). Finally notice that gutantags is
 integrated to lightline and will display a symbol while tags are created.
 
+mileszs/ack.vim
+---------------
+
+Integrate ack with vim. I am using ag instead of ack. Just use :Ack
+search_pattern to search recursively for something. It will add things to the
+quickfix list. You can also use :LAck to add search results to the location
+list. There are various other additional commands like :AckAdd,
+:AckFromSearch. Use :Ack! to *not* jump to the first result.
+
+Finally, there are various useful mappings that can be used on the result
+split window, i.e t/T to open to a new tab, o/O tio open the result, go to
+preview the reslt, h/H/v/V to create a split, q to close the quickfix window.
+
 Some plugins to test:
 
 https://github.com/terryma/vim-multiple-cursors
