@@ -31,6 +31,8 @@ H/M/L           Move to Hight / Middle / Low of screen
 <c-F>/<c-B>     Move forwards/backwards (a full page)
 ``              Move to previous position
 `.              Move to previous change
+'[              Move to start of previous changed block
+']              Move to the end of previous changed block
 `^              Move to previous insertion
 `{mark}         Move to mark - row and column
 '{mark}         Move to mark - only row
@@ -414,6 +416,8 @@ ctags integration
 Create ctags file for python (notice that -L pattern list files *not matching the pattern)
 ag -L kajhsdajhkgsd --py | ctags -L -
 
+I am instead using the vim-gutentags plugin to offload my ctags file generation.
+
 <C-]>                               Navigate to the tag under cursor
 <C-t>                               Back button for tags - notice that <C-o> does more or less the same but for *all* jumps (while <C-t> works only for tag jumps)
 g<C-]>                              Navigate to the tag udner cursor displaying a selection list first
@@ -440,5 +444,4 @@ From the a/c menu use the following:
 <c-n>/<c-p>                        Next-previous word
 <c-y>/<c-e>                        Accept current selection / cancel(exit) autocompletion
 <c-h>/<c-l>                        Remove/add characters from match
-
 

@@ -153,6 +153,9 @@ Useful mappings:
 ]L  First item in location list
 [L  Last item in location list
 
+{count}]<space>     Open count new lines below cursor
+{count}[<space>     Open count new lines above cursor
+
 ctrlpvim/ctrlp.vim
 ------------------
 
