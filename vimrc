@@ -1,7 +1,6 @@
+" source $VIMRUNTIME/vimrc_example.vim
+source ~/vimfiles/vimrc_defaults
 set nocompatible
-source $VIMRUNTIME/vimrc_example.vim
-" source $VIMRUNTIME/mswin.vim
-" behave mswin
 
 " For buffers, hide buffers without asking confirm for save
 set hidden
