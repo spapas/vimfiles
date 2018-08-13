@@ -235,7 +235,7 @@ For example use :args test/*.py to add all python files to the args list
 :colder, :cnewer                Load a previous or current quickfix list
 :grep pattern                   Run *external grep* command and save results on quickfix list (:vimgrep)
 :vim pattern                    Run vim grep command and save results on quickfix list (:gr)
-:lnext, :lprev, :lfirst, :llast Navigate the location list
+:lnext, :lprev, :lfirst, :llast Navigate the location list. A location list is similar to the quickfix list but is valid for a single window. For example you can use lvimgrep /Pattern/ % to search.
 :lopen, :lclose                 Show hide location list windows
 :ldo                            Execute command on each line of location list
 :lli (:llist)                   Display Location list

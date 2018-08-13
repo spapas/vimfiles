@@ -139,7 +139,19 @@ You can also use it as a command, either with a range like :7,17Commentary, or a
 tpope/vim-unimpaired
 --------------------
 
-Various pairs of mappings. Some I've already defined (like ]b for bnext). Not sure how useful it is, in any case, more help can be found on :help unimpaired.
+Various pairs of mappings. Some I've already defined (like ]b for bnext).
+Not sure how useful it is, in any case, more help can be found on :help unimpaired.
+
+Useful mappings:
+]q  Next item in quicfix list
+[q  Prev item in quicfix list
+]Q  First item in quicfix list
+[Q  Last item in quicfix list
+
+]l  Next item in location list
+[l  Prev item in location list
+]L  First item in location list
+[L  Last item in location list
 
 ctrlpvim/ctrlp.vim
 ------------------
