@@ -54,10 +54,14 @@ Jumps
 
 Notice these cannot be used as motions
 
-<c-O>/<c-I>     Jump to previous/next position (uses the :jumps list)
+<c-o>/<c-i>     Jump to previous/next position (uses the :jumps list)
 g;/g,           Jump to older / newer change (uses the :changes list)
 gi              Jump to last insert
 gf              Jump to filename under cursor (try vimrc)
+
+Please notice that you can use
+:jumps          to view the jump list (<c-o> / <c-i) and
+:changes        to view the changes list (g; / g,)
 
 Commands
 --------
@@ -425,7 +429,7 @@ ag -L kajhsdajhkgsd --py | ctags -L -
 
 I am instead using the vim-gutentags plugin to offload my ctags file generation.
 
-<C-]>                               Navigate to the tag under cursor
+<C-]>                               Navigate to the tag under cursor; notice this works with VIM documentation also
 <C-t>                               Back button for tags - notice that <C-o> does more or less the same but for *all* jumps (while <C-t> works only for tag jumps)
 g<C-]>                              Navigate to the tag udner cursor displaying a selection list first
 :tselect                            Show list of tag matches
