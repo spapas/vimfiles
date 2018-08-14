@@ -220,3 +220,4 @@ Some plugins to test:
 
 https://github.com/terryma/vim-multiple-cursors
 https://github.com/maxbrunsfeld/vim-yankstack
+https://github.com/junegunn/vim-easy-align

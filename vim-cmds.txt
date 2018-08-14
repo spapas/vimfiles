@@ -111,6 +111,7 @@ zz              Center screen on current line
 ZZ              Write file and quit; same as :wq or :x
 ZQ              Quit and abort changes; same as :q!
 
+
 Operators
 ---------
 c{motion}       Delete selection and enter insert mode (change)
@@ -133,6 +134,8 @@ gU{motion}      Switch to uppercase
 gUU             Switch line to uppercase
 g~{motion}      Swap case
 g~~             Swap line case
+gq{motion}      Format text (this is not used that much; should set formatprg)
+gqq             Format current line
 
 /{pattern}      Search for pattern forwards
 ?{pattern}      Search for pattern backwards
