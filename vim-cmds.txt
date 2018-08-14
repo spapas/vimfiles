@@ -15,7 +15,7 @@ ge/gE           Move to end of *previous* word (or Word)
 $               Move to end of line - g$ for display line
 g_              Move to the last non-blank character of line
 * Notice that if you are using selection=exclusive the cursor won't be moved
-  past the last non-blank character thus g_ would behave the same as $.
+past the last non-blank character thus g_ would behave the same as $.
 G               Move to end of file
 f{char}         Find character (move to character) - forwards
 F{char}         Find character (move to character) - backwards
@@ -106,8 +106,10 @@ qaq             Clear register a (same as qqq qzq etc)
 
 Lesser commands
 ---------------
-<C-g>           Show file status
+{1,2}<C-g>      Show file status, adding 1 displays also the filaneme, adding 2 displays also the buffer number
 zz              Center screen on current line
+ZZ              Write file and quit; same as :wq or :x
+ZQ              Quit and abort changes; same as :q!
 
 Operators
 ---------
@@ -228,6 +230,7 @@ Replacement string
 :edit (:e) {f}  Edit file f
 :edit! (:e!)    Reload current file discarding changes
 :write (:w)     Write file (filename is optional)
+:x (or :exit or :xit or :exi) Write only when changes have been made and quit
 :update (:up)   Write file only if it has been changed
 :wnext (:wn)    Write file and go to next buffer
 :wall           Save every buffer
@@ -329,12 +332,19 @@ Notice: Use small case to write to register - use caps to *append* to register.
 _               Void / black hole (does not yank to anywhere)
 .               Last inserted text
 %               Filename
-#               Alternate filename (full path in Windows)
+#               Alternate filename (this is the previous buffer that was open in the current window pane). You can switch to it with <C-^> (I've also mapped it to <S-Tab> from normal mode)
 :               Most recent executed ex command
 =               Expression register (opens prompt to do math)
 /               Last search pattern
 
 To write a register use :let @/ = "foo"
+
+Other useful things
+-------------------
+
+@{register}                 Expand register; for example :echo @% to display current filename
+expand(expression)          Expands expression; for example :echo expand('%:p:h') will display current file's path
+:put =expand(expression)    Print expanded expression
 
 Visual mode
 -----------
