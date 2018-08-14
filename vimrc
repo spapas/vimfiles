@@ -10,7 +10,7 @@ set laststatus=2
 
 if has('gui_running')
     " Remove toolbar and menu
-    set go-=T
+    set go-=Tt
     set go-=m
     " Remove scrollbars
     set go-=rL
