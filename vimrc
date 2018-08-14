@@ -380,8 +380,6 @@ fun! CleanExtraSpaces()
 endfun
 
 if has("autocmd")
-    filetype on
-
     " Delete trailing characters
     " autocmd BufWritePre,FileWritePre *.py,*.js,*.ts,*.json,*.txt mark x|exe "%s/[ ]*$//g"|'x
     autocmd BufWritePre *.py,*.js,*.ts,*.json,*.txt,*.sh :call CleanExtraSpaces()
