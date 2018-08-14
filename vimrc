@@ -101,9 +101,10 @@ set backspace=indent,eol,start
 "set keymodel=startsel,stopsel
 
 " make selecting easier for windows
-set selection=exclusive
-set virtualedit=onemore
+" set selection=exclusive
+" set virtualedit=onemore
 "or
+" make selecting easier for windows
 "set selection=inclusive
 
 set nobackup
@@ -122,7 +123,7 @@ syntax on
 " colorscheme onedark
 let g:PaperColor_Theme_Options = {
   \   'theme': {
-  \     'default.dark': { 
+  \     'default.dark': {
   \       'override' : {
   \       }
   \     }
@@ -166,7 +167,7 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
   nnoremap <leader>ag :Ack<SPACE>
 
-  set grepprg=ag\ --nogroup\ --nocolor\ --column
+  set grepprg=a\ --nogroup\ --nocolor\ --column
   set grepformat=%f:%l:%c:%m
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
@@ -255,7 +256,7 @@ let g:lightline.component_expand = {
 function! MyGutentagsStatus()
     return gutentags#statusline("[", "]", "≝")
 endfunction
-    
+
 
 let g:lightline.component_type = {
       \     'linter_checking': 'left',
@@ -280,7 +281,7 @@ nmap <S-Tab> :b#<cr>
 " Also useful
 " imap <S-Tab> <ESC>:b#<cr>
 " cmap <S-Tab> <ESC>:b#<cr>
-    
+
 " Easier buffer movements
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
@@ -290,28 +291,28 @@ nnoremap <silent> ]B :blast<CR>
 let mapleader = "\<Space>"
 " Remove buffer
 noremap <Leader>rb :bd<CR>
-" Select text that was just pasted (ie use pgp)
-nnoremap gp `[v`]
-" Sample mapping
-nnoremap <Leader>a :echo "Hey there space"<CR>
+" Select text that was just pasted (ie use p<leader>ps)
+nnoremap <leader>ps `[v`]
+
 " Reverse lines without changing unanmed register
 nnoremap <Leader>d "udd"up
 " Clear search hightlight
-nnoremap <Leader>c :noh<CR>
+nnoremap <Leader>cs :noh<CR>
 " Remove whitespace - two methods (leader w or leader W)
 nnoremap <Leader>W :mark x<CR>:exe "%s/[ ]*$//g"<CR>'x
 nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
 " Toggle special character display
-nnoremap <leader>l :set list!<CR>
+nnoremap <leader>li :set list!<CR>
 " Add line w/o insert
 nnoremap <leader>n o<Esc>
 nnoremap <leader>N O<Esc>
+
 " Better paste
-nnoremap <leader>p "_diwP
+nnoremap <leader>pp "_diwP
 " Open new tab
 nnoremap <Leader>tn :tabnew<CR>
 " Close (remove) tab
-nnoremap <Leader>rt :tabclose<CR>
+nnoremap <Leader>tr :tabclose<CR>
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
@@ -325,7 +326,7 @@ nnoremap <leader>mk :make<CR>
 nnoremap <leader>cn :cnext<CR>
 nnoremap <leader>cp :cprev<CR>
 " UndoTreeToggle
-nnoremap <leader>u :UndotreeToggle<CR>
+nnoremap <leader>ut :UndotreeToggle<CR>
 "Toggle paste mode - disables autoident  when pasting multiple lines
 set pastetoggle=<F2>
 " Do a json pretty print to the file
@@ -420,34 +421,32 @@ vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 " Don't save .netrwhist
 :let g:netrw_dirhistmax = 0
 
+function! CtrlPMark()
+  if expand('%:t') =~ 'ControlP' && has_key(g:lightline, 'ctrlp_item')
+    call lightline#link('iR'[g:lightline.ctrlp_regex])
+    return lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
+          \ , g:lightline.ctrlp_next], 0)
+  else
+    return ''
+  endif
+endfunction
 
-	function! CtrlPMark()
-	  if expand('%:t') =~ 'ControlP' && has_key(g:lightline, 'ctrlp_item')
-	    call lightline#link('iR'[g:lightline.ctrlp_regex])
-	    return lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
-	          \ , g:lightline.ctrlp_next], 0)
-	  else
-	    return ''
-	  endif
-	endfunction
+let g:ctrlp_status_func = {
+  \ 'main': 'CtrlPStatusFunc_1',
+  \ 'prog': 'CtrlPStatusFunc_2',
+  \ }
 
-	let g:ctrlp_status_func = {
-	  \ 'main': 'CtrlPStatusFunc_1',
-	  \ 'prog': 'CtrlPStatusFunc_2',
-	  \ }
+function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
+  let g:lightline.ctrlp_regex = a:regex
+  let g:lightline.ctrlp_prev = a:prev
+  let g:lightline.ctrlp_item = a:item
+  let g:lightline.ctrlp_next = a:next
+  return lightline#statusline(0)
+endfunction
 
-	function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
-	  let g:lightline.ctrlp_regex = a:regex
-	  let g:lightline.ctrlp_prev = a:prev
-	  let g:lightline.ctrlp_item = a:item
-	  let g:lightline.ctrlp_next = a:next
-	  return lightline#statusline(0)
-	endfunction
-
-	function! CtrlPStatusFunc_2(str)
-	  return lightline#statusline(0)
-	endfunction
-
+function! CtrlPStatusFunc_2(str)
+  return lightline#statusline(0)
+endfunction
 
 
 augroup MyGutentagsStatusLineRefresher

@@ -404,7 +404,6 @@ gt                                          Next tab - :tabn, :tabnext - also ta
 gT                                          Previous tab - :tabp, :tabprevious
 
 
-
 Some options
 ------------
 
@@ -504,3 +503,6 @@ There are six sets of mappings
 :lmap  :lnoremap :lunmap    Insert, Command-line, Lang-Arg
 :cmap  :cnoremap :cunmap    Command-line
 :tmap  :tnoremap :tunmap    Terminal-Job
+
+Please notice that entering :map and friends without parameters will display
+all active mappings!
