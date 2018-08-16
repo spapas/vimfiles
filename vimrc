@@ -20,6 +20,7 @@ if has('gui_running')
     " http://stackoverflow.com/questions/4193654/using-vim-warning-style-in-gvim
     set guioptions+=c
     set guitablabel=%M\ %t
+    " Please get the fonts from here for use in windows: https://github.com/spapas/my-nerd-fonts/
     " set guifont=Fira\ Mono:h11:cGREEK
     " or
     " or For Linux
