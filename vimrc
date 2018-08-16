@@ -8,6 +8,8 @@ set hidden
 " Careful - for lightline to appear
 set laststatus=2
 
+
+" Gui settings ---------------------- {{{
 if has('gui_running')
     " Remove toolbar and menu
     set go-=Tt
@@ -33,6 +35,8 @@ if has('gui_running')
     endif
     set lines=50 columns=200
 endif
+
+" }}}
 
 set colorcolumn=80,120,160
 
