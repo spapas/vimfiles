@@ -383,7 +383,7 @@ function! s:VSetSearch(cmdtype)
   let @s = temp
 endfunction
 
-"
+
 fun! CleanExtraSpaces()
     let save_cursor = getpos(".")
     let old_query = getreg('/')
@@ -466,4 +466,7 @@ augroup MyGutentagsStatusLineRefresher
     autocmd User GutentagsUpdating call lightline#update()
     autocmd User GutentagsUpdated call lightline#update()
 augroup END
+
+
+
 
