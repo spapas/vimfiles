@@ -356,7 +356,9 @@ let g:lightline.active = {
 set equalprg=autopep8\ -
 
 " Easier buffer switching (shift-tab to switch to last used buffer)
-nmap <S-Tab> :b#<cr>
+" nmap <S-Tab> :b#<cr>
+" TODO: This seems better... let's test it for a little while though
+nmap <S-Tab> <C-^>
 " Also useful
 " imap <S-Tab> <ESC>:b#<cr>
 " cmap <S-Tab> <ESC>:b#<cr>

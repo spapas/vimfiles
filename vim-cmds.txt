@@ -54,6 +54,8 @@ Jumps
 
 Notice these cannot be used as motions
 
+<c-^>           Jump to alternate buffer (last opened one); I've mapped this to <Shift-Tab> for easier access
+{number}<C-^}   Jump to corresponding bufer (need to use :ls to see numbers though)
 <c-o>/<c-i>     Jump to previous/next position (uses the :jumps list)
 g;/g,           Jump to older / newer change (uses the :changes list)
 gi              Jump to last insert
