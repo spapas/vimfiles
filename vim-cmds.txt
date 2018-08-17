@@ -134,8 +134,10 @@ gU{motion}      Switch to uppercase
 gUU             Switch line to uppercase
 g~{motion}      Swap case
 g~~             Swap line case
-gq{motion}      Format text (this is not used that much; should set formatprg)
+gq{motion}      Format text (this is not used that much; can use formatprg).  For example this will wrap text corresponding to the textwidth setting
 gqq             Format current line
+gw{motion}      Same as gq; does not use formatprg
+gww             Format current line without using formatprg
 
 /{pattern}      Search for pattern forwards
 ?{pattern}      Search for pattern backwards

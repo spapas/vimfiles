@@ -1,13 +1,44 @@
-" source $VIMRUNTIME/vimrc_example.vim
 source ~/vimfiles/vimrc_defaults
-set nocompatible
 
-" For buffers, hide buffers without asking confirm for save
-set hidden
+" Basic settings ---------------------- {{{
+"
+set nocompatible " Important
+filetype plugin indent on " Enable ft
 
-" Careful - for lightline to appear
-set laststatus=2
+set hidden " For buffers, hide buffers without asking confirm for save
+set laststatus=2 " Always display status bar 
 
+set history=200 " keep 200 lines of command line history
+set noruler     " Not needed (displays line/col but will use lightline instead)
+set showcmd     " display incomplete commands
+set wildmenu    " display completion matches in a status line
+
+set ttimeout    " time out for key codes
+set timeoutlen=500 " wait up to 500ms for mappings 
+set ttimeoutlen=100 " wait up to 100ms after Esc for special key
+
+set scrolloff=3     " scroll down before the last line
+
+set display=truncate " Show @@@ in the last line if it is truncated.
+
+if has('mouse')
+  set mouse=a
+endif
+
+" }}}
+
+" Mappings settings ---------------------- {{{
+
+" Don't use Ex mode, use Q for formatting. Revert with :unmap Q
+noremap Q gq  
+
+
+" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
+" so that you can undo CTRL-U after inserting a line break.
+" Revert with ":iunmap <C-U>".
+inoremap <C-U> <C-G>u<C-U>
+
+" }}}
 
 " Gui settings ---------------------- {{{
 if has('gui_running')
@@ -39,6 +70,44 @@ if has('gui_running')
 endif
 
 " }}}
+
+" Other settings ----------------- {{{
+packadd! matchit
+if has('langmap') && exists('+langremap')
+  " Prevent that the langmap option applies to characters that result from a
+  " mapping.  If set (default), this may break plugins (but it's backward
+  " compatible).
+  set nolangremap
+endif
+" }}}
+
+
+" Autocmd  ----------------- {{{
+
+if has("autocmd")
+  " Put these in an autocmd group, so that you can revert them with:
+  " ":augroup vimStartup | au! | augroup END"
+  augroup vimStartup
+    au!
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid, when inside an event handler
+    " (happens when dropping a file on gvim) and for a commit message (it's
+    " likely a different one than last time).
+    autocmd BufReadPost *
+      \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+      \ |   exe "normal! g`\""
+      \ | endif
+
+  augroup END
+
+  augroup vimrcEx
+  au!
+  " For all text files set 'textwidth' to 78 characters.
+  autocmd FileType text setlocal textwidth=78
+  augroup END
+endif " has("autocmd")
+" }}}
+
 
 set colorcolumn=80,120
 
