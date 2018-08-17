@@ -1,4 +1,3 @@
-source ~/vimfiles/vimrc_defaults
 
 " Basic settings ---------------------- {{{
 "
@@ -6,7 +5,7 @@ set nocompatible " Important
 filetype plugin indent on " Enable ft
 
 set hidden " For buffers, hide buffers without asking confirm for save
-set laststatus=2 " Always display status bar 
+set laststatus=2 " Always display status bar
 
 set history=200 " keep 200 lines of command line history
 set noruler     " Not needed (displays line/col but will use lightline instead)
@@ -14,7 +13,7 @@ set showcmd     " display incomplete commands
 set wildmenu    " display completion matches in a status line
 
 set ttimeout    " time out for key codes
-set timeoutlen=500 " wait up to 500ms for mappings 
+set timeoutlen=500 " wait up to 500ms for mappings
 set ttimeoutlen=100 " wait up to 100ms after Esc for special key
 
 set scrolloff=3     " scroll down before the last line
@@ -30,7 +29,7 @@ endif
 " Mappings settings ---------------------- {{{
 
 " Don't use Ex mode, use Q for formatting. Revert with :unmap Q
-noremap Q gq  
+noremap Q gq
 
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
@@ -81,7 +80,6 @@ if has('langmap') && exists('+langremap')
 endif
 " }}}
 
-
 " Autocmd  ----------------- {{{
 
 if has("autocmd")
@@ -108,11 +106,16 @@ if has("autocmd")
 endif " has("autocmd")
 " }}}
 
+set colorcolumn=80,120 " Add vertical bars
 
-set colorcolumn=80,120
+" Don't save swap files to the same directory
+if has("win16") || has("win32")
+    " set directory^=C:\Users\serafeim\AppData\Local\Temp\\
+    set directory-=.
+else
+    set directory-=.
+endif
 
-" Save swap files to this directory
-set directory^=~\.vim\tmp\\
 
 "Use this to make clipboard work as normal with vim - or else use the *
 "register to refer to the windows clipboard, for example
@@ -370,7 +373,7 @@ noremap <Leader>rb :bd<CR>
 " Select text that was just pasted (ie use p<leader>ps)
 nnoremap <leader>ps `[v`]
 " Toggle spelling
-nnoremap <leader>sp :set spell!<CR> 
+nnoremap <leader>sp :set spell!<CR>
 
 " Spell english and greek
 set spelllang=en,el
