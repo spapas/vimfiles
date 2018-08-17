@@ -300,10 +300,15 @@ let mapleader = "\<Space>"
 noremap <Leader>rb :bd<CR>
 " Select text that was just pasted (ie use p<leader>ps)
 nnoremap <leader>ps `[v`]
+" Toggle spelling
+nnoremap <leader>sp :set spell!<CR> 
 
-" Reverse lines without changing unanmed register
+" Spell english and greek
+set spelllang=en,el
+
+" Reverse lines without changing unnamed register
 nnoremap <Leader>d "udd"up
-" Clear search hightlight
+" Clear search nightlight
 nnoremap <Leader>cs :noh<CR>
 " Remove whitespace - two methods (leader w or leader W)
 nnoremap <Leader>W :mark x<CR>:exe "%s/[ ]*$//g"<CR>'x
