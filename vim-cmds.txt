@@ -26,8 +26,8 @@ T{char}         Find character (move before character) - backwards
 *               Find (move) to next word under cursor - forwards
 #               Find (move) to next word under cursor - backwards
 %               Move to matching element (parenthesis, bracket etc)
-(/)             Next/previous sentence
-{/}             Next/previous paragraph
+(/)             Next/previous sentence (after a dot is found)
+{/}             Next/previous paragraph. *Also jumps to blank lines; very useful*
 H/M/L           Move to Hight / Middle / Low of screen
 <c-U>/<c-D>     Move up/down (half a page)
 <c-F>/<c-B>     Move forwards/backwards (a full page)
@@ -45,7 +45,7 @@ For example, if you search for "Jump" and press enter your cursor  will be
 moved to the "J" of the next jump; now you can use an operator along with gn
 to operate on that "Jump". For example dgn to delete it or cgn to change it to
 something else. What is really useful is that using the repeating . you will
-move to the next occurence of "Jump" and re-do the same operation (something
+move to the next occurrence of "Jump" and re-do the same operation (something
 like interactive search and replace or search and delete). Using n (twice) will skip
 to the next result without applying the operator.
 
@@ -379,6 +379,8 @@ q/              Open search window
 <C-g>           Display file info
 g<C-g>          Display more file info
 K               Display help for identifier under cursor (useful for vimrc editing)
+:helpgrep       Grep through the help files
+:scriptnames    Display list of scripts that vim has sourced
 
 Using windows / Splits
 ----------------------
@@ -429,6 +431,7 @@ zx                      Reset fold to foldlevel
 zi                      Invert (toggle) fold enable
 zj/zk                   Navigate to start of next/end of previous fold
 zv                      Open just enough folds to reveal line of cursor
+zf                      Fold (if foldmethod=manual) or add folding markers (if foldmethod=marker)
 
 Pattern tips
 ------------
@@ -436,8 +439,8 @@ Pattern tips
 /\Vpattern              Search with even less magic (i.e \V$ will search for $)
 /\vpattern              Search with even more magic (i.e ( can be used for grouping without need to escape)
 /\mpattern              Search with more magic (this is the default)
-    \zs /ze                 Start - end of match (i.e match all ` not followed by another ` but *do not match* the following character: /`\ze[^`]/)
-\< \>                   Beggining - end of word
+\zs /ze                 Start - end of match (i.e match all ` not followed by another ` but *do not match* the following character: /`\ze[^`]/)
+\< \>                   Beginning - end of word
 
 Netrw
 -----
