@@ -261,7 +261,7 @@ let g:lightline.component_expand = {
       \ }
 
 function! MyGutentagsStatus()
-    return gutentags#statusline("[", "]", "≝")
+    return gutentags#statusline("[", "]", "")
 endfunction
 
 

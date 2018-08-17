@@ -419,14 +419,16 @@ Folds
 
 zM                      Fold everything
 zR                      Unfold everything
-zm                      Increase global folding level
-zr                      Reduce global folding level
+zm                      Increase global folding level (more)
+zr                      Reduce global folding leve (reduce)
 zf{motion}              Create a manual fold
-zc/zo                   Close/open a local fold
+zc/zo/zC/zO             Close/open a local fold; the zC/zO is recursive close/open
 za/zA                   Open (if closed) or close (if opened) a local fold - zA is recursive
 zx                      Reset fold to foldlevel
 :set foldlevel          Default foldlevel - 0 = all folded (zM sets it to 0, zR to maximum)
-zi                      Invert (toggle) foldenable
+zi                      Invert (toggle) fold enable
+zj/zk                   Navigate to start of next/end of previous fold
+zv                      Open just enough folds to reveal line of cursor
 
 Pattern tips
 ------------
