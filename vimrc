@@ -1,3 +1,5 @@
+" vim: set foldmethod=marker foldmarker={{{,}}} nowrap:
+
 " Basic settings ---------------------- {{{
 "
 set nocompatible " Important
@@ -78,36 +80,35 @@ noremap <Leader>rb :bd<CR>
 " Select text that was just pasted (ie use p<leader>ps)
 nnoremap <leader>ps `[v`]
 
-
 " }}}
 
 " Gui settings ---------------------- {{{
 if has('gui_running')
     " Remove toolbar and menu
-    set go-=Tt
-    set go-=m
+    set guioptions-=T
+    set guioptions-=t
+    set guioptions-=m
     " Remove scrollbars
-    set go-=rL
+    set guioptions-=rL
+    set guioptions-=L
     " Display text tabs (instead of GUI ones)
-    set go-=e
+    set guioptions-=e
     " Do not use modal alert dialogs! (Prefer Vim style prompt.)
     " http://stackoverflow.com/questions/4193654/using-vim-warning-style-in-gvim
     set guioptions+=c
     set guitablabel=%M\ %t
     " Please get the fonts from here for use in windows: https://github.com/spapas/my-nerd-fonts/
-    " set guifont=Fira\ Mono:h11:cGREEK
-    " or
-    " or For Linux
     if has('win32')
 
         set guifont=SourceCodePro_NF:h14:cGREEK:qDRAFT
         " set guifont=Hack:h12:cGREEK
-        " st guifont=Source\ Code\ Pro\ Medium:h12
+        " set guifont=Source\ Code\ Pro\ Medium:h12
         " set guifont=Hack:h11:cGREEK
+        " set guifont=Fira\ Mono:h11:cGREEK
     else
         set guifont=Fira\ Mono\ 12
     endif
-    set lines=35 columns=140
+    set lines=45 columns=140
 endif
 
 " }}}
@@ -120,8 +121,7 @@ set spelllang=en,el " Spell english and greek
 
 if has('langmap') && exists('+langremap')
   " Prevent that the langmap option applies to characters that result from a
-  " mapping.  If set (default), this may break plugins (but it's backward
-  " compatible).
+  " mapping.  If set (default), this may break plugins (but it's backward compatible).
   set nolangremap
 endif
 
@@ -525,5 +525,4 @@ if has("autocmd")
 	augroup END
 endif " has("autocmd")
 " }}}
-
 
