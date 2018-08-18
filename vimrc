@@ -20,22 +20,55 @@ set scrolloff=3     " scroll down before the last line
 
 set display=truncate " Show @@@ in the last line if it is truncated.
 
+set autoindent
+set copyindent
+set encoding=utf-8
+
+set expandtab " Change tab to spaces
+set softtabstop=4 " Remove 4 spaces when pressing backspace
+
+set shiftwidth=4 " Number of spaces to use for each step of (auto)indent.
+
+set smarttab " Improve tab behavior
+
+set tabstop=4 " Number of spaces that a <Tab> in the file counts for.
+
+set nowrap " Don't wrap
+set number " Display line numbers
+
 if has('mouse')
   set mouse=a
 endif
 
+set nostartofline " Do not go to start of line when changing buffers (remember position)
+
+" }}}
+
+" Display settings ---------------------- {{{
+set colorcolumn=80,120 " Add vertical bars
+set showmatch " When a bracket is inserted, briefly jump to the matching one.
+set lazyredraw " Don't redraw when exuting macros
 " }}}
 
 " Mappings settings ---------------------- {{{
 
+" Remap leader to space
+let mapleader = "\<Space>"
+
 " Don't use Ex mode, use Q for formatting. Revert with :unmap Q
 noremap Q gq
-
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 " Revert with ":iunmap <C-U>".
 inoremap <C-U> <C-G>u<C-U>
+
+" Remove buffer
+noremap <Leader>rb :bd<CR>
+
+" Select text that was just pasted (ie use p<leader>ps)
+nnoremap <leader>ps `[v`]
+
 
 " }}}
 
@@ -71,13 +104,17 @@ endif
 " }}}
 
 " Other settings ----------------- {{{
+
 packadd! matchit
+
 if has('langmap') && exists('+langremap')
   " Prevent that the langmap option applies to characters that result from a
   " mapping.  If set (default), this may break plugins (but it's backward
   " compatible).
   set nolangremap
 endif
+
+
 " }}}
 
 " Autocmd  ----------------- {{{
@@ -106,7 +143,6 @@ if has("autocmd")
 endif " has("autocmd")
 " }}}
 
-set colorcolumn=80,120 " Add vertical bars
 
 " Don't save swap files to the same directory
 if has("win16") || has("win32")
@@ -124,26 +160,6 @@ endif
 " Unix has an unnamed (*) and an unnamedplus (+) clipboard
 set clipboard^=unnamed,unnamedplus
 
-set autoindent
-set copyindent
-set enc=utf-8
-" Change tab to spaces
-set expandtab
-" Remove 4 spaces when pressing backspace
-set softtabstop=4
-" Number of spaces to use for each step of (auto)indent.
-set shiftwidth=4
-" Improve tab behavior
-set smarttab
-
-" Number of spaces that a <Tab> in the file counts for.
-set tabstop=4
-
-set nowrap
-set number
-
-" When a bracket is inserted, briefly jump to the matching one.
-set showmatch
 
 " Highlight search results
 set hlsearch
@@ -155,17 +171,13 @@ set incsearch
 set ignorecase
 set smartcase
 
-" Do not go to start of line when changing buffers (remember position)
-set nostartofline
 
-" Allow moving between lines with left/right arrow keys backspace and space
-set whichwrap=b,s,<,>,[,]
 
-" Don't redraw when exuting macros
-set lazyredraw
 
-" Autoread a file if has been changed outside of vim but not inside of vim
-set autoread
+set whichwrap=b,s,<,>,[,] " Allow moving between lines with left/right arrow keys backspace and space
+
+
+set autoread " Autoread a file if has been changed outside of vim but not inside of vim
 
 " http://vimdoc.sourceforge.net/htmldoc/options.html#'foldcolumn'
 " play with zM zm zr zR and more http://vimdoc.sourceforge.net/htmldoc/usr_28.html
@@ -173,8 +185,7 @@ set foldcolumn=2
 set foldmethod=indent
 set foldlevelstart=99
 
-" allow delete over all things
-set backspace=indent,eol,start
+set backspace=indent,eol,start " allow delete over all things
 
 " this is already set by behave mswin (makes shift + arrows etc work to select)
 "set keymodel=startsel,stopsel
@@ -216,9 +227,8 @@ let g:PaperColor_Theme_Options = {
 colorscheme PaperColor
 set background=dark
 
-" Use Unix as the standard file type
-set ffs=unix,dos,mac
-set encoding=utf8
+
+set ffs=unix,dos,mac " Use Unix as the standard file type
 
 " CTRLP
 
@@ -235,10 +245,8 @@ endif
 
 " Open Buffers list with 'ctrl-j'
 noremap <C-j> :CtrlPBuffer<CR>
-" Show files by default
-let g:ctrlp_cmd = 'CtrlP'
-" Run CtrlP (files) with CTRL+P
-let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP' " Show files by default
+let g:ctrlp_map = '<c-p>' " Run CtrlP (files) with CTRL+P
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 
 if executable('ag')
@@ -259,39 +267,30 @@ endif
 " set runtimepath^=~/.vim/bundle/vim-surround
 " set runtimepath^=~/.vim/bundle/vim-repeat
 
-" PLUG
+" 
+" PLUGINS --------------------- {{{
 " Run :PlugInstall to install these plugins
 call plug#begin('~/vimfiles/plugged')
 
 Plug 'ctrlpvim/ctrlp.vim'
-" lightline-vim
-Plug 'itchyny/lightline.vim'
+Plug 'itchyny/lightline.vim' " lightline-vim
 Plug 'easymotion/vim-easymotion'
-" Undotree (https://github.com/mbbill/undotree)
-Plug 'mbbill/undotree'
-" https://github.com/tpope/vim-surround
-Plug 'tpope/vim-surround'
-" https://github.com/tpope/vim-repeat
-Plug 'tpope/vim-repeat'
-" https://github.com/justinmk/vim-sneak
-Plug 'justinmk/vim-sneak'
-
+Plug 'mbbill/undotree' " Undotree (https://github.com/mbbill/undotree)
+Plug 'tpope/vim-surround' " https://github.com/tpope/vim-surround
+Plug 'tpope/vim-repeat' " https://github.com/tpope/vim-repeat
+Plug 'justinmk/vim-sneak' " https://github.com/justinmk/vim-sneak
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
-
 Plug 'michaeljsmith/vim-indent-object'
-
 Plug 'w0rp/ale'
 Plug 'maximbaz/lightline-ale'
-
 Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
-
 Plug 'mileszs/ack.vim'
 
 call plug#end()
-
+" }}}
 
 " Lightline
 function! LightlineReadonly()
@@ -363,17 +362,6 @@ nmap <S-Tab> <C-^>
 " imap <S-Tab> <ESC>:b#<cr>
 " cmap <S-Tab> <ESC>:b#<cr>
 
-" Easier buffer movements
-nnoremap <silent> [b :bprevious<CR>
-nnoremap <silent> ]b :bnext<CR>
-nnoremap <silent> [B :bfirst<CR>
-nnoremap <silent> ]B :blast<CR>
-" Remap leader to space
-let mapleader = "\<Space>"
-" Remove buffer
-noremap <Leader>rb :bd<CR>
-" Select text that was just pasted (ie use p<leader>ps)
-nnoremap <leader>ps `[v`]
 " Toggle spelling
 nnoremap <leader>sp :set spell!<CR>
 
@@ -406,11 +394,6 @@ nmap <silent> <leader>vc :e <C-R>=fnamemodify($MYVIMRC, ':p:h').'/vim-cmds.txt'<
 " or
 " nmap <silent> <leader>vc :e <C-R>=fnamemodify($MYVIMRC,  ':p:h')<CR>\vim-cmds.txt<CR>
 
-
-" Run make
-nnoremap <leader>mk :make<CR>
-nnoremap <leader>cn :cnext<CR>
-nnoremap <leader>cp :cprev<CR>
 " UndoTreeToggle
 nnoremap <leader>ut :UndotreeToggle<CR>
 "Toggle paste mode - disables autoident  when pasting multiple lines
