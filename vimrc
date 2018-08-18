@@ -12,21 +12,14 @@ set history=200 " keep 200 lines of command line history
 set showcmd     " display incomplete commands
 set wildmenu    " display completion matches in a status line
 
-set ttimeout    " time out for key codes
-set timeoutlen=500 " wait up to 500ms for mappings
-set ttimeoutlen=100 " wait up to 100ms after Esc for special key
-
 set autoindent
 set copyindent
 set encoding=utf-8
 
 set expandtab " Change tab to spaces
 set softtabstop=4 " Remove 4 spaces when pressing backspace
-
 set shiftwidth=4 " Number of spaces to use for each step of (auto)indent.
-
 set smarttab " Improve tab behavior
-
 set tabstop=4 " Number of spaces that a <Tab> in the file counts for.
 
 set nowrap " Don't wrap
@@ -37,6 +30,13 @@ if has('mouse')
 endif
 
 set nostartofline " Do not go to start of line when changing buffers (remember position)
+
+"Use this to make clipboard work as normal with vim - or else use the *
+"register to refer to the windows clipboard, for example
+" "*yy
+" other registers can be used f.e "add "ayy "ap etc
+" Unix has an unnamed (*) and an unnamedplus (+) clipboard
+set clipboard^=unnamed,unnamedplus
 
 " }}}
 
@@ -124,19 +124,26 @@ if has('langmap') && exists('+langremap')
   set nolangremap
 endif
 
-" Don't save swap files to the same directory
-if has("win16") || has("win32")
-    " set directory^=C:\Users\serafeim\AppData\Local\Temp\\
-    set directory-=.
-else
-    set directory-=.
-endif
+set backspace=indent,eol,start " allow delete over all things
 
 let g:netrw_dirhistmax = 0 " Don't save .netrwhist
 
 set splitbelow " Open new splits below
 set splitright " Open new splits to the right
+set whichwrap=b,s,<,>,[,] " Allow moving between lines with left/right arrow keys backspace and space
 
+set ttimeout    " time out for key codes
+set timeoutlen=500 " wait up to 500ms for mappings
+set ttimeoutlen=100 " wait up to 100ms after Esc for special key
+
+" http://vimdoc.sourceforge.net/htmldoc/options.html#'foldcolumn'
+" play with zM zm zr zR and more http://vimdoc.sourceforge.net/htmldoc/usr_28.html
+set foldcolumn=2
+set foldmethod=indent
+set foldlevelstart=99
+
+" Use autopep8 for auto - identing
+" set equalprg=autopep8\ -
 " }}}
 
 " Autocmd  ----------------- {{{
@@ -181,37 +188,40 @@ endif
 
 " }}}
 
-
-"Use this to make clipboard work as normal with vim - or else use the *
-"register to refer to the windows clipboard, for example
-" "*yy
-" other registers can be used f.e "add "ayy "ap etc
-" Unix has an unnamed (*) and an unnamedplus (+) clipboard
-set clipboard^=unnamed,unnamedplus
-
+" Search etc ---------------------- {{{
 
 " Highlight search results
 set hlsearch
 " Highlight search results as typed
 set incsearch
-
 " If searching with all lower will search with case insensitive. If there are
 " caps it will search with sensitive case
 set ignorecase
 set smartcase
 
-set whichwrap=b,s,<,>,[,] " Allow moving between lines with left/right arrow keys backspace and space
+set wildignore+=*.bak
+set wildignore+=*.exe
+set wildignore+=*.pyc
+set wildignore+=*.swp
+set wildignore+=*.zip
+if has("win16") || has("win32")
+    set wildignore+=.git\*,.hg\*,.svn\*,node_modules\*,tmp\*
+else
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,*/node_modules/*,*/tmp/*
+endif
+" }}}
 
+" File management ---------------------- {{{
+"
 set autoread " Autoread a file if has been changed outside of vim but not inside of vim
 
-" http://vimdoc.sourceforge.net/htmldoc/options.html#'foldcolumn'
-" play with zM zm zr zR and more http://vimdoc.sourceforge.net/htmldoc/usr_28.html
-set foldcolumn=2
-set foldmethod=indent
-set foldlevelstart=99
-
-set backspace=indent,eol,start " allow delete over all things
-
+" Don't save swap files to the same directory
+if has("win16") || has("win32")
+    " set directory^=C:\Users\serafeim\AppData\Local\Temp\\
+    set directory-=.
+else
+    set directory-=.
+endif
 
 set nobackup
 set writebackup
@@ -219,6 +229,7 @@ set writebackup
 " If you think you need it you can add an undodir directory that will save all undo files in a directory
 " Also see this answer: https://vi.stackexchange.com/questions/6/how-can-i-use-the-undofile
 set noundofile
+" }}}
 
 " Colorscheme settings {{{
 "
@@ -244,22 +255,8 @@ let g:PaperColor_Theme_Options = {
 colorscheme PaperColor
 set background=dark
 " }}}
-"
-
-
 
 " CTRLP
-
-set wildignore+=*.bak
-set wildignore+=*.exe
-set wildignore+=*.pyc
-set wildignore+=*.swp
-set wildignore+=*.zip
-if has("win16") || has("win32")
-    set wildignore+=.git\*,.hg\*,.svn\*,node_modules\*,tmp\*
-else
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,*/node_modules/*,*/tmp/*
-endif
 
 " Open Buffers list with 'ctrl-j'
 noremap <C-j> :CtrlPBuffer<CR>
@@ -305,8 +302,6 @@ Plug 'mileszs/ack.vim'
 
 call plug#end()
 " }}}
-
-
 
 " Lightline -------------------- {{{
 function! LightlineReadonly()
@@ -368,8 +363,6 @@ let g:lightline.active = {
 
 " }}}
 
-" Use autopep8 for auto - identing
-" set equalprg=autopep8\ -
 
 " Easier buffer switching (shift-tab to switch to last used buffer)
 " nmap <S-Tab> :b#<cr>
@@ -381,7 +374,6 @@ nmap <S-Tab> <C-^>
 
 " Toggle spelling
 nnoremap <leader>sp :set spell!<CR>
-
 
 " Reverse lines without changing unnamed register
 nnoremap <Leader>d "udd"up
