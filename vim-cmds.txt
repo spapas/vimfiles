@@ -390,6 +390,15 @@ K               Display help for identifier under cursor (useful for vimrc editi
 :scriptnames    Display list of scripts that vim has sourced
 :retab          Re-tab the document (replace tabs with spaces based on settings)
 
+How to convert a file that has 4-space tabs to 2-space tabs:
+
+1. set ts=4 - this is what the file has initially (tabstop)
+2. set noet - this will be used to convert 4 consecutive spaces to 1 tab (expandtab)
+3. retab! - do the actual converting from spaces to tabs
+4. set ts=2 - this is what we want
+5. set et - now we want to covert 1 tab to 2 spaces
+6. retab - finally convert the tabs to spaces
+
 Using windows / Splits
 ----------------------
 :tabnew         Open new tab

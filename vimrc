@@ -175,7 +175,7 @@ if has("autocmd")
     au!
     " Delete trailing characters
     " autocmd BufWritePre,FileWritePre *.py,*.js,*.ts,*.json,*.txt mark x|exe "%s/[ ]*$//g"|'x
-    autocmd BufWritePre *.py,*.js,*.ts,*.json,*.txt,*.sh :call CleanExtraSpaces()
+    autocmd BufWritePre *.py,*.js,*.ts,*.json,*.txt,*.sh,*.html :call CleanExtraSpaces()
 
     " Some examples for future reference
     " Treat .rss files as XML
