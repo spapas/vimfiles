@@ -7,6 +7,7 @@ syntax on
 set hidden " For buffers, hide buffers without asking confirm for save
 set laststatus=2 " Always display status bar
 
+set fileformats=unix,dos,mac " Use Unix as the standard file type
 set history=200 " keep 200 lines of command line history
 set showcmd     " display incomplete commands
 set wildmenu    " display completion matches in a status line
@@ -47,6 +48,14 @@ set colorcolumn=80,120 " Add vertical bars
 set showmatch " When a bracket is inserted, briefly jump to the matching one.
 set lazyredraw " Don't redraw when exuting macros
 set noshowmode " Don't show INSERT (mode) - it is displayed on lightline
+
+set list " Display special characters
+if version >= 800
+    set listchars=tab:→\ ,eol:$,space:\ ,trail:.
+else
+    set listchars=eol:$,trail:.
+endif
+
 " }}}
 
 " Mappings settings ---------------------- {{{
@@ -106,6 +115,8 @@ endif
 
 packadd! matchit
 
+set spelllang=en,el " Spell english and greek
+
 if has('langmap') && exists('+langremap')
   " Prevent that the langmap option applies to characters that result from a
   " mapping.  If set (default), this may break plugins (but it's backward
@@ -120,6 +131,8 @@ if has("win16") || has("win32")
 else
     set directory-=.
 endif
+
+let g:netrw_dirhistmax = 0 " Don't save .netrwhist
 
 " }}}
 
@@ -147,9 +160,25 @@ if has("autocmd")
   autocmd FileType text setlocal textwidth=78
   augroup END
 endif " has("autocmd")
+
+
+  augroup extraStuff
+  au!
+    " Delete trailing characters
+    " autocmd BufWritePre,FileWritePre *.py,*.js,*.ts,*.json,*.txt mark x|exe "%s/[ ]*$//g"|'x
+    autocmd BufWritePre *.py,*.js,*.ts,*.json,*.txt,*.sh :call CleanExtraSpaces()
+
+    " Some examples for future reference
+    " Treat .rss files as XML
+    autocmd BufNewFile,BufRead *.rss setfiletype xml
+
+    autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
+  augroup END
+endif
+
+
 " }}}
-
-
 
 
 "Use this to make clipboard work as normal with vim - or else use the *
@@ -165,7 +194,7 @@ set hlsearch
 " Highlight search results as typed
 set incsearch
 
-" If searching with all lower will search with case insensitive. I there are
+" If searching with all lower will search with case insensitive. If there are
 " caps it will search with sensitive case
 set ignorecase
 set smartcase
@@ -189,7 +218,9 @@ set writebackup
 " If you think you need it you can add an undodir directory that will save all undo files in a directory
 " Also see this answer: https://vi.stackexchange.com/questions/6/how-can-i-use-the-undofile
 set noundofile
-"set selectmode=mouse,key
+
+" Colorscheme settings {{{
+"
 " colorscheme desert
 " colorscheme solarized
 " colorscheme gruvbox
@@ -211,9 +242,10 @@ let g:PaperColor_Theme_Options = {
   \ }
 colorscheme PaperColor
 set background=dark
+" }}}
+"
 
 
-set ffs=unix,dos,mac " Use Unix as the standard file type
 
 " CTRLP
 
@@ -247,10 +279,6 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   " let g:ctrlp_use_caching = 0
 endif
-
-" Other plugins
-" set runtimepath^=~/.vim/bundle/vim-surround
-" set runtimepath^=~/.vim/bundle/vim-repeat
 
 " 
 " PLUGINS --------------------- {{{
@@ -340,7 +368,7 @@ let g:lightline.active = {
 " }}}
 
 " Use autopep8 for auto - identing
-set equalprg=autopep8\ -
+" set equalprg=autopep8\ -
 
 " Easier buffer switching (shift-tab to switch to last used buffer)
 " nmap <S-Tab> :b#<cr>
@@ -353,8 +381,6 @@ nmap <S-Tab> <C-^>
 " Toggle spelling
 nnoremap <leader>sp :set spell!<CR>
 
-" Spell english and greek
-set spelllang=en,el
 
 " Reverse lines without changing unnamed register
 nnoremap <Leader>d "udd"up
@@ -395,16 +421,7 @@ nnoremap <silent> <F9> :TagbarToggle<CR>
 let g:tagbar_sort = 0
 let g:tagbar_iconchars = ['▶', '▼']
 
-" Display special characters
-set list
-if version >= 800
-    set listchars=tab:→\ ,eol:$,space:\ ,trail:.
-else
-    set listchars=eol:$,trail:.
-endif
 
-" Autosave on lost focus
-" au FocusLost * :wa
 
 " Disable arrow keys
 " nnoremap <up> <nop>
@@ -437,26 +454,12 @@ fun! CleanExtraSpaces()
     call setreg('/', old_query)
 endfun
 
-if has("autocmd")
-    " Delete trailing characters
-    " autocmd BufWritePre,FileWritePre *.py,*.js,*.ts,*.json,*.txt mark x|exe "%s/[ ]*$//g"|'x
-    autocmd BufWritePre *.py,*.js,*.ts,*.json,*.txt,*.sh :call CleanExtraSpaces()
-
-    " Some examples for future reference
-    " Treat .rss files as XML
-    autocmd BufNewFile,BufRead *.rss setfiletype xml
-
-    autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
-    autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
-    "
-endif
-
 
 let g:surround_37 = "{% \r %}"
 let g:surround_36 = "{{ \r }}"
 
-" Faster update for gitgutter
-set updatetime=1000
+
+set updatetime=1000 " Faster update for gitgutter
 
 nmap <silent> <leader>aj :ALENext<cr>
 nmap <silent> <leader>ak :ALEPrevious<cr>
@@ -474,9 +477,6 @@ nmap <M-k> mz:m-2<cr>`z
 vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
-
-" Don't save .netrwhist
-:let g:netrw_dirhistmax = 0
 
 function! CtrlPMark()
   if expand('%:t') =~ 'ControlP' && has_key(g:lightline, 'ctrlp_item')
@@ -505,13 +505,15 @@ function! CtrlPStatusFunc_2(str)
   return lightline#statusline(0)
 endfunction
 
+" Plugin autocmd  ----------------- {{{
 
-augroup MyGutentagsStatusLineRefresher
-    autocmd!
-    autocmd User GutentagsUpdating call lightline#update()
-    autocmd User GutentagsUpdated call lightline#update()
-augroup END
-
-
+if has("autocmd")
+	augroup MyGutentagsStatusLineRefresher
+		autocmd!
+		autocmd User GutentagsUpdating call lightline#update()
+		autocmd User GutentagsUpdated call lightline#update()
+	augroup END
+endif " has("autocmd")
+}}}
 
 
