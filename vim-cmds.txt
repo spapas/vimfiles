@@ -409,6 +409,7 @@ For CtrlP you can use <C-v> or <C-s> on the selected file to open it to split
 <C-w>w or <C-w><C-w>                        Cycle buffer focus
 <C-w>n or <C-w><C-n>                        Create new buffer in horz split
 <C-w>hjkl or <C-w><C-hjkl>                  Move focus to L D U R split
+<C-w>HJKL or <C-w><C-HJKL>                  Move current windows to far L D U R (notice this also changes split orientation if needed)
 :close or :clo or :q or :quit or <C-w>c or <C-w><C-c> or <C-w>q or <C-w><C-q> Close/quit window/split
 check out this https://vi.stackexchange.com/questions/9479/what-is-the-difference-between-quit-and-close-commands for their difference-between-quit-and-close-commands
 :only or :on or <C-w>o or <C-w><C-o>        Make current window the only one on screen - close all others

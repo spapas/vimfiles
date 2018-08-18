@@ -165,12 +165,6 @@ if has("autocmd")
 
   augroup END
 
-  augroup vimrcEx
-    au!
-    " For all text files set 'textwidth' to 78 characters.
-    autocmd FileType text setlocal textwidth=78
-  augroup END
-
   augroup extraStuff
     au!
     " Delete trailing characters
