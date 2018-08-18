@@ -134,6 +134,9 @@ endif
 
 let g:netrw_dirhistmax = 0 " Don't save .netrwhist
 
+set splitbelow " Open new splits below
+set splitright " Open new splits to the right
+
 " }}}
 
 " Autocmd  ----------------- {{{
@@ -155,15 +158,13 @@ if has("autocmd")
   augroup END
 
   augroup vimrcEx
-  au!
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+    au!
+    " For all text files set 'textwidth' to 78 characters.
+    autocmd FileType text setlocal textwidth=78
   augroup END
-endif " has("autocmd")
-
 
   augroup extraStuff
-  au!
+    au!
     " Delete trailing characters
     " autocmd BufWritePre,FileWritePre *.py,*.js,*.ts,*.json,*.txt mark x|exe "%s/[ ]*$//g"|'x
     autocmd BufWritePre *.py,*.js,*.ts,*.json,*.txt,*.sh :call CleanExtraSpaces()
@@ -514,6 +515,6 @@ if has("autocmd")
 		autocmd User GutentagsUpdated call lightline#update()
 	augroup END
 endif " has("autocmd")
-}}}
+" }}}
 
 

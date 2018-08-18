@@ -110,7 +110,7 @@ qaq             Clear register a (same as qqq qzq etc)
 Lesser commands
 ---------------
 {1,2}<C-g>      Show file status, adding 1 displays also the filaneme, adding 2 displays also the buffer number
-zz              Center screen on current line
+zz/zt/zb        Move current line to center/top/bottom of screen
 ZZ              Write file and quit; same as :wq or :x
 ZQ              Quit and abort changes; same as :q!
 
@@ -235,7 +235,8 @@ Replacement string
 \=@0            Insert the yank statement
 
 
-:new            Create new buffer in a split
+:new            Create new buffer in a horizontal split
+:vnew           Create new buffer in a vertical split
 :edit (:e) {f}  Edit file f
 :edit! (:e!)    Reload current file discarding changes
 :write (:w)     Write file (filename is optional)
@@ -492,6 +493,9 @@ From the a/c menu use the following:
 <c-n>/<c-p>                        Next-previous word
 <c-y>/<c-e>                        Accept current selection / cancel(exit) autocompletion
 <c-h>/<c-l>                        Remove/add characters from match
+
+You can also autocomplete search topics *or* press <C-d> to view a list of
+possible candidates. For example try writing :help [<C-d>
 
 Mapping keys
 ------------
