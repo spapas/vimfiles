@@ -7,6 +7,6 @@ let b:ale_python_flake8_options='--ignore=D203,D100,D101,D105,D106,D102,C0111 --
 
 " Python things 
 setlocal makeprg=pep8\ %
-set colorcolumn=88,120,160
+setlocal colorcolumn=88,120,160
 " Run black with space bb
-map <leader>bb :silent !black %<CR>
+noremap <buffer> <leader>bb :silent !black %<CR>
