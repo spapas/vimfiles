@@ -3,22 +3,17 @@
 "
 set nocompatible " Important
 filetype plugin indent on " Enable ft
-
+syntax on
 set hidden " For buffers, hide buffers without asking confirm for save
 set laststatus=2 " Always display status bar
 
 set history=200 " keep 200 lines of command line history
-set noruler     " Not needed (displays line/col but will use lightline instead)
 set showcmd     " display incomplete commands
 set wildmenu    " display completion matches in a status line
 
 set ttimeout    " time out for key codes
 set timeoutlen=500 " wait up to 500ms for mappings
 set ttimeoutlen=100 " wait up to 100ms after Esc for special key
-
-set scrolloff=3     " scroll down before the last line
-
-set display=truncate " Show @@@ in the last line if it is truncated.
 
 set autoindent
 set copyindent
@@ -45,9 +40,13 @@ set nostartofline " Do not go to start of line when changing buffers (remember p
 " }}}
 
 " Display settings ---------------------- {{{
+set display=truncate " Show @@@ in the last line if it is truncated.
+set scrolloff=3     " scroll down before the last line
+set noruler     " Not needed (displays line/col but will use lightline instead)
 set colorcolumn=80,120 " Add vertical bars
 set showmatch " When a bracket is inserted, briefly jump to the matching one.
 set lazyredraw " Don't redraw when exuting macros
+set noshowmode " Don't show INSERT (mode) - it is displayed on lightline
 " }}}
 
 " Mappings settings ---------------------- {{{
@@ -114,6 +113,13 @@ if has('langmap') && exists('+langremap')
   set nolangremap
 endif
 
+" Don't save swap files to the same directory
+if has("win16") || has("win32")
+    " set directory^=C:\Users\serafeim\AppData\Local\Temp\\
+    set directory-=.
+else
+    set directory-=.
+endif
 
 " }}}
 
@@ -144,13 +150,6 @@ endif " has("autocmd")
 " }}}
 
 
-" Don't save swap files to the same directory
-if has("win16") || has("win32")
-    " set directory^=C:\Users\serafeim\AppData\Local\Temp\\
-    set directory-=.
-else
-    set directory-=.
-endif
 
 
 "Use this to make clipboard work as normal with vim - or else use the *
@@ -171,11 +170,7 @@ set incsearch
 set ignorecase
 set smartcase
 
-
-
-
 set whichwrap=b,s,<,>,[,] " Allow moving between lines with left/right arrow keys backspace and space
-
 
 set autoread " Autoread a file if has been changed outside of vim but not inside of vim
 
@@ -187,15 +182,6 @@ set foldlevelstart=99
 
 set backspace=indent,eol,start " allow delete over all things
 
-" this is already set by behave mswin (makes shift + arrows etc work to select)
-"set keymodel=startsel,stopsel
-
-" make selecting easier for windows
-" set selection=exclusive
-" set virtualedit=onemore
-"or
-" make selecting easier for windows
-"set selection=inclusive
 
 set nobackup
 set writebackup
@@ -204,7 +190,6 @@ set writebackup
 " Also see this answer: https://vi.stackexchange.com/questions/6/how-can-i-use-the-undofile
 set noundofile
 "set selectmode=mouse,key
-syntax on
 " colorscheme desert
 " colorscheme solarized
 " colorscheme gruvbox
@@ -292,7 +277,9 @@ Plug 'mileszs/ack.vim'
 call plug#end()
 " }}}
 
-" Lightline
+
+
+" Lightline -------------------- {{{
 function! LightlineReadonly()
     return &readonly ? '' : ''
 endfunction
@@ -343,13 +330,14 @@ let g:lightline.component_type = {
       \     'linter_ok': 'ok',
       \ }
 
-" Don't show INSERT (mode) - it is displayed on lightline
-set noshowmode
+
 
 let g:lightline.active = {
 \   'left': [['mode', 'paste'], ['readonly', 'filename', 'modified', 'gutentags',], ['ctrlpmark', 'tagbar_current',  ], ],
 \   'right': [[ 'linter_checking',  'linter_errors', 'linter_warnings' , 'linter_ok' ], ['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype', ]]
 \ }
+
+" }}}
 
 " Use autopep8 for auto - identing
 set equalprg=autopep8\ -
