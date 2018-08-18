@@ -1,4 +1,3 @@
-
 " Basic settings ---------------------- {{{
 "
 set nocompatible " Important
@@ -55,6 +54,8 @@ if version >= 800
 else
     set listchars=eol:$,trail:.
 endif
+
+set updatetime=1000 " Faster update for gitgutter
 
 " }}}
 
@@ -255,31 +256,75 @@ let g:PaperColor_Theme_Options = {
 colorscheme PaperColor
 set background=dark
 " }}}
+ 
+" Core Mappings ------------------ {{{
 
-" CTRLP
+" Easier buffer switching (shift-tab to switch to last used buffer)
+" nmap <S-Tab> :b#<cr>
+" TODO: This seems better... let's test it for a little while though
+nmap <S-Tab> <C-^>
+" Also useful
+" imap <S-Tab> <ESC>:b#<cr>
+" cmap <S-Tab> <ESC>:b#<cr>
 
-" Open Buffers list with 'ctrl-j'
-noremap <C-j> :CtrlPBuffer<CR>
-let g:ctrlp_cmd = 'CtrlP' " Show files by default
-let g:ctrlp_map = '<c-p>' " Run CtrlP (files) with CTRL+P
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+" Toggle spelling
+nnoremap <leader>sp :set spell!<CR>
 
-if executable('ag')
-  " Use Ag over Grep
-  let g:ackprg = 'ag --vimgrep'
-  nnoremap <leader>ag :Ack<SPACE>
+" Reverse lines without changing unnamed register
+nnoremap <Leader>d "udd"up
+" Clear search nightlight
+nnoremap <Leader>cs :noh<CR>
+" Remove whitespace - two methods (leader w or leader W)
+nnoremap <Leader>W :mark x<CR>:exe "%s/[ ]*$//g"<CR>'x
+nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
+" Toggle special character display
+nnoremap <leader>li :set list!<CR>
+" Add line w/o insert
+nnoremap <leader>n o<Esc>
+nnoremap <leader>N O<Esc>
 
-  set grepprg=a\ --nogroup\ --nocolor\ --column
-  set grepformat=%f:%l:%c:%m
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
 
-  " ag is fast enough that CtrlP doesn't need to cache
-  " let g:ctrlp_use_caching = 0
-endif
+" Better paste
+nnoremap <leader>pp "_diwP
+" Open new tab
+nnoremap <Leader>tn :tabnew<CR>
+" Close (remove) tab
+nnoremap <Leader>tr :tabclose<CR>
+" Quickly edit/reload the vimrc file
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+nmap <silent> <leader>vc :e <C-R>=fnamemodify($MYVIMRC, ':p:h').'/vim-cmds.txt'<CR><CR>
+" or
+" nmap <silent> <leader>vc :e <C-R>=fnamemodify($MYVIMRC,  ':p:h')<CR>\vim-cmds.txt<CR>
+"
+"Toggle paste mode - disables autoident  when pasting multiple lines
+set pastetoggle=<F2>
+" Do a json pretty print to the file
+nmap <silent> <leader>jl :%!py -2 -m json.tool<CR>
 
-" 
-" PLUGINS --------------------- {{{
+" The next mappings and function will make * and # search for the *selection*
+" instead of the word under the cursor on visual mode
+xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
+xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
+
+" Move a line of text using ALT+[jk]
+nmap <M-j> mz:m+<cr>`z
+nmap <M-k> mz:m-2<cr>`z
+vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
+" Disable arrow keys
+" nnoremap <up> <nop>
+" nnoremap <down> <nop>
+" nnoremap <left> <nop>
+" nnoremap <right> <nop>
+" inoremap <up> <nop>
+" inoremap <down> <nop>
+" inoremap <left> <nop>
+" inoremap <right> <nop>
+" }}}
+"
+" Plugins --------------------- {{{
 " Run :PlugInstall to install these plugins
 call plug#begin('~/vimfiles/plugged')
 
@@ -363,73 +408,68 @@ let g:lightline.active = {
 
 " }}}
 
+" CtrlP configuration ------------------ {{{
 
-" Easier buffer switching (shift-tab to switch to last used buffer)
-" nmap <S-Tab> :b#<cr>
-" TODO: This seems better... let's test it for a little while though
-nmap <S-Tab> <C-^>
-" Also useful
-" imap <S-Tab> <ESC>:b#<cr>
-" cmap <S-Tab> <ESC>:b#<cr>
+" Open Buffers list with 'ctrl-j'
+noremap <C-j> :CtrlPBuffer<CR>
+let g:ctrlp_cmd = 'CtrlP' " Show files by default
+let g:ctrlp_map = '<c-p>' " Run CtrlP (files) with CTRL+P
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 
-" Toggle spelling
-nnoremap <leader>sp :set spell!<CR>
+if executable('ag')
+  " Use Ag over Grep
+  let g:ackprg = 'ag --vimgrep'
+  nnoremap <leader>ag :Ack<SPACE>
 
-" Reverse lines without changing unnamed register
-nnoremap <Leader>d "udd"up
-" Clear search nightlight
-nnoremap <Leader>cs :noh<CR>
-" Remove whitespace - two methods (leader w or leader W)
-nnoremap <Leader>W :mark x<CR>:exe "%s/[ ]*$//g"<CR>'x
-nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
-" Toggle special character display
-nnoremap <leader>li :set list!<CR>
-" Add line w/o insert
-nnoremap <leader>n o<Esc>
-nnoremap <leader>N O<Esc>
+  set grepprg=a\ --nogroup\ --nocolor\ --column
+  set grepformat=%f:%l:%c:%m
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
 
-" Better paste
-nnoremap <leader>pp "_diwP
-" Open new tab
-nnoremap <Leader>tn :tabnew<CR>
-" Close (remove) tab
-nnoremap <Leader>tr :tabclose<CR>
-" Quickly edit/reload the vimrc file
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
-nmap <silent> <leader>vc :e <C-R>=fnamemodify($MYVIMRC, ':p:h').'/vim-cmds.txt'<CR><CR>
-" or
-" nmap <silent> <leader>vc :e <C-R>=fnamemodify($MYVIMRC,  ':p:h')<CR>\vim-cmds.txt<CR>
+  " ag is fast enough that CtrlP doesn't need to cache
+  " let g:ctrlp_use_caching = 0
+endif
 
-" UndoTreeToggle
-nnoremap <leader>ut :UndotreeToggle<CR>
-"Toggle paste mode - disables autoident  when pasting multiple lines
-set pastetoggle=<F2>
-" Do a json pretty print to the file
-nmap <silent> <leader>jl :%!py -2 -m json.tool<CR>
+" Mainly useful for lightline integration
+let g:ctrlp_status_func = {
+  \ 'main': 'CtrlPStatusFunc_1',
+  \ 'prog': 'CtrlPStatusFunc_2',
+  \ }
+" }}}
 
-" Tagbar Toggle
-nnoremap <silent> <F9> :TagbarToggle<CR>
-" Sort by position in the file
+" Other Plugin configuration ------------------ {{{
+"
+" Tagvbar sort by position in the file
 let g:tagbar_sort = 0
 let g:tagbar_iconchars = ['▶', '▼']
 
+" Make surround work with django templates
+let g:surround_37 = "{% \r %}"
+let g:surround_36 = "{{ \r }}"
 
+" Display better strings fvor ALE
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter% %code%] %s [%severity%]'
 
-" Disable arrow keys
-" nnoremap <up> <nop>
-" nnoremap <down> <nop>
-" nnoremap <left> <nop>
-" nnoremap <right> <nop>
-" inoremap <up> <nop>
-" inoremap <down> <nop>
-" inoremap <left> <nop>
-" inoremap <right> <nop>
+" }}}
 
-" The next mappings and function will make * and # search for the *selection*
-" instead of the word under the cursor on visual mode
-xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
-xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
+" Plugin Mappings ------------------ {{{
+
+" UndoTreeToggle
+nnoremap <leader>ut :UndotreeToggle<CR>
+
+" Tagbar Toggle
+nnoremap <silent> <F9> :TagbarToggle<CR>
+
+" Ale mappings starting with a
+nmap <silent> <leader>aj :ALENext<cr>
+nmap <silent> <leader>ak :ALEPrevious<cr>
+nmap <silent> <leader>at :ALEToggle<cr>
+nmap <silent> <leader>af :ALEFix<cr>
+" }}}
+
+" Useful functions --------------------------- {{{
 
 function! s:VSetSearch(cmdtype)
   let temp = @s
@@ -447,29 +487,9 @@ fun! CleanExtraSpaces()
     call setreg('/', old_query)
 endfun
 
+" }}}
 
-let g:surround_37 = "{% \r %}"
-let g:surround_36 = "{{ \r }}"
-
-
-set updatetime=1000 " Faster update for gitgutter
-
-nmap <silent> <leader>aj :ALENext<cr>
-nmap <silent> <leader>ak :ALEPrevious<cr>
-nmap <silent> <leader>at :ALEToggle<cr>
-nmap <silent> <leader>af :ALEFix<cr>
-
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter% %code%] %s [%severity%]'
-
-
-" Move a line of text using ALT+[jk]
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
+" Useful plugin related functions ------------------------ {{{
 
 function! CtrlPMark()
   if expand('%:t') =~ 'ControlP' && has_key(g:lightline, 'ctrlp_item')
@@ -480,11 +500,6 @@ function! CtrlPMark()
     return ''
   endif
 endfunction
-
-let g:ctrlp_status_func = {
-  \ 'main': 'CtrlPStatusFunc_1',
-  \ 'prog': 'CtrlPStatusFunc_2',
-  \ }
 
 function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
   let g:lightline.ctrlp_regex = a:regex
@@ -497,6 +512,8 @@ endfunction
 function! CtrlPStatusFunc_2(str)
   return lightline#statusline(0)
 endfunction
+
+" }}}
 
 " Plugin autocmd  ----------------- {{{
 
