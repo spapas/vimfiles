@@ -388,6 +388,7 @@ g<C-g>          Display more file info
 K               Display help for identifier under cursor (useful for vimrc editing)
 :helpgrep       Grep through the help files
 :scriptnames    Display list of scripts that vim has sourced
+:retab          Re-tab the document (replace tabs with spaces based on settings)
 
 Using windows / Splits
 ----------------------
