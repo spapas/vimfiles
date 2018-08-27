@@ -187,7 +187,7 @@ Ex mode
 :{range}yank   {x} Yank range to x
 :{line}put {x}      Put register x after line - it pastes always line wise
 :{range}copy{to}    Copy range after location to (i.e 1,5copy$) - also :t, :co
-:{range}move{to}    Move range after location to - also :m, :mo
+:{range}move{to}    Move range after location to - also :m, :mo; for example :190,192m 207 will move three lines *after* line 206.  Also useful with visual selection!
 :{range}join (:j)   Join lines
 :{range}normal      Execute normal commands (f.e :%norm A; to insert semicolon after end of all lines) - also :norm
 :{range}substitute  Replace - see examples below - also :s
