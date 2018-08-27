@@ -57,8 +57,6 @@ else
     set listchars=eol:$,trail:.
 endif
 
-set updatetime=1000 " Faster update for gitgutter
-
 " }}}
 
 " Mappings settings ---------------------- {{{
@@ -336,7 +334,7 @@ Plug 'maximbaz/lightline-ale'
 Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'mileszs/ack.vim'
-
+Plug 'mhinz/vim-startify'
 call plug#end()
 " }}}
 
@@ -431,6 +429,12 @@ let g:ctrlp_status_func = {
 
 " Other Plugin configuration ------------------ {{{
 "
+" Gitgutter related
+set updatetime=1000 " Faster update (mainly useful for gitgutter)
+" Avoid disruptive message 
+let g:gitgutter_max_signs=9999
+
+
 " Tagvbar sort by position in the file
 let g:tagbar_sort = 0
 let g:tagbar_iconchars = ['▶', '▼']
