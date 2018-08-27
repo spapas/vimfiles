@@ -448,8 +448,39 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter% %code%] %s [%severity%]'
 
-" }}}
+" Various startify configs
 
+autocmd User Startified setlocal cursorline
+
+let g:startify_enable_special      = 0
+let g:startify_files_number        = 5
+let g:startify_relative_path       = 1
+let g:startify_change_to_dir       = 1
+let g:startify_update_oldfiles     = 1
+let g:startify_session_autoload    = 1
+let g:startify_session_persistence = 1
+
+let g:startify_skiplist = [
+        \ 'COMMIT_EDITMSG',
+        \ 'bundle/.*/doc',
+        \ ]
+
+let g:startify_bookmarks = [
+        \ { 'r': '~/vimfiles/vimrc' },
+        \ { 'c': '~/vimfiles/vim-cmds.txt' },
+        \ { 'p': '~/vimfiles/vim-plugins.txt' },
+        \ ]
+
+
+let g:startify_custom_footer =
+       \ ['', "   Serafeim's VIM!", '']
+
+
+let g:startify_custom_header =
+        \ startify#fortune#cowsay('', '═','║','╔','╗','╝','╚')
+
+" }}}
+"
 " Plugin Mappings ------------------ {{{
 
 " UndoTreeToggle
