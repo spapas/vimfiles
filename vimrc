@@ -335,6 +335,9 @@ Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'mileszs/ack.vim'
 Plug 'mhinz/vim-startify'
+
+" Plug 'leafgarland/typescript-vim'
+
 call plug#end()
 " }}}
 
