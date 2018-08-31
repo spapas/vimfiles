@@ -303,6 +303,12 @@ nmap <M-k> mz:m-2<cr>`z
 vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
+" Move to start/end of line in insert and command mode
+cnoremap <C-a>  <Home>
+cnoremap <C-e>  <End>
+inoremap <C-a>  <Home>
+inoremap <C-e>  <End>
+
 " Disable arrow keys
 " nnoremap <up> <nop>
 " nnoremap <down> <nop>
