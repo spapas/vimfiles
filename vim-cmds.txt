@@ -534,3 +534,19 @@ There are six sets of mappings
 
 Please notice that entering :map and friends without parameters will display
 all active mappings!
+
+
+Other useful info
+-----------------
+
+Start vim with
+
+vim --noplugin
+
+to run vim without loading any plugins.
+
+Start vim with
+
+vim -u NONE
+
+to run vim without loading any vimrc
