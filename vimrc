@@ -49,7 +49,7 @@ set colorcolumn=80,120 " Add vertical bars
 set showmatch " When a bracket is inserted, briefly jump to the matching one.
 set lazyredraw " Don't redraw when exuting macros
 set noshowmode " Don't show INSERT (mode) - it is displayed on lightline
-
+set fillchars=stlnc:-,vert:\|,fold:-
 set list " Display special characters
 if version >= 800
     set listchars=tab:→\ ,eol:$,space:\ ,trail:.
@@ -287,7 +287,7 @@ nmap <silent> <leader>vc :e <C-R>=fnamemodify($MYVIMRC, ':p:h').'/vim-cmds.txt'<
 " or
 " nmap <silent> <leader>vc :e <C-R>=fnamemodify($MYVIMRC,  ':p:h')<CR>\vim-cmds.txt<CR>
 "
-"Toggle paste mode - disables autoident  when pasting multiple lines
+"Toggle paste mode - disables auto indent  when pasting multiple lines
 set pastetoggle=<F2>
 " Do a json pretty print to the file
 nmap <silent> <leader>jl :%!py -2 -m json.tool<CR>
