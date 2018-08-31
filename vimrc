@@ -493,10 +493,21 @@ nnoremap <leader>ut :UndotreeToggle<CR>
 nnoremap <silent> <F9> :TagbarToggle<CR>
 
 " Ale mappings starting with a
-nmap <silent> <leader>aj :ALENext<cr>
-nmap <silent> <leader>ak :ALEPrevious<cr>
-nmap <silent> <leader>at :ALEToggle<cr>
-nmap <silent> <leader>af :ALEFix<cr>
+nnoremap <silent> <leader>aj :ALENext<cr>
+nnoremap <silent> <leader>ak :ALEPrevious<cr>
+nnoremap <silent> <leader>at :ALEToggle<cr>
+nnoremap <silent> <leader>af :ALEFix<cr>
+
+" Gitgutter
+" The following are enabled by default by gitgutte
+" <Leader>hp              Preview the hunk under the cursor.
+" <Leader>hs              Stage the hunk under the cursor.
+" <Leader>hu              Undo the hunk under the cursor.
+" ]c                      Jump to the next [count] hunk.
+" [c                      Jump to the previous [count] hunk.
+" Toggle gitgugger
+nnoremap <leader>ht :GitGutterToggle<CR>
+
 " }}}
 
 " Useful functions --------------------------- {{{
