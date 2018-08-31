@@ -26,6 +26,8 @@ set tabstop=4 " Number of spaces that a <Tab> in the file counts for.
 set nowrap " Don't wrap
 set number " Display line numbers
 
+set scroll=5 " Number of lines to scroll with c-u / c-d
+
 if has('mouse')
   set mouse=a
 endif
@@ -453,6 +455,10 @@ let g:surround_37 = "{% \r %}"
 let g:surround_36 = "{{ \r }}"
 
 " Display better strings fvor ALE
+let g:ale_sign_warning = '▲'
+let g:ale_sign_error = '✗'
+highlight link ALEWarningSign String
+highlight link ALEErrorSign Title
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter% %code%] %s [%severity%]'
