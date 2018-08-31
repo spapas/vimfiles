@@ -355,6 +355,17 @@ Other useful things
 @{register}                 Expand register; for example :echo @% to display current filename
 expand(expression)          Expands expression; for example :echo expand('%:p:h') will display current file's path
 :put =expand(expression)    Print expanded expression
+:ab (:abbreviate)           List abbreviations (notice that the character in the 1st col means insert, command mode or both.
+:ab {lhs} {rhs}             Replace {lhs} with {rhs} in both
+command line and insert mode. Notice that for the ab to be
+replaced you need to enter a space (or esc) after lhs (i.e if you
+enter a letter it won't be replaced). Also press ctrl+v and then
+space to avoid replacing. Note there's an optional <buffer>
+argument you can add so that the abbreviation will be used only
+for the current buffer (useful for ftplugins).
+:abc                        Clear abbreviations
+:iab                        Add insert mode abbreviation
+:cab                        Add command line mode abbreviation
 
 Visual mode
 -----------

@@ -556,3 +556,9 @@ if has("autocmd")
 endif " has("autocmd")
 " }}}
 
+" Abbreviations  ----------------- {{{
+
+" Replace only in insert mode
+iabbr teh the
+
+" }}}

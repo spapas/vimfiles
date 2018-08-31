@@ -10,3 +10,5 @@ setlocal makeprg=pep8\ %
 setlocal colorcolumn=88,120,160
 " Run black with space bb
 noremap <buffer> <leader>bb :silent !black %<CR>
+
+ia <buffer> ENC # -*- coding: utf-8 -*-
