@@ -134,9 +134,10 @@ set splitbelow " Open new splits below
 set splitright " Open new splits to the right
 set whichwrap=b,s,<,>,[,] " Allow moving between lines with left/right arrow keys backspace and space
 
+set notimeout   " no time out mappings
 set ttimeout    " time out for key codes
-set timeoutlen=1500 " wait up to 1500ms for mappings
-set ttimeoutlen=100 " wait up to 100ms after Esc for special key
+" set timeoutlen=1500 " wait up to 1500ms for mappings
+set ttimeoutlen=10 " wait up to 10ms after Esc for special key
 
 " http://vimdoc.sourceforge.net/htmldoc/options.html#'foldcolumn'
 " play with zM zm zr zR and more http://vimdoc.sourceforge.net/htmldoc/usr_28.html
