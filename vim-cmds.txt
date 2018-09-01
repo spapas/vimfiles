@@ -546,7 +546,6 @@ There are six sets of mappings
 Please notice that entering :map and friends without parameters will display
 all active mappings!
 
-
 Other useful info
 -----------------
 

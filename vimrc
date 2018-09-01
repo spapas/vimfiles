@@ -41,6 +41,7 @@ set nostartofline " Do not go to start of line when changing buffers (remember p
 " Unix has an unnamed (*) and an unnamedplus (+) clipboard
 set clipboard^=unnamed,unnamedplus
 
+
 " }}}
 
 " Display settings ---------------------- {{{
@@ -218,10 +219,17 @@ endif
 
 set nobackup
 set writebackup
-" Vim keeps a hidden undo file for persistent undos(extension .un~). I don't like this because it adds a lot of files.
-" If you think you need it you can add an undodir directory that will save all undo files in a directory
-" Also see this answer: https://vi.stackexchange.com/questions/6/how-can-i-use-the-undofile
-set noundofile
+
+" Vim keeps a hidden undo file for persistent undos(extension .un~). I don't
+" like this because it adds a lot of files.  If you think you need it you can
+" add an undodir directory that will save all undo files in a directory. Also
+" see this answer:
+" https://vi.stackexchange.com/questions/6/how-can-i-use-the-undofile
+set undofile
+if !isdirectory($HOME."/vimfiles/undodir")
+    call mkdir($HOME."/vimfiles/undodir", "", 0700)
+endif
+set undodir=$HOME/vimfiles/undodir
 " }}}
 
 " Colorscheme settings {{{
