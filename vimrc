@@ -344,6 +344,8 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'mileszs/ack.vim'
 Plug 'mhinz/vim-startify'
 
+Plug 'roman/golden-ratio'
+
 " Plug 'leafgarland/typescript-vim'
 
 call plug#end()
@@ -463,8 +465,10 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter% %code%] %s [%severity%]'
 
-" Various startify configs
+" Disable golden ratio automatically
+let g:golden_ratio_autocommand = 0
 
+" Various startify configs
 autocmd User Startified setlocal cursorline
 
 let g:startify_enable_special      = 0
@@ -519,6 +523,11 @@ nnoremap <silent> <leader>af :ALEFix<cr>
 " [c                      Jump to the previous [count] hunk.
 " Toggle gitgugger
 nnoremap <leader>ht :GitGutterToggle<CR>
+nnoremap <leader>hk :GitGutterPrevHunk<CR>
+nnoremap <leader>hj :GitGutterNextHunk<CR>
+
+" Run golden-ration
+nnoremap <leader>gr :GoldenRatioResize<CR>
 
 " }}}
 
