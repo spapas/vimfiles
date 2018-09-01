@@ -216,6 +216,14 @@ various useful mappings that can be used on that result
 window, i.e t/T to open to a new tab, o/O tio open the result, go to
 preview the reslt, h/H/v/V to create a split, q to close the quickfix window.
 
+roman/golden-ratio
+------------------
+
+A simple plugin to resize splits using the golden ration. I've
+disabled the automatic resizing and instead use the
+:GoldenRatioResize command mapped to <leader>gr to resize the
+split when I want.
+
 Some plugins to test:
 
 https://github.com/terryma/vim-multiple-cursors
