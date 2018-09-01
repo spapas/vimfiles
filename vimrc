@@ -61,7 +61,7 @@ endif
 
 " }}}
 
-" Mappings settings ---------------------- {{{
+" Basic Mappings settings ---------------------- {{{
 
 " Remap leader to space
 let mapleader = "\<Space>"
@@ -134,7 +134,7 @@ set splitright " Open new splits to the right
 set whichwrap=b,s,<,>,[,] " Allow moving between lines with left/right arrow keys backspace and space
 
 set ttimeout    " time out for key codes
-set timeoutlen=500 " wait up to 500ms for mappings
+set timeoutlen=1500 " wait up to 1500ms for mappings
 set ttimeoutlen=100 " wait up to 100ms after Esc for special key
 
 " http://vimdoc.sourceforge.net/htmldoc/options.html#'foldcolumn'
