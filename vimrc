@@ -54,6 +54,7 @@ set lazyredraw " Don't redraw when exuting macros
 set noshowmode " Don't show INSERT (mode) - it is displayed on lightline
 set fillchars=stlnc:-,vert:\|,fold:-
 set list " Display special characters
+set showbreak=… " Display ellipsis on long lines when wrap is enabled
 if version >= 800
     set listchars=tab:→\ ,eol:$,space:\ ,trail:.
 else
@@ -77,9 +78,6 @@ inoremap <C-U> <C-G>u<C-U>
 
 " Remove buffer
 noremap <Leader>rb :bd<CR>
-
-" Select text that was just pasted (ie use p<leader>ps)
-nnoremap <leader>ps `[v`]
 
 " }}}
 
@@ -276,15 +274,18 @@ nnoremap <Leader>d "udd"up
 " Clear search nightlight
 nnoremap <Leader>cs :noh<CR>
 " Remove whitespace - two methods (leader w or leader W)
-nnoremap <Leader>W :mark x<CR>:exe "%s/[ ]*$//g"<CR>'x
-nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
+nnoremap <Leader>WS :mark x<CR>:exe "%s/[ ]*$//g"<CR>'x
+nnoremap <leader>ws :%s/\s\+$//<cr>:let @/=''<CR>
 " Toggle special character display
 nnoremap <leader>li :set list!<CR>
 " Add line w/o insert
 nnoremap <leader>n o<Esc>
 nnoremap <leader>N O<Esc>
 
-
+" Select text that was just pasted (ie use p<leader>ps)
+nnoremap <leader>wr :set wrap!<cr> 
+" Select text that was just pasted (ie use p<leader>ps)
+nnoremap <leader>ps `[v`]
 " Better paste
 nnoremap <leader>pp "_diwP
 " Open new tab

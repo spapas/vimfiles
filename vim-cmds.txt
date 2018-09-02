@@ -327,7 +327,7 @@ Insert mode commands
 <C-[>           Switch to normal (like ESC)
 <C-o>           Switch to insert-normal mode
 <C-r>{register} Paste text (register you have yanked to with " - use 0 for the most recent edit)
-<C-k>{l1}{l2}   Insert digraph (f.e << or 14 or DG)
+<C-k>{l1}{l2}   Insert digraph (f.e << or 14 or DG). Also, use :help digraph-table to see all digraphs.
 <C-v>{chars}    Insert character using numeric value. Use uHex to insert unicode symbol, f.e <C-v>u20ac inserts €. Also this can be used to enter literal things like <ESC>, <CR> etc (for macro editing)
 
 Registers
@@ -444,7 +444,8 @@ Some options
 correct, zw mark as misspelled, zug revert zg/zw for this word
 :set ft                 To set the filetype to something else
 :set path               To set the searching path (initially it is current directory) - can use globs to search recursively, also works with gf
-:set sufficesadd        List of suffixes (file extensions) to try when opening files with gf
+:set sufficesadd        List of suffices (file extensions) to try when opening files with gf
+:set wrap               Wrap long lines (when lines are longer then screen size display them in the following line). Notice that you can use gj/gj to move between visual lines (as opposed to j/k moving between real lines)
 
 Folds
 -----
