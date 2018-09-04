@@ -121,8 +121,10 @@ c{motion}       Delete selection and enter insert mode (change)
 cc              Delete line and enter insert mode
 d{motion}       Delete selection
 dd              Delete line
+D               Delete to the end of line (same as d$)
 y{motion}       Yank (copy) selection
 yy              yank line
+Y               yank line (same as yy)
 >{motion}       Increase indentation (shift left)
 >>              Increase indentation of line
 <{motion}       Decrease indentation (shift right)
