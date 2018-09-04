@@ -403,6 +403,8 @@ K               Display help for identifier under cursor (useful for vimrc editi
 :helpgrep       Grep through the help files
 :scriptnames    Display list of scripts that vim has sourced
 :retab          Re-tab the document (replace tabs with spaces based on settings)
+:help Q_lr      Very interesting list of left right motions
+:help Q_ud      Very interesting list of up down motions
 
 How to convert a file that has 4-space tabs to 2-space tabs:
 
