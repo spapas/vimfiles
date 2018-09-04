@@ -119,6 +119,7 @@ Operators
 ---------
 c{motion}       Delete selection and enter insert mode (change)
 cc              Delete line and enter insert mode
+C               Change to the end of line (same as c$)
 d{motion}       Delete selection
 dd              Delete line
 D               Delete to the end of line (same as d$)
