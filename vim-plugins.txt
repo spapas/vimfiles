@@ -224,6 +224,15 @@ disabled the automatic resizing and instead use the
 :GoldenRatioResize command mapped to <leader>gr to resize the
 split when I want.
 
+
+liuchengxu/vim-which-key
+------------------------
+
+This is a great plugin that displays the mappings when you press
+the leader, a la spacemacs! You need to set the timeout for the
+plugin to work and also the popup will be displayed after the
+timeout. I've set a 0.5 s timeout for now
+
 Some plugins to test:
 
 https://github.com/terryma/vim-multiple-cursors

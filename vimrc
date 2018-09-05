@@ -132,9 +132,9 @@ set splitbelow " Open new splits below
 set splitright " Open new splits to the right
 set whichwrap=b,s,<,>,[,] " Allow moving between lines with left/right arrow keys backspace and space
 
-set notimeout   " no time out mappings
+set timeout   " add time out for mappings; useful with vim-which-key
 set ttimeout    " time out for key codes
-" set timeoutlen=1500 " wait up to 1500ms for mappings
+set timeoutlen=500 " wait up to 500ms for mappings
 set ttimeoutlen=10 " wait up to 10ms after Esc for special key
 
 " http://vimdoc.sourceforge.net/htmldoc/options.html#'foldcolumn'
@@ -355,6 +355,7 @@ Plug 'mileszs/ack.vim'
 Plug 'mhinz/vim-startify'
 
 Plug 'roman/golden-ratio'
+Plug 'liuchengxu/vim-which-key'
 
 " Plug 'leafgarland/typescript-vim'
 
@@ -508,6 +509,11 @@ let g:startify_custom_footer =
 let g:startify_custom_header =
         \ startify#fortune#cowsay('', '═','║','╔','╗','╝','╚')
 
+
+ " let g:which_key_map =  {}
+ " let g:which_key_map.a = { 'name' : '+ALE' }
+ " let g:which_key_map.a.d = ['e $MYVIMRC', 'open-vimrc']
+ " call which_key#register('<Space>', "g:which_key_map")
 " }}}
 "
 " Plugin Mappings ------------------ {{{
@@ -536,9 +542,11 @@ nnoremap <leader>ht :GitGutterToggle<CR>
 nnoremap <leader>hk :GitGutterPrevHunk<CR>
 nnoremap <leader>hj :GitGutterNextHunk<CR>
 
-" Run golden-ration
+" Run golden-ratio
 nnoremap <leader>gr :GoldenRatioResize<CR>
 
+" Run whichkey
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 " }}}
 
 " Useful functions --------------------------- {{{
