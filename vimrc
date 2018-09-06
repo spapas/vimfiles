@@ -509,6 +509,9 @@ let g:startify_custom_footer =
 let g:startify_custom_header =
         \ startify#fortune#cowsay('', '═','║','╔','╗','╝','╚')
 
+autocmd! FileType which_key
+autocmd  FileType which_key set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
  " let g:which_key_map =  {}
  " let g:which_key_map.a = { 'name' : '+ALE' }
