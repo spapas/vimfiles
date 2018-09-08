@@ -331,7 +331,7 @@ inoremap <C-e>  <End>
 " inoremap <left> <nop>
 " inoremap <right> <nop>
 " }}}
-"
+
 " Plugins --------------------- {{{
 " Run :PlugInstall to install these plugins
 call plug#begin('~/vimfiles/plugged')
@@ -355,6 +355,7 @@ Plug 'mileszs/ack.vim'
 Plug 'mhinz/vim-startify'
 
 Plug 'roman/golden-ratio'
+" Plug 'liuchengxu/vim-which-key', { 'branch': 'allow-provide-description-only' }
 Plug 'liuchengxu/vim-which-key'
 
 " Plug 'leafgarland/typescript-vim'
@@ -505,20 +506,24 @@ let g:startify_bookmarks = [
 let g:startify_custom_footer =
        \ ['', "   Serafeim's VIM!", '']
 
-
+if exists("*cosway")
 let g:startify_custom_header =
         \ startify#fortune#cowsay('', '═','║','╔','╗','╝','╚')
+endif
 
 autocmd! FileType which_key
 autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
- " let g:which_key_map =  {}
- " let g:which_key_map.a = { 'name' : '+ALE' }
- " let g:which_key_map.a.d = ['e $MYVIMRC', 'open-vimrc']
- " call which_key#register('<Space>', "g:which_key_map")
+" let g:which_key_map =  {}
+"  let g:which_key_map.a = { 'name' : '+ALE' }
+"  let g:which_key_map.a.f = "ALEFix"
+"  let g:which_key_map.a.j = 'ALENext'
+"  let g:which_key_map.a.k = 'ALEPrev'
+" call which_key#register('<Space>', "g:which_key_map")
+
 " }}}
-"
+
 " Plugin Mappings ------------------ {{{
 
 " UndoTreeToggle
