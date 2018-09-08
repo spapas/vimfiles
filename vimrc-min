@@ -1,0 +1,33 @@
+" Basic settings ---------------------- {{{
+set nocompatible " Important
+filetype plugin indent on " Enable ft
+let mapleader = "\<Space>"
+set timeout
+set timeoutlen=500
+
+" Toggle spelling
+nnoremap <leader>sp :set spell!<CR>
+" Reverse lines without changing unnamed register
+nnoremap <Leader>sd "udd"up
+" Clear search nightlight
+nnoremap <Leader>sc :noh<CR>
+" }}}
+
+" Plugins --------------------- {{{
+call plug#begin('~/vimfiles/plugged')
+Plug 'liuchengxu/vim-which-key', { 'branch': 'allow-provide-description-only' }
+call plug#end()
+" }}}
+
+" Other Plugin configuration ------------------ {{{
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+let g:which_key_map =  {}
+let g:which_key_map.s = { 'name' : '+TEST' }
+let g:which_key_map.s.p = 'Toggle spell'
+let g:which_key_map.s.d = 'Change lines'
+let g:which_key_map.s.c = 'Clear highlight'
+call which_key#register('<Space>', "g:which_key_map")
+
+" }}}
+
+
