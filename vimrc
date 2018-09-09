@@ -622,3 +622,8 @@ endif " has("autocmd")
 iabbr teh the
 
 " }}}
+"
+" Include other files  ----------------- {{{
+so ./scripts/*
+" }}}
+
