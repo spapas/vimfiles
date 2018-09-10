@@ -517,12 +517,12 @@ autocmd! FileType which_key
 autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
-" let g:which_key_map =  {}
-"  let g:which_key_map.a = { 'name' : '+ALE' }
-"  let g:which_key_map.a.f = "ALEFix"
-"  let g:which_key_map.a.j = 'ALENext'
-"  let g:which_key_map.a.k = 'ALEPrev'
-" call which_key#register('<Space>', "g:which_key_map")
+let g:which_key_map =  {}
+let g:which_key_map.a = { 'name' : '+ALE' }
+let g:which_key_map.a.f = "ALEFix"
+let g:which_key_map.a.j = 'ALENext'
+let g:which_key_map.a.k = 'ALEPrev'
+call which_key#register('<Space>', "g:which_key_map")
 
 " }}}
 
