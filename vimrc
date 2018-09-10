@@ -282,7 +282,7 @@ nnoremap <leader>li :set list!<CR>
 nnoremap <leader>n o<Esc>
 nnoremap <leader>N O<Esc>
 
-" Select text that was just pasted (ie use p<leader>ps)
+" Toggle text wrap
 nnoremap <leader>wr :set wrap!<cr> 
 " Select text that was just pasted (ie use p<leader>ps)
 nnoremap <leader>ps `[v`]
@@ -293,9 +293,9 @@ nnoremap <Leader>tn :tabnew<CR>
 " Close (remove) tab
 nnoremap <Leader>tr :tabclose<CR>
 " Quickly edit/reload the vimrc file
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
-nmap <silent> <leader>vc :e <C-R>=fnamemodify($MYVIMRC, ':p:h').'/vim-cmds.txt'<CR><CR>
+noremap <silent> <leader>ve :e $MYVIMRC<CR>
+noremap <silent> <leader>vs :so $MYVIMRC<CR>
+noremap <silent> <leader>vc :e <C-R>=fnamemodify($MYVIMRC, ':p:h').'/vim-cmds.txt'<CR><CR>
 " or
 " nmap <silent> <leader>vc :e <C-R>=fnamemodify($MYVIMRC,  ':p:h')<CR>\vim-cmds.txt<CR>
 "
@@ -355,7 +355,6 @@ Plug 'mileszs/ack.vim'
 Plug 'mhinz/vim-startify'
 
 Plug 'roman/golden-ratio'
-" Plug 'liuchengxu/vim-which-key', { 'branch': 'allow-provide-description-only' }
 Plug 'liuchengxu/vim-which-key'
 
 " Plug 'leafgarland/typescript-vim'
@@ -508,10 +507,13 @@ let g:startify_bookmarks = [
 let g:startify_custom_footer =
        \ ['', "   Serafeim's VIM!", '']
 
-if exists("*cosway")
-let g:startify_custom_header =
-        \ startify#fortune#cowsay('', '═','║','╔','╗','╝','╚')
-endif
+try
+let g:startify_custom_header = startify#fortune#cowsay('', '═','║','╔','╗','╝','╚')
+catch
+endtry
+" }}}
+
+" vim-which-key configuration ------- {{{
 
 autocmd! FileType which_key
 autocmd  FileType which_key set laststatus=0 noshowmode noruler
@@ -519,13 +521,19 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
 
 let g:which_key_map =  {}
 let g:which_key_map.a = { 'name' : '+ALE' }
-let g:which_key_map.a.f = "ALEFix"
+let g:which_key_map.a.f = 'ALEFix'
 let g:which_key_map.a.j = 'ALENext'
 let g:which_key_map.a.k = 'ALEPrev'
-if exists("which_key#register")
-    call which_key#register('<Space>', "g:which_key_map")
-endif
 
+let g:which_key_map.v = { 'name' : '+common' }
+let g:which_key_map.v.e = 'edit-vimrc'
+let g:which_key_map.v.s = 'reload-vimrc'
+let g:which_key_map.v.c = 'edit-vimcmds'
+
+try
+    call which_key#register('<Space>', "g:which_key_map")
+catch
+endtry
 " }}}
 
 " Plugin Mappings ------------------ {{{
@@ -558,7 +566,9 @@ nnoremap <leader>hj :GitGutterNextHunk<CR>
 nnoremap <leader>gr :GoldenRatioResize<CR>
 
 " Run whichkey
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+" nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
+vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
 " }}}
 
 " Useful functions --------------------------- {{{
@@ -624,7 +634,7 @@ endif " has("autocmd")
 iabbr teh the
 
 " }}}
-"
+
 " Include other files  ----------------- {{{
 so ./scripts/*
 " }}}
