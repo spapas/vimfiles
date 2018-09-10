@@ -522,7 +522,9 @@ let g:which_key_map.a = { 'name' : '+ALE' }
 let g:which_key_map.a.f = "ALEFix"
 let g:which_key_map.a.j = 'ALENext'
 let g:which_key_map.a.k = 'ALEPrev'
-call which_key#register('<Space>', "g:which_key_map")
+if exists("which_key#register")
+    call which_key#register('<Space>', "g:which_key_map")
+endif
 
 " }}}
 
