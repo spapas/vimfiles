@@ -257,7 +257,7 @@ let g:PaperColor_Theme_Options = {
 colorscheme PaperColor
 set background=dark
 " }}}
- 
+
 " Core Mappings ------------------ {{{
 
 " Easier buffer switching (shift-tab to switch to last used buffer)
@@ -285,7 +285,7 @@ nnoremap <leader>n o<Esc>
 nnoremap <leader>N O<Esc>
 
 " Toggle text wrap
-nnoremap <leader>wr :set wrap!<cr> 
+nnoremap <leader>wr :set wrap!<cr>
 " Select text that was just pasted (ie use p<leader>ps)
 nnoremap <leader>ps `[v`]
 " Better paste
@@ -460,7 +460,7 @@ let g:ctrlp_status_func = {
 "
 " Gitgutter related
 set updatetime=1000 " Faster update (mainly useful for gitgutter)
-" Avoid disruptive message 
+" Avoid disruptive message
 let g:gitgutter_max_signs=9999
 
 
@@ -639,6 +639,6 @@ iabbr teh the
 " }}}
 
 " Include other files  ----------------- {{{
-so ./scripts/*
+execute 'source '.fnamemodify($MYVIMRC, ':p:h').'/scripts/*'
 " }}}
 
