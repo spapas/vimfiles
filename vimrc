@@ -67,6 +67,8 @@ endif
 
 " Remap leader to space
 let mapleader = "\<Space>"
+" and local leader to \
+let maplocalleader = "\\"
 
 " Don't use Ex mode, use Q for formatting. Revert with :unmap Q
 noremap Q gq
@@ -356,7 +358,8 @@ Plug 'mhinz/vim-startify'
 
 Plug 'roman/golden-ratio'
 Plug 'liuchengxu/vim-which-key'
-
+Plug 'l04m33/vlime', {'rtp': 'vim/'}
+Plug 'vim-scripts/paredit.vim'
 " Plug 'leafgarland/typescript-vim'
 
 call plug#end()
@@ -566,7 +569,7 @@ nnoremap <leader>hj :GitGutterNextHunk<CR>
 nnoremap <leader>gr :GoldenRatioResize<CR>
 
 " Run whichkey
-" nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+"jnnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
 " }}}
