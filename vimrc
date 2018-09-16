@@ -514,6 +514,13 @@ try
 let g:startify_custom_header = startify#fortune#cowsay('', '═','║','╔','╗','╝','╚')
 catch
 endtry
+
+
+" Gutentags
+" Don't load me if there's no ctags file
+if !executable('ctags')
+    let g:gutentags_dont_load = 1
+endif
 " }}}
 
 " vim-which-key configuration ------- {{{
