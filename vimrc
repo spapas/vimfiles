@@ -277,7 +277,7 @@ nnoremap <Leader>d "udd"up
 nnoremap <Leader>cs :noh<CR>
 " Remove whitespace - two methods (leader w or leader W)
 nnoremap <Leader>WS :mark x<CR>:exe "%s/[ ]*$//g"<CR>'x
-nnoremap <leader>ws :%s/\s\+$//<cr>:let @/=''<CR>
+" nnoremap <leader>ws :%s/\s\+$//<cr>:let @/=''<CR>
 " Toggle special character display
 nnoremap <leader>li :set list!<CR>
 " Add line w/o insert
@@ -361,6 +361,7 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'l04m33/vlime', {'rtp': 'vim/'}
 Plug 'vim-scripts/paredit.vim'
 " Plug 'leafgarland/typescript-vim'
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
 " }}}
@@ -515,6 +516,7 @@ let g:startify_custom_header = startify#fortune#cowsay('', '═','║','╔','�
 catch
 endtry
 
+let g:vimwiki_list = [{'path': '~/wiki/', 'path_html': '~/wiki_html/'} ]
 
 " Gutentags
 " Don't load me if there's no ctags file
