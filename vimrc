@@ -542,6 +542,9 @@ let g:which_key_map.v.e = 'edit-vimrc'
 let g:which_key_map.v.s = 'reload-vimrc'
 let g:which_key_map.v.c = 'edit-vimcmds'
 
+let g:which_key_map.w = { 'name' : '+wiki' }
+let g:which_key_map.W = { 'name' : '+Whitespace' }
+
 try
     call which_key#register('<Space>', "g:which_key_map")
 catch
