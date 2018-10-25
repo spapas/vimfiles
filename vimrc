@@ -45,7 +45,10 @@ set clipboard^=unnamed,unnamedplus
 " }}}
 
 " Display settings ---------------------- {{{
-set display=truncate " Show @@@ in the last line if it is truncated.
+try
+    set display=truncate " Show @@@ in the last line if it is truncated.
+catch
+endtry
 set scrolloff=3     " scroll down before the last line
 set noruler     " Not needed (displays line/col but will use lightline instead)
 set colorcolumn=80,120 " Add vertical bars
@@ -115,8 +118,6 @@ endif
 " }}}
 
 " Other settings ----------------- {{{
-
-packadd! matchit
 
 set spelllang=en,el " Spell english and greek
 
@@ -227,10 +228,17 @@ set writebackup
 " see this answer:
 " https://vi.stackexchange.com/questions/6/how-can-i-use-the-undofile
 set undofile
-if !isdirectory($HOME."/vimfiles/undodir")
-    call mkdir($HOME."/vimfiles/undodir", "", 0700)
+if has("win16") || has("win32")
+    if !isdirectory($HOME."/vimfiles/undodir")
+        call mkdir($HOME."/vimfiles/undodir", "", 0700)
+    endif
+    set undodir=$HOME/vimfiles/undodir
+else 
+    if !isdirectory($HOME."/.vim/undodir")
+        call mkdir($HOME."/.vim/undodir", "", 0700)
+    endif
+    set undodir=$HOME/.vim/undodir
 endif
-set undodir=$HOME/vimfiles/undodir
 " }}}
 
 " Colorscheme settings {{{
