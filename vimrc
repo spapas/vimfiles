@@ -278,7 +278,7 @@ nmap <S-Tab> <C-^>
 
 " Toggle spelling
 nnoremap <leader>sp :set spell!<CR>
-
+nnoremap <leader>se i <Esc>wa <Esc>b
 " Reverse lines without changing unnamed register
 nnoremap <Leader>d "udd"up
 " Clear search nightlight
@@ -291,6 +291,9 @@ nnoremap <leader>li :set list!<CR>
 " Add line w/o insert
 nnoremap <leader>n o<Esc>
 nnoremap <leader>N O<Esc>
+
+nnoremap <leader>yf :let @+ = expand("%")<cr><Esc>
+nnoremap <leader>yp :let @+ = expand("%:p")<cr><Esc>
 
 " Toggle text wrap
 nnoremap <leader>wr :set wrap!<cr>
@@ -552,6 +555,10 @@ let g:which_key_map.v.c = 'edit-vimcmds'
 
 let g:which_key_map.w = { 'name' : '+wiki' }
 let g:which_key_map.W = { 'name' : '+Whitespace' }
+
+let g:which_key_map.y = { 'name' : '+yank' }
+let g:which_key_map.y.f = 'yank-filename'
+let g:which_key_map.y.p = 'yank-filepath'
 
 try
     call which_key#register('<Space>', "g:which_key_map")
