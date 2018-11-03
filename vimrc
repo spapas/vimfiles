@@ -102,7 +102,7 @@ if has('gui_running')
     set guioptions+=c
     set guitablabel=%M\ %t
     " Please get the fonts from here for use in windows: https://github.com/spapas/my-nerd-fonts/
-    if has('win32')
+    if has("win16") || has("win32")
 
         set guifont=SourceCodePro_NF:h14:cGREEK:qDRAFT
         " set guifont=Hack:h12:cGREEK
@@ -347,7 +347,11 @@ inoremap <C-e>  <End>
 
 " Plugins --------------------- {{{
 " Run :PlugInstall to install these plugins
-call plug#begin('~/vimfiles/plugged')
+if has("win16") || has("win32")
+    call plug#begin('~/vimfiles/plugged')
+else
+    call plug#begin('~/.vim/plugged')
+endif
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'itchyny/lightline.vim' " lightline-vim
