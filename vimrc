@@ -724,6 +724,10 @@ iabbr teh the
 " }}}
 
 " Include other files  ----------------- {{{
-execute 'source '.fnamemodify($MYVIMRC, ':p:h').'/scripts/*'
+try
+    execute 'source '.fnamemodify($MYVIMRC, ':p:h').'/scripts/*'
+    execute 'source '.fnamemodify($MYVIMRC, ':p:h').'/local.vim'
+catch
+endtry
 " }}}
 
