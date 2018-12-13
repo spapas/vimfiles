@@ -84,6 +84,60 @@ inoremap <C-U> <C-G>u<C-U>
 " Remove buffer
 noremap <Leader>rb :bd<CR>
 
+" Very useful for greek to work in normal mode
+set langmap=ΑA,ΒB,ΨC,ΔD,ΕE,ΦF,ΓG,ΗH,ΙI,ΞJ,ΚK,ΛL,ΜM,ΝN,ΟO,ΠP,QQ,ΡR,ΣS,ΤT,ΘU,ΩV,WW,ΧX,ΥY,ΖZ,αa,βb,ψc,δd,εe,φf,γg,ηh,ιi,ξj,κk,λl,μm,νn,οo,πp,qq,ρr,σs,τt,θu,ωv,ςw,χx,υy,ζz
+
+" noremap ς w
+" noremap ε e
+" noremap Ε E
+" noremap ρ r
+" noremap Ρ R
+" noremap τ t
+" noremap Τ T
+" noremap υ y
+" noremap Υ Y
+" noremap θ u
+" noremap Θ U
+" noremap ι i
+" noremap Ι I
+" noremap ο o
+" noremap Ο O
+" noremap π p
+" noremap Π P
+" noremap α a
+" noremap Α A
+" noremap σ s
+" noremap Σ S
+" noremap δ d
+" noremap Δ D
+" noremap φ f
+" noremap Φ F
+" noremap γ g
+" noremap Γ G
+" noremap η h
+" noremap Η H
+" noremap ξ j
+" noremap Ξ J
+" noremap κ k
+" noremap Κ K
+" noremap λ l
+" noremap Λ L
+" noremap ζ z
+" noremap Ζ Z
+" noremap ψ c
+" noremap Ψ C
+" noremap ω v
+" noremap Ω V
+" noremap β b
+" noremap Β B
+" noremap ν n
+" noremap Ν N
+" noremap μ m
+" noremap Μ M
+
+
+
+
 " }}}
 
 " Gui settings ---------------------- {{{
@@ -670,6 +724,10 @@ iabbr teh the
 " }}}
 
 " Include other files  ----------------- {{{
-execute 'source '.fnamemodify($MYVIMRC, ':p:h').'/scripts/*'
+try
+    execute 'source '.fnamemodify($MYVIMRC, ':p:h').'/scripts/*'
+    execute 'source '.fnamemodify($MYVIMRC, ':p:h').'/local.vim'
+catch
+endtry
 " }}}
 
