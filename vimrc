@@ -428,9 +428,13 @@ Plug 'mhinz/vim-startify'
 Plug 'roman/golden-ratio'
 Plug 'liuchengxu/vim-which-key'
 Plug 'l04m33/vlime', {'rtp': 'vim/'}
-Plug 'vim-scripts/paredit.vim'
+" Plug 'vim-scripts/paredit.vim' " This is too restrictive!
+Plug 'guns/vim-sexp' 
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
 " Plug 'leafgarland/typescript-vim'
 Plug 'vimwiki/vimwiki'
+
+Plug 'tpope/vim-fireplace' " For clojure repl integration
 
 call plug#end()
 " }}}
