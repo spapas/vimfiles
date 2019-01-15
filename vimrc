@@ -354,7 +354,7 @@ nnoremap <leader>wr :set wrap!<cr>
 " Select text that was just pasted (ie use p<leader>ps)
 nnoremap <leader>ps `[v`]
 " Better paste
-nnoremap <leader>pp "_diwP
+nnoremap <leader>pp "_diwP"_yiw
 " Open new tab
 nnoremap <Leader>tn :tabnew<CR>
 " Close (remove) tab
