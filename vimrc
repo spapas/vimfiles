@@ -383,6 +383,7 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'vimwiki/vimwiki'
 
 Plug 'tpope/vim-fireplace' " For clojure repl integration
+Plug 'elixir-editors/vim-elixir'
 
 
 " For js and lit-html
