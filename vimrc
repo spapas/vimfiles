@@ -87,57 +87,6 @@ noremap <Leader>rb :bd<CR>
 " Very useful for greek to work in normal mode
 set langmap=ΑA,ΒB,ΨC,ΔD,ΕE,ΦF,ΓG,ΗH,ΙI,ΞJ,ΚK,ΛL,ΜM,ΝN,ΟO,ΠP,QQ,ΡR,ΣS,ΤT,ΘU,ΩV,WW,ΧX,ΥY,ΖZ,αa,βb,ψc,δd,εe,φf,γg,ηh,ιi,ξj,κk,λl,μm,νn,οo,πp,qq,ρr,σs,τt,θu,ωv,ςw,χx,υy,ζz
 
-" noremap ς w
-" noremap ε e
-" noremap Ε E
-" noremap ρ r
-" noremap Ρ R
-" noremap τ t
-" noremap Τ T
-" noremap υ y
-" noremap Υ Y
-" noremap θ u
-" noremap Θ U
-" noremap ι i
-" noremap Ι I
-" noremap ο o
-" noremap Ο O
-" noremap π p
-" noremap Π P
-" noremap α a
-" noremap Α A
-" noremap σ s
-" noremap Σ S
-" noremap δ d
-" noremap Δ D
-" noremap φ f
-" noremap Φ F
-" noremap γ g
-" noremap Γ G
-" noremap η h
-" noremap Η H
-" noremap ξ j
-" noremap Ξ J
-" noremap κ k
-" noremap Κ K
-" noremap λ l
-" noremap Λ L
-" noremap ζ z
-" noremap Ζ Z
-" noremap ψ c
-" noremap Ψ C
-" noremap ω v
-" noremap Ω V
-" noremap β b
-" noremap Β B
-" noremap ν n
-" noremap Ν N
-" noremap μ m
-" noremap Μ M
-
-
-
-
 " }}}
 
 " Gui settings ---------------------- {{{
@@ -166,7 +115,7 @@ if has('gui_running')
     else
         set guifont=Source\ Code\ Pro\ 14
     endif
-    set lines=45 columns=140
+    set lines=40 columns=140
 endif
 
 " }}}
@@ -431,10 +380,16 @@ Plug 'l04m33/vlime', {'rtp': 'vim/'}
 " Plug 'vim-scripts/paredit.vim' " This is too restrictive!
 Plug 'guns/vim-sexp' 
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
-" Plug 'leafgarland/typescript-vim'
 Plug 'vimwiki/vimwiki'
 
 Plug 'tpope/vim-fireplace' " For clojure repl integration
+Plug 'elixir-editors/vim-elixir'
+
+
+" For js and lit-html
+Plug 'jonsmithers/vim-html-template-literals'
+Plug 'pangloss/vim-javascript'
+" Plug 'leafgarland/typescript-vim'
 
 call plug#end()
 " }}}
