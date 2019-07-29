@@ -467,12 +467,12 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
   nnoremap <leader>ag :Ack<SPACE>
 
-  set grepprg=a\ --nogroup\ --nocolor\ --column
+  set grepprg=ag\ --nogroup\ --nocolor\ --column
   set grepformat=%f:%l:%c:%m
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
+  " let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
   " Or can use ripgrep
-  " let g:ctrlp_user_command = 'rg --files %s'
+  let g:ctrlp_user_command = 'rg --files %s'
 
   " ag is fast enough that CtrlP doesn't need to cache
   " let g:ctrlp_use_caching = 0
