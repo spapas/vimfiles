@@ -113,7 +113,7 @@ if has('gui_running')
         " set guifont=Hack:h11:cGREEK
         " set guifont=Fira\ Mono:h11:cGREEK
     else
-        set guifont=Fira\ Mono\ 14
+        set guifont=Source\ Code\ Pro\ 14
     endif
     set lines=40 columns=140
 endif
