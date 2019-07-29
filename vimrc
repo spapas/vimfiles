@@ -385,6 +385,10 @@ Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-fireplace' " For clojure repl integration
 Plug 'elixir-editors/vim-elixir'
 
+" Do a
+" let g:codestats_api_key = 'YOUR_KEY_HERE'
+" in your local settings
+Plug 'https://gitlab.com/code-stats/code-stats-vim.git'
 
 " For js and lit-html
 Plug 'jonsmithers/vim-html-template-literals'
