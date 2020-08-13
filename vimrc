@@ -359,41 +359,19 @@ endif
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'itchyny/lightline.vim' " lightline-vim
 Plug 'easymotion/vim-easymotion'
-Plug 'mbbill/undotree' " Undotree (https://github.com/mbbill/undotree)
 Plug 'tpope/vim-surround' " https://github.com/tpope/vim-surround
 Plug 'tpope/vim-repeat' " https://github.com/tpope/vim-repeat
 Plug 'justinmk/vim-sneak' " https://github.com/justinmk/vim-sneak
-Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'w0rp/ale'
-Plug 'maximbaz/lightline-ale'
-Plug 'majutsushi/tagbar'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'mileszs/ack.vim'
-Plug 'mhinz/vim-startify'
-
-Plug 'roman/golden-ratio'
-Plug 'liuchengxu/vim-which-key'
-Plug 'l04m33/vlime', {'rtp': 'vim/'}
-" Plug 'vim-scripts/paredit.vim' " This is too restrictive!
-Plug 'guns/vim-sexp' 
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'vimwiki/vimwiki'
-
-Plug 'tpope/vim-fireplace' " For clojure repl integration
-Plug 'elixir-editors/vim-elixir'
 
 " Do a
 " let g:codestats_api_key = 'YOUR_KEY_HERE'
 " in your local settings
 Plug 'https://gitlab.com/code-stats/code-stats-vim.git'
 
-" For js and lit-html
-Plug 'jonsmithers/vim-html-template-literals'
-Plug 'pangloss/vim-javascript'
-" Plug 'leafgarland/typescript-vim'
 
 call plug#end()
 " }}}
@@ -410,7 +388,6 @@ let g:lightline = {
 \ 'subseparator': { 'left': '', 'right': '' },
 \ 'component': {
 \   'lineinfo': ' %3l:%-2v',
-\   'tagbar_current': '%{tagbar#currenttag("%s", "", "f")}'
 \ },
 \ 'component_function': {
 \   'readonly': 'LightlineReadonly',
@@ -427,19 +404,6 @@ let g:lightline.tabline = {
 let g:lightline.tab = {
 \ 'active': [ 'tabnum', 'filename', 'modified' ],
 \ 'inactive': [ 'tabnum', 'filename', 'modified' ] }
-
-" Integrate ale with lightline
-let g:lightline.component_expand = {
-      \  'linter_checking': 'lightline#ale#checking',
-      \  'linter_warnings': 'lightline#ale#warnings',
-      \  'linter_errors': 'lightline#ale#errors',
-      \  'linter_ok': 'lightline#ale#ok',
-\   'gutentags': 'MyGutentagsStatus',
-      \ }
-
-function! MyGutentagsStatus()
-    return gutentags#statusline("[", "]", "")
-endfunction
 
 
 let g:lightline.component_type = {
@@ -490,101 +454,13 @@ let g:ctrlp_status_func = {
 " }}}
 
 " Other Plugin configuration ------------------ {{{
-"
-" Gitgutter related
-set updatetime=1000 " Faster update (mainly useful for gitgutter)
-" Avoid disruptive message
-let g:gitgutter_max_signs=9999
-
-
-" Tagvbar sort by position in the file
-let g:tagbar_sort = 0
-let g:tagbar_iconchars = ['▶', '▼']
 
 " Make surround work with django templates
 let g:surround_37 = "{% \r %}"
 let g:surround_36 = "{{ \r }}"
 
-" Display better strings fvor ALE
-let g:ale_sign_warning = '▲'
-let g:ale_sign_error = '✗'
-highlight link ALEWarningSign String
-highlight link ALEErrorSign Title
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter% %code%] %s [%severity%]'
-
-" Disable golden ratio automatically
-let g:golden_ratio_autocommand = 0
-
-" Various startify configs
-autocmd User Startified setlocal cursorline
-
-let g:startify_enable_special      = 0
-let g:startify_files_number        = 5
-let g:startify_relative_path       = 1
-let g:startify_change_to_dir       = 1
-let g:startify_update_oldfiles     = 1
-let g:startify_session_autoload    = 1
-let g:startify_session_persistence = 1
-
-let g:startify_skiplist = [
-        \ 'COMMIT_EDITMSG',
-        \ 'bundle/.*/doc',
-        \ ]
-
-let g:startify_bookmarks = [
-        \ { 'r': '~/vimfiles/vimrc' },
-        \ { 'c': '~/vimfiles/vim-cmds.txt' },
-        \ { 'p': '~/vimfiles/vim-plugins.txt' },
-        \ ]
-
-
-let g:startify_custom_footer =
-       \ ['', "   Serafeim's VIM!", '']
-
-try
-let g:startify_custom_header = startify#fortune#cowsay('', '═','║','╔','╗','╝','╚')
-catch
-endtry
-
 let g:vimwiki_list = [{'path': '~/wiki/', 'path_html': '~/wiki_html/'} ]
 
-" Gutentags
-" Don't load me if there's no ctags file
-if !executable('ctags')
-    let g:gutentags_dont_load = 1
-endif
-" }}}
-
-" vim-which-key configuration ------- {{{
-
-autocmd! FileType which_key
-autocmd  FileType which_key set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-
-let g:which_key_map =  {}
-let g:which_key_map.a = { 'name' : '+ALE' }
-let g:which_key_map.a.f = 'ALEFix'
-let g:which_key_map.a.j = 'ALENext'
-let g:which_key_map.a.k = 'ALEPrev'
-
-let g:which_key_map.v = { 'name' : '+common' }
-let g:which_key_map.v.e = 'edit-vimrc'
-let g:which_key_map.v.s = 'reload-vimrc'
-let g:which_key_map.v.c = 'edit-vimcmds'
-
-let g:which_key_map.w = { 'name' : '+wiki' }
-let g:which_key_map.W = { 'name' : '+Whitespace' }
-
-let g:which_key_map.y = { 'name' : '+yank' }
-let g:which_key_map.y.f = 'yank-filename'
-let g:which_key_map.y.p = 'yank-filepath'
-
-try
-    call which_key#register('<Space>', "g:which_key_map")
-catch
-endtry
 " }}}
 
 " Plugin Mappings ------------------ {{{
@@ -671,11 +547,6 @@ endfunction
 " Plugin autocmd  ----------------- {{{
 
 if has("autocmd")
-	augroup MyGutentagsStatusLineRefresher
-		autocmd!
-		autocmd User GutentagsUpdating call lightline#update()
-		autocmd User GutentagsUpdated call lightline#update()
-	augroup END
 endif " has("autocmd")
 " }}}
 
