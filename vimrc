@@ -370,7 +370,9 @@ Plug 'vimwiki/vimwiki'
 " Do a
 " let g:codestats_api_key = 'YOUR_KEY_HERE'
 " in your local settings
-Plug 'https://gitlab.com/code-stats/code-stats-vim.git'
+if has("python") || has("python3")
+    Plug 'https://gitlab.com/code-stats/code-stats-vim.git'
+endif
 
 
 call plug#end()
@@ -432,9 +434,6 @@ let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 
 if executable('ag')
   " Use Ag over Grep
-  let g:ackprg = 'ag --vimgrep'
-  nnoremap <leader>ag :Ack<SPACE>
-
   set grepprg=ag\ --nogroup\ --nocolor\ --column
   set grepformat=%f:%l:%c:%m
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
