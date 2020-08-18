@@ -463,38 +463,6 @@ let g:vimwiki_list = [{'path': '~/wiki/', 'path_html': '~/wiki_html/'} ]
 " }}}
 
 " Plugin Mappings ------------------ {{{
-
-" UndoTreeToggle
-nnoremap <leader>ut :UndotreeToggle<CR>
-
-" Tagbar Toggle
-nnoremap <silent> <F9> :TagbarToggle<CR>
-
-" Ale mappings starting with a
-nnoremap <silent> <leader>aj :ALENext<cr>
-nnoremap <silent> <leader>ak :ALEPrevious<cr>
-nnoremap <silent> <leader>at :ALEToggle<cr>
-nnoremap <silent> <leader>af :ALEFix<cr>
-
-" Gitgutter
-" The following are enabled by default by gitgutte
-" <Leader>hp              Preview the hunk under the cursor.
-" <Leader>hs              Stage the hunk under the cursor.
-" <Leader>hu              Undo the hunk under the cursor.
-" ]c                      Jump to the next [count] hunk.
-" [c                      Jump to the previous [count] hunk.
-" Toggle gitgugger
-nnoremap <leader>ht :GitGutterToggle<CR>
-nnoremap <leader>hk :GitGutterPrevHunk<CR>
-nnoremap <leader>hj :GitGutterNextHunk<CR>
-
-" Run golden-ratio
-nnoremap <leader>gr :GoldenRatioResize<CR>
-
-" Run whichkey
-"jnnoremap <silent> <leader> :WhichKey '<Space>'<CR>
-nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
-vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
 " }}}
 
 " Useful functions --------------------------- {{{
