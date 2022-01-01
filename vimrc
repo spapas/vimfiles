@@ -364,9 +364,8 @@ Plug 'tpope/vim-repeat' " https://github.com/tpope/vim-repeat
 Plug 'justinmk/vim-sneak' " https://github.com/justinmk/vim-sneak
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'vimwiki/vimwiki'
 
+Plug 'elixir-editors/vim-elixir', {'for': 'elixir'}
 " Do a
 " let g:codestats_api_key = 'YOUR_KEY_HERE'
 " in your local settings
@@ -457,8 +456,6 @@ let g:ctrlp_status_func = {
 " Make surround work with django templates
 let g:surround_37 = "{% \r %}"
 let g:surround_36 = "{{ \r }}"
-
-let g:vimwiki_list = [{'path': '~/wiki/', 'path_html': '~/wiki_html/'} ]
 
 " }}}
 
