@@ -63,7 +63,6 @@ if version >= 800
 else
     set listchars=eol:$,trail:.
 endif
-hi NonText ctermfg=7 guifg=gray
 
 " }}}
 
@@ -245,6 +244,30 @@ else
 endif
 " }}}
 
+" Colorscheme settings {{{
+"
+" colorscheme desert
+" colorscheme solarized
+" colorscheme gruvbox
+" colorscheme PaperColor
+" colorscheme jellybeans
+" colorscheme onedark
+let g:PaperColor_Theme_Options = {
+  \   'theme': {
+  \     'default.dark': {
+  \       'override' : {
+  \       }
+  \     }
+  \   },
+  \   'language': {
+  \     'python': {
+  \       'highlight_builtins' : 1
+  \     }
+  \   }
+  \ }
+colorscheme PaperColor
+set background=dark
+" }}}
 
 " Core Mappings ------------------ {{{
 
@@ -354,6 +377,51 @@ endif
 call plug#end()
 " }}}
 
+" Lightline -------------------- {{{
+function! LightlineReadonly()
+    return &readonly ? '' : ''
+endfunction
+" Careful here: I've modified the PaperColor scheme (and renamed it as
+" PaperColorEx in order to display linting errors properly.
+let g:lightline = {
+\ 'colorscheme': 'PaperColorEx',
+\ 'separator': { 'left': '', 'right': '' },
+\ 'subseparator': { 'left': '', 'right': '' },
+\ 'component': {
+\   'lineinfo': ' %3l:%-2v',
+\ },
+\ 'component_function': {
+\   'readonly': 'LightlineReadonly',
+\   'ctrlpmark': 'CtrlPMark',
+\ },
+\ }
+let g:lightline.inactive = {
+\ 'left': [ [ 'filename' ] ],
+\ 'right': [ [ 'lineinfo' ],
+\            [ 'percent' ] ] }
+let g:lightline.tabline = {
+\ 'left': [ [ 'tabs' ] ],
+\ 'right': [ [ 'close' ] ] }
+let g:lightline.tab = {
+\ 'active': [ 'tabnum', 'filename', 'modified' ],
+\ 'inactive': [ 'tabnum', 'filename', 'modified' ] }
+
+
+let g:lightline.component_type = {
+      \     'linter_checking': 'left',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'ok',
+      \ }
+
+
+
+let g:lightline.active = {
+\   'left': [['mode', 'paste'], ['readonly', 'filename', 'modified', 'gutentags',], ['ctrlpmark', 'tagbar_current',  ], ],
+\   'right': [[ 'linter_checking',  'linter_errors', 'linter_warnings' , 'linter_ok' ], ['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype', ]]
+\ }
+
+" }}}
 
 " CtrlP configuration ------------------ {{{
 
@@ -372,7 +440,7 @@ if executable('ag')
   " Or can use ripgrep
   let g:ctrlp_user_command = 'rg --files %s'
 
-  " rg is fast enough that CtrlP doesn't need to cache
+  " ag is fast enough that CtrlP doesn't need to cache
   " let g:ctrlp_use_caching = 0
 endif
 
@@ -451,20 +519,6 @@ endif " has("autocmd")
 " Replace only in insert mode
 iabbr teh the
 
-" }}}
-
-
-
-" Colorscheme settings {{{
-"
-" colorscheme desert
-" colorscheme solarized
-" colorscheme gruvbox
-" colorscheme PaperColor
-" colorscheme jellybeans
-" colorscheme onedark
-colorscheme PaperColor
-set background=dark
 " }}}
 
 " Include other files  ----------------- {{{
