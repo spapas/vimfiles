@@ -1,5 +1,13 @@
 " vim: set foldmethod=marker foldmarker={{{,}}} nowrap:
 
+" needed settings for python-vim integration because python vim does not work
+" with python 3.13!
+set pythonthreehome=C:/Users/serafeim/AppData/Local/Programs/Python/Python310
+set pythonthreedll=C:/Users/serafeim/AppData/Local/Programs/Python/Python310/python310.dll
+
+" Test test
+
+
 " Basic settings ---------------------- {{{
 "
 set nocompatible " Important
