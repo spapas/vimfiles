@@ -350,6 +350,7 @@ Plug 'justinmk/vim-sneak' " https://github.com/justinmk/vim-sneak
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'davidhalter/jedi-vim'
 
 " Do a
 " let g:codestats_api_key = 'YOUR_KEY_HERE'
